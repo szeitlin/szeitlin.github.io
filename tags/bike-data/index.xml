@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bike Data on </title>
+    <link>https://szeitlin.github.io/tags/bike-data/</link>
+    <description>Recent content in Bike Data on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 Apr 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/bike-data/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Working with device data</title>
+      <link>https://szeitlin.github.io/posts/biking_data/device-data/</link>
+      <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/device-data/</guid>
+      <description>In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.
+I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.
+Things to consider when working with devices  Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?</description>
+    </item>
+    
+  </channel>
+</rss>

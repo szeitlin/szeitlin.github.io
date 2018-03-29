@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zip on </title>
+    <link>https://szeitlin.github.io/tags/zip/</link>
+    <description>Recent content in Zip on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 15 Jan 2015 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/zip/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Things I learned about zip files</title>
+      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</guid>
+      <description>In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
+I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Things I learned studying the cell cycle in cancer</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Things I learned studying the cell cycle in cancer" />
+<meta property="og:description" content="I know that from the outside, &lsquo;science&rsquo; seems like The Place Where Scientists Live. But &lsquo;science&rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.
+Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.
+My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Things I learned studying the cell cycle in cancer">
+<meta itemprop="description" content="I know that from the outside, &lsquo;science&rsquo; seems like The Place Where Scientists Live. But &lsquo;science&rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.
+Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.
+My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.">
+
+
+
+<meta itemprop="wordCount" content="830">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Things I learned studying the cell cycle in cancer"/>
+<meta name="twitter:description" content="I know that from the outside, &lsquo;science&rsquo; seems like The Place Where Scientists Live. But &lsquo;science&rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.
+Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.
+My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Things I learned studying the cell cycle in cancer
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>I know that from the outside, &lsquo;science&rsquo; seems like The Place Where Scientists Live. But &lsquo;science&rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.</p>
+
+<hr />
+
+<p>Today someone called me a <em>Biologist</em>. But I was never really a <em>Biologist</em>. My undergraduate degree was in a chemistry department.</p>
+
+<p>My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.</p>
+
+<hr />
+
+<h2 id="do-the-math">Do the math</h2>
+
+<p>Asking good questions in science often starts with some back-of-the-envelope calculations. For example, in the human body, there are approximately 10,000,000,000,000  cell divisions per day. Some cell types are always dividing.</p>
+
+<p>There are about 3 billion base pairs of DNA in each human cell.</p>
+
+<p>Replication is very messy! There are about 1000 chances for mutations at each nucleotide in your DNA, every day.</p>
+
+<p>So how do we even survive?</p>
+
+<p>It turns out that the relatively high fidelity of DNA replication actually comes from systems that recognize and repair mistakes.</p>
+
+<p>And, we&rsquo;re constantly being exposed to sunlight, pollution, and other chemicals that damage DNA, like cigarette smoke and alcohol. DNA damage happens constantly. Life is hard.</p>
+
+<hr />
+
+<p>It turns out that the cell cycle is a really interesting population and time series problem. The average human cell takes about 24 hours to divide. The main goal of cell division is simple: information is propagated from mother to daughter cell by DNA. The DNA is replicated so the daughter cell can have a copy, and that DNA is organized into chromosomes to make it easier to distribute. There are a lot of chromosomes, especially in cancer cells, which tend to have extra chromosomes.</p>
+
+<p>Before cells divide, each pair of replicated chromosomes gets a type of &lsquo;handle&rsquo; to help the cell pull the copies apart.</p>
+
+<p>Cells use what we call <em>checkpoints</em> between the stages of the cell cycle, to make sure that the right things get done as all the parts are replicated and ready, before moving forward to the next stage.</p>
+
+<p>The actual division step only takes about 1 hour. The other 23 hours are preparation.</p>
+
+<hr />
+
+<h2 id="how-to-study-an-ongoing-cycle">How to study an ongoing cycle</h2>
+
+<p>In some ways, the cell cycle is like a live web service. It&rsquo;s running all the time. You might have many copies, all out of sync. A population of cells is much like that. Or a population of customers.</p>
+
+<p>If you want to study a time-dependent process, you basically have two options:</p>
+
+<hr />
+
+<p><strong>1. Stop it. Just stop it.</strong></p>
+
+<p>With cells, stopping the cycle is done using drugs that trigger cell cycle checkpoints. This is the basis for some cancer drugs, since stopping cells long enough will cause them to give up and die.</p>
+
+<p>With a web service, you might take it offline, or just use a mock version of the site.</p>
+
+<p>It&rsquo;s obvious why this is a simple approach, which makes it appealing.</p>
+
+<p>But it&rsquo;s also artificial, and doesn&rsquo;t represent what really happens.</p>
+
+<p>There can also be side-effects of the interruption.</p>
+
+<hr />
+
+<p><strong>2. Watch. Just watch.</strong></p>
+
+<p><img src="/site_media/media/d665da1c176b1.TIF" alt="ARRAYSCAN_080530110005_A10f00d0.TIF" /></p>
+
+<p>With cells, watching usually means using a microscope, and sampling.</p>
+
+<p>With a web service, this would mean using surveys to ask your users what they think, or adding beacons into your embedded videos that send back information when someone clicks on them.</p>
+
+<p>There are two main advantages of observation:</p>
+
+<p>• Get closer to the real thing: the system isn&rsquo;t artificially disturbed by the process.</p>
+
+<p>• The opportunity to see something you might not have known to look for.</p>
+
+<p>The disadvantage of observation:</p>
+
+<p>It can be a little more complicated to do the analysis. It usually requires a little more math.</p>
+
+<hr />
+
+<h2 id="what-wastes-the-most-time">What wastes the most time?</h2>
+
+<p>As a researcher, I had to be highly organized. The kinds of experiments we did were laborious and expensive, and we never had enough funding. In research, you get used to screwing up a lot, but you&rsquo;d rather screw up because your hypothesis was wrong - because at least then you learned something - than because you didn&rsquo;t plan ahead.</p>
+
+<p>My calendar was always full. Here&rsquo;s a screenshot of a typical month from when I was a postdoc:</p>
+
+<p><img src="/site_media/media/d5c2391a176c1.tiff" alt="calendar_example.tiff" /></p>
+
+<p>So I put a lot of effort into trying to figure out how to get the most bang for my buck, in terms of how to design my experiments to be informative, making sure I had everything I needed for the more elaborate ones (especially the time-sensitive experiments), and trying to do it all on a shoestring budget.</p>
+
+<p>Here&rsquo;s what I realized. The one thing that wastes the most time:</p>
+
+<p><strong>False negatives.</strong></p>
+
+<p>Using the wrong approach: the hypothesis seems to be wrong, when actually the experiment failed for technical reasons.</p>
+
+<p>False positives are easy to test: just do the experiment again. If it&rsquo;s not consistently reproducible, the end. Move on.</p>
+
+<p>False negatives, on the other hand, take longer. Because a different perspective seems to be needed, a false negative often results in a long tangential trip in the wrong direction.</p>
+
+<p><img src="/site_media/media/ad36d7de176d1.jpeg" alt="question_color.jpeg" /></p>
+
+<hr />
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black o-50">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

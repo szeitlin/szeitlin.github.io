@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pandas on </title>
+    <link>https://szeitlin.github.io/tags/pandas/</link>
+    <description>Recent content in Pandas on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 04 Nov 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/pandas/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Probability binning: simple and fast</title>
+      <link>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</link>
+      <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</guid>
+      <description>Over the years, I&amp;rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.
+One of the first things I usually do is make a bunch of histograms. Histograms are great because it&amp;rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.</description>
+    </item>
+    
+    <item>
+      <title>Test-driven data pipelining</title>
+      <link>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</guid>
+      <description>When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&amp;rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&amp;rsquo;s happening.</description>
+    </item>
+    
+    <item>
+      <title>Data pipelining with pandas</title>
+      <link>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</link>
+      <pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</guid>
+      <description>For better or worse, when you&amp;rsquo;re dealing with data pipelines of varying shapes and sizes, sometimes you need to combine objects that don&amp;rsquo;t match up evenly.
+For example, if you want to apply a condition via lookup, sometimes it makes sense to just do a merge. This creates a new column in your data table, and then you can use that for reference.
+This is an extremely simple example to show what I mean:</description>
+    </item>
+    
+  </channel>
+</rss>

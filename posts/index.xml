@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on </title>
+    <link>https://szeitlin.github.io/posts/</link>
+    <description>Recent content in Posts on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Things I learned about Pyspark the hard way</title>
+      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</link>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</guid>
+      <description>Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&amp;rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).</description>
+    </item>
+    
+    <item>
+      <title>Airflow</title>
+      <link>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</link>
+      <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</guid>
+      <description>Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
+The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
+Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS.</description>
+    </item>
+    
+    <item>
+      <title>Probability binning: simple and fast</title>
+      <link>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</link>
+      <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</guid>
+      <description>Over the years, I&amp;rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.
+One of the first things I usually do is make a bunch of histograms. Histograms are great because it&amp;rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.</description>
+    </item>
+    
+    <item>
+      <title>A tutorial within a tutorial on building reusable models with scikit-learn</title>
+      <link>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
+      <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
+      <description>Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that.</description>
+    </item>
+    
+    <item>
+      <title>Shuffling the deck: an interview experience</title>
+      <link>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</link>
+      <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</guid>
+      <description>Here is a story about an interesting interview question and how I approached it.
+The company in question wasn&amp;rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.
+ Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck.</description>
+    </item>
+    
+    <item>
+      <title>Validating Results</title>
+      <link>https://szeitlin.github.io/posts/statistics/validating-results/</link>
+      <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/statistics/validating-results/</guid>
+      <description>I don&amp;rsquo;t believe truth is a finite value. Truth is what we know right now. Every ten years or so, a major discovery gets overturned. Scientists are just people, and we&amp;rsquo;re wrong a lot.
+So one of the scariest things about doing research, or predictions, is trying to convince yourself, and other people, that what you think you&amp;rsquo;ve discovered is &amp;lsquo;real&amp;rsquo;.
+Or at least real enough, right now, to be believable.</description>
+    </item>
+    
+    <item>
+      <title>Test-driven data pipelining</title>
+      <link>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</guid>
+      <description>When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&amp;rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&amp;rsquo;s happening.</description>
+    </item>
+    
+    <item>
+      <title>Data pipelining with pandas</title>
+      <link>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</link>
+      <pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</guid>
+      <description>For better or worse, when you&amp;rsquo;re dealing with data pipelines of varying shapes and sizes, sometimes you need to combine objects that don&amp;rsquo;t match up evenly.
+For example, if you want to apply a condition via lookup, sometimes it makes sense to just do a merge. This creates a new column in your data table, and then you can use that for reference.
+This is an extremely simple example to show what I mean:</description>
+    </item>
+    
+    <item>
+      <title>Working with device data</title>
+      <link>https://szeitlin.github.io/posts/biking_data/device-data/</link>
+      <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/device-data/</guid>
+      <description>In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.
+I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.
+Things to consider when working with devices  Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?</description>
+    </item>
+    
+    <item>
+      <title>Biking data from XML to analysis, part 2</title>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/</link>
+      <pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/</guid>
+      <description>So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.
+Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.</description>
+    </item>
+    
+    <item>
+      <title>Biking data from XML to analysis, part 3</title>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-3/</link>
+      <pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-3/</guid>
+      <description>One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.
+First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL.</description>
+    </item>
+    
+    <item>
+      <title>Biking data from XML to analysis, part 4</title>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-4/</link>
+      <pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-4/</guid>
+      <description>One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&amp;rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.
+&amp;hellip;tick&amp;hellip;tick&amp;hellip;tick
+Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs.</description>
+    </item>
+    
+    <item>
+      <title>Things I learned about zip files</title>
+      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</link>
+      <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</guid>
+      <description>In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
+I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.</description>
+    </item>
+    
+    <item>
+      <title>Advice on recruiting</title>
+      <link>https://szeitlin.github.io/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</guid>
+      <description>I have had a few pleasant job interviews. Here&amp;rsquo;s what&amp;rsquo;s different about those interviews, that made them really stand out from the others I&amp;rsquo;ve done. I&amp;rsquo;ll describe a specific example, and then give some specific suggestions.
+ The hiring manager contacted me directly He had done his homework. He had looked at my GitHub repos. He told gave me pretty specific information about the structure of the interview, and gave me ~2 weeks to prepare.</description>
+    </item>
+    
+    <item>
+      <title>Automating user-friendly documentation with Selenium</title>
+      <link>https://szeitlin.github.io/posts/engineering/automating-user-friendly-documentation-using-selenium-/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/automating-user-friendly-documentation-using-selenium-/</guid>
+      <description>Once upon a time, a friend recruited me to do some technical writing for the company where he works now. Basically, they needed someone to quickly revise and update the documentation for their software.
+Most modern user-friendly software documentation isn&amp;rsquo;t just writing, though. It&amp;rsquo;s screenshots. A LOT of screenshots. So you don&amp;rsquo;t just write &amp;ldquo;click on the blue box&amp;rdquo;, you also show a picture of it, like this. See the blue box?</description>
+    </item>
+    
+    <item>
+      <title>Biking data from XML to analysis, part 1</title>
+      <link>https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/</guid>
+      <description>I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&amp;rsquo; unfounded modesty and their actual rides.
+One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&amp;rsquo;s also relatively consistent, which meant the data he gave me wasn&amp;rsquo;t too terribly noisy.</description>
+    </item>
+    
+    <item>
+      <title>Biking data from XML to analysis, revised</title>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
+      <description>Am I getting slower every day?
+If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
+ If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
+    </item>
+    
+    <item>
+      <title>FAQ: why and how I learned to code</title>
+      <link>https://szeitlin.github.io/posts/career_transition/faq-why-and-how-i-learned-to-code/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_transition/faq-why-and-how-i-learned-to-code/</guid>
+      <description>A lot of people have asked me why I&amp;rsquo;m not working in academia or biotech, how I learned to code, or how I got into data science. Here are some answers to some of those questions.
+ Are you sure you wouldn&amp;rsquo;t rather be in academia?
+ Yes and no.
+Yes, I wanted my own lab. No, we don&amp;rsquo;t always get what we want, even after 7 years of postdoc.</description>
+    </item>
+    
+    <item>
+      <title>Fun with text file encodings</title>
+      <link>https://szeitlin.github.io/posts/engineering/fun-with-failing/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/fun-with-failing/</guid>
+      <description>This post is about a couple of painful problems I&amp;rsquo;ve had with reading in text files.
+They&amp;rsquo;re just text files, right? What could be hard about that?
+1. Fun with encoding The problem:
+A friend sent me a dump of data from iTunes, as a table.
+Just a text file.
+She&amp;rsquo;s on a Mac. I&amp;rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&amp;rsquo;t seen before.</description>
+    </item>
+    
+    <item>
+      <title>Game plan for attending conferences with a high risk of harassment</title>
+      <link>https://szeitlin.github.io/posts/game-plan-for-conferences-with-high-risk-of-harassment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/game-plan-for-conferences-with-high-risk-of-harassment/</guid>
+      <description>So let&amp;rsquo;s say you&amp;rsquo;re thinking about attending a conference in tech, or some STEM field.
+Maybe you&amp;rsquo;ll be going alone. Maybe you&amp;rsquo;ve never been to a conference before, or this conference has a reputation for having, shall we say, &amp;ldquo;a higher risk of harassment&amp;rdquo;.
+Here&amp;rsquo;s a &amp;lsquo;game plan&amp;rsquo; for things to keep in mind. I&amp;rsquo;m not saying anyone should ever have to do this, I&amp;rsquo;m saying this is more or less what I did when I was younger and had to go to STEM meetings, usually alone, and didn&amp;rsquo;t always feel safe.</description>
+    </item>
+    
+    <item>
+      <title>Python: where to start</title>
+      <link>https://szeitlin.github.io/posts/career_transition/python-where-to-start/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_transition/python-where-to-start/</guid>
+      <description>I spent about a year learning Python when I first got back into coding. A lot of people have asked me where to begin. Here&amp;rsquo;s a guide to what I found useful (or not) and why.
+ Learn Python The Hard Way by Zed Shaw. &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;-  I started here. I did the free online version.
+I like the advice he gives you to just type things in, even if you don&amp;rsquo;t know what&amp;rsquo;s happening yet.</description>
+    </item>
+    
+    <item>
+      <title>Quick and dirty: plot your data on a map with python</title>
+      <link>https://szeitlin.github.io/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</guid>
+      <description>Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.
+What I wanted to do One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e.</description>
+    </item>
+    
+    <item>
+      <title>Recursion excursion</title>
+      <link>https://szeitlin.github.io/posts/engineering/recursion-excursion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/recursion-excursion/</guid>
+      <description>More than once, and probably not for the last time, I have done a technical interview for which I was underprepared. I feel like no matter how much I try to prepare, I am always underprepared for technical interviews.
+I&amp;rsquo;m going to tell you about a time I was underprepared for a few reasons, including:
+a) It was the first interview where I was asked to write more than a couple lines of recursive code</description>
+    </item>
+    
+    <item>
+      <title>Robustness: lessons from applied bench science</title>
+      <link>https://szeitlin.github.io/posts/robustness-lessons-from-doing-applied-bench-science/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/robustness-lessons-from-doing-applied-bench-science/</guid>
+      <description>Inspired by a couple of great posts by Michael Gibson, I want to talk about what robustness means to me, as someone coming from a science background.
+I started working in a &amp;ldquo;wetlab&amp;rdquo; doing benchwork cancer research when I was in high school (I was 16). I learned early on that mistakes are:
+ normal avoidable necessary.  That may sound paradoxical, so I&amp;rsquo;ll explain. Some failures will always happen: the phone rings and you drop something.</description>
+    </item>
+    
+    <item>
+      <title>Things I learned studying the cell cycle in cancer</title>
+      <link>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</guid>
+      <description>I know that from the outside, &amp;lsquo;science&amp;rsquo; seems like The Place Where Scientists Live. But &amp;lsquo;science&amp;rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.
+Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.
+My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.</description>
+    </item>
+    
+    <item>
+      <title>Tips on giving presentations</title>
+      <link>https://szeitlin.github.io/posts/career_skills/tips-on-giving-presentations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_skills/tips-on-giving-presentations/</guid>
+      <description>Over the years, I&amp;rsquo;ve attended a lot of technical (read: software) talks. Once upon a time, I attended PyData, at Facebook. I&amp;rsquo;ve noticed at all of these events that the quality of presentations varies widely.
+If you&amp;rsquo;re like me, and you go to technical meetups and conferences around the Bay Area, for example, you&amp;rsquo;ll notice that some talks are well-rehearsed.
+But some seem like they were thrown together at the last minute.</description>
+    </item>
+    
+  </channel>
+</rss>

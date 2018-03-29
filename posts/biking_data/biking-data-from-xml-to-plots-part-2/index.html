@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Biking data from XML to analysis, part 2</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Biking data from XML to analysis, part 2" />
+<meta property="og:description" content="So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.
+Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/" />
+
+
+
+<meta property="article:published_time" content="2015-02-12T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2015-02-12T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Biking data from XML to analysis, part 2">
+<meta itemprop="description" content="So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.
+Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.">
+
+
+<meta itemprop="datePublished" content="2015-02-12T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2015-02-12T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="620">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Biking data from XML to analysis, part 2"/>
+<meta name="twitter:description" content="So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.
+Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Biking data from XML to analysis, part 2
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.</p>
+
+<h2 id="non-obvious-nuances-of-pandas-datetime-objects-and-indexes"><strong>Non-obvious nuances of pandas datetime objects and indexes.</strong></h2>
+
+<p><strong>You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.</strong></p>
+
+<p>If you want to follow along, the .ipynb  is <a href="https://github.com/szeitlin/biking_data/blob/master/import-one-year.ipynb" title="here">here</a>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sorted_by_date <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>sort_index(by<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;StartTime&#39;</span>) 
+
+sorted_by_date[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;StartTime&#39;</span>] <span style="color:#f92672">=</span> sorted_by_date[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;StartTime&#39;</span>]<span style="color:#f92672">.</span>apply(pandas<span style="color:#f92672">.</span>to_datetime)</code></pre></div>
+<hr />
+
+<p><strong>If you want to truncate and resample the data for plotting, you have to resample first and truncate second.</strong></p>
+
+<pre><code>StartTime   TotalTimeSeconds   DistanceMeters    MaxSpeed    Calories    AvgSpeed
+2013-01-02 15:51:51  1690.76     14632.39    12.05   572     8.65
+2013-01-03 00:20:26  1928.39     15305.22    12.34   702     7.94
+2013-01-04 15:46:52  1680.40     14651.60    12.28   572     8.72
+2013-01-04 23:59:27  1962.15     15237.36    11.43   691     7.77
+2013-01-07 15:56:14  1657.51     14625.53    12.02   609     8.82
+</code></pre>
+
+<p>There were some days with multiple trips, and some days with only one trip.</p>
+
+<p>If I wanted to know, for example, the total Calories burned in a day, I needed to combine the trips from each day by resampling. Thankfully, pandas makes this really easy.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    days <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>resample(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;B&#39;</span>) <span style="color:#75715e">#B means business days</span>
+
+    TotalTimeSeconds   DistanceMeters   MaxSpeed   Calories   AvgSpeed
+StartTime                   
+<span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span>   <span style="color:#ae81ff">1690.760</span>    <span style="color:#ae81ff">14632.39</span>    <span style="color:#ae81ff">12.050</span>  <span style="color:#ae81ff">572.0</span>   <span style="color:#ae81ff">8.650</span>
+<span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">03</span>   <span style="color:#ae81ff">1928.390</span>    <span style="color:#ae81ff">15305.22</span>    <span style="color:#ae81ff">12.340</span>  <span style="color:#ae81ff">702.0</span>   <span style="color:#ae81ff">7.940</span>
+<span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span>   <span style="color:#ae81ff">1821.275</span>    <span style="color:#ae81ff">14944.48</span>    <span style="color:#ae81ff">11.855</span>  <span style="color:#ae81ff">631.5</span>   <span style="color:#ae81ff">8.245</span></code></pre></div>
+<p>But then I went to plot the data, and all the timestamps came out looking like this:</p>
+
+<pre><code>    2013-01-02 00:00:00
+    2013-01-03 00:00:00 
+</code></pre>
+
+<p>Which does not look so great on a plot. :(</p>
+
+<p>I probably could have truncated the labels somehow, but instead of fighting with matplotlib any more than is already always necessary, I went back to figure out how to get rid of the &lsquo;times&rsquo; in the timestamps.</p>
+
+<p>Turns out you can convert to whatever format you want, using a similar magic to the way resampling options are defined. Which gave me back what I thought I had already.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    days<span style="color:#f92672">.</span>index <span style="color:#f92672">=</span> days<span style="color:#f92672">.</span>index<span style="color:#f92672">.</span>values<span style="color:#f92672">.</span>astype(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;M8[D]&#39;</span>)
+
+    <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span>
+    <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">03</span></code></pre></div>
+<hr />
+
+<p>I keep finding out the hard way that IPython notebook is a little too clever in that it hides a lot of ugliness for you, but matplotlib is stubborn and wants to be overly correct, so it shows everything, even the meaningless stuff.</p>
+
+<hr />
+
+<p>So why bother doing all that? Because one of the plots I wanted to make was how many calories were burned per day. First, I just made a histogram, using the resampled &lsquo;days&rsquo; data frame. The result was surprising: a lot lower than we might have expected.</p>
+
+<p><img src="/site_media/media/92f0f1c82f0c1.png" alt="calories.png" /></p>
+
+<hr />
+
+<p>The other plot I wanted to make was actually calories per day. This turned out to be harder than I might have expected. Even after getting rid of the extra 00:00:00, my first attempt came out looking kind of stupid, because there were way too many data points.</p>
+
+<p><img src="/site_media/media/00e83fba2f0d1.png" alt="calories_by_day.png" /></p>
+
+<p>I wasn&rsquo;t sure how to truncate the data, so I thought I&rsquo;d try a lazy approach again and do an SQL query to just randomly select a subset of the data, and limit it to less than half the data points.</p>
+
+<p>Note: I found out the hard way that once again, I had to reset the date(time) index to turn it into a column called &lsquo;index&rsquo;, or it got lost when I did the query.</p>
+
+<p>Then I turned it back into the index of the resulting dataframe, so I could use it as the labels for the x-axis.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    days2 <span style="color:#f92672">=</span> somedays<span style="color:#f92672">.</span>reset_index()   <span style="color:#75715e">#note that I found this out the hard way</span>
+
+    q<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;SELECT *
+</span><span style="color:#e6db74">    FROM days2
+</span><span style="color:#e6db74">    ORDER BY RANDOM()
+</span><span style="color:#e6db74">    LIMIT 100&#34;&#34;&#34;</span>
+
+    subset <span style="color:#f92672">=</span> pandasql<span style="color:#f92672">.</span>sqldf(q, locals())
+
+    date_subset <span style="color:#f92672">=</span> subset<span style="color:#f92672">.</span>set_index([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;index&#39;</span>])     <span style="color:#75715e">#put the index back where I wanted it</span></code></pre></div>
+<p><img src="/site_media/media/bc5d25bc2f121.png" alt="calories_day_better.png" /></p>
+
+<p>Thanks for reading this far! I also went on and did more. The next part is <a href="https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-3/">part 3</a>.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black o-50">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

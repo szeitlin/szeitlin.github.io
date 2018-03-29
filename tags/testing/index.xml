@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testing on </title>
+    <link>https://szeitlin.github.io/tags/testing/</link>
+    <description>Recent content in Testing on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Airflow</title>
+      <link>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</link>
+      <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</guid>
+      <description>Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
+The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
+Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS.</description>
+    </item>
+    
+    <item>
+      <title>A tutorial within a tutorial on building reusable models with scikit-learn</title>
+      <link>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
+      <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
+      <description>Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that.</description>
+    </item>
+    
+    <item>
+      <title>Test-driven data pipelining</title>
+      <link>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</link>
+      <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</guid>
+      <description>When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&amp;rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&amp;rsquo;s happening.</description>
+    </item>
+    
+  </channel>
+</rss>

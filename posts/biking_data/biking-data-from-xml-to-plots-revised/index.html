@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Biking data from XML to analysis, revised</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Biking data from XML to analysis, revised" />
+<meta property="og:description" content="Am I getting slower every day?
+If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
+ If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Biking data from XML to analysis, revised">
+<meta itemprop="description" content="Am I getting slower every day?
+If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
+ If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?">
+
+
+
+<meta itemprop="wordCount" content="1032">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Biking data from XML to analysis, revised"/>
+<meta name="twitter:description" content="Am I getting slower every day?
+If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
+ If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?"/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Biking data from XML to analysis, revised
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        <p><em>Am I getting slower every day?</em></p>
+
+<p>If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:</p>
+
+<ul>
+<li>If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?</li>
+<li>Do I tend to ride faster in the morning or the evening?</li>
+</ul>
+
+<hr />
+
+<p>Last year, I wrote <a href="http://codrspace.com/szeitlin/bike-data-from-xml-to-plots/">a few posts</a> about learning how to parse a set of Garmin XML data from 2013 and analyze it using pandas, matplotlib, and <a href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>. This year I redid the same analyses, with a new installment of data from 2014.</p>
+
+<p>This new and improved version is both prettier and more interesting, thanks to having more data, and more experience with pandas and seaborn (not to mention that pandas and iPython notebook have both been updated a few times). In this series of posts, I&rsquo;ll show what I did to improve on my initial attempts. In later posts, I&rsquo;ll present some new analyses of higher-density time series data, which include detailed 3D location information in the form latitude, longitude, and altitude.</p>
+
+<hr />
+
+<p><strong>First, get a rough idea of what is going on</strong></p>
+
+<p>One of the first questions we wanted to ask was about relative speeds in the city vs. suburbs, and morning vs. evening.</p>
+
+<p>Last year I made <a href="http://codrspace.com/site_media/media/73752cba2ef31.png" title="this plot">this plot</a>, roughly separating city vs. suburbs based on the length of the trips.</p>
+
+<p>This year I used time of day to get better separation.</p>
+
+<p><code>python sns.set(style=&quot;ticks&quot;)</code>
+<code>python sns.jointplot(&quot;hour&quot;, &quot;average_mph&quot;, data=filtered)</code></p>
+
+<p><img src="/site_media/media/e4d627b8c5131.png" alt="avg_mph_jointplot.png" /></p>
+
+<p>And that gave me a clear idea of what might work, but this kind of plot is not very easy to look at if you&rsquo;re not a data person.</p>
+
+<hr />
+
+<p><strong>Clarify relevant questions</strong></p>
+
+<p>So to make it a little clearer, and be able to ask better questions, I wrote a simple helper function to add a flag for the four main categories I wanted: morning city, morning suburbs, evening city, evening suburbs.</p>
+
+<p>On further revision, I added a couple of extra flags for two kinds of &lsquo;outliers&rsquo;: one I called &lsquo;evening later&rsquo; for when Caltrain was delayed, plus &lsquo;other&rsquo; for those random data points that were probably due to the Garmin device being on or off when it shouldn&rsquo;t be, aka, user error.</p>
+
+<p>Then I used a list comprehension to apply that to the &lsquo;hour&rsquo; column in my dataframe, which I had previously generated using the awesome built-in datetime handling that pandas makes so easy. Then I made a better plot with seaborn.</p>
+
+<p>[code]<br />
+     def leg_definer(hour):
+        &ldquo;&rdquo;&rdquo;
+        (int) -&gt; (str)</p>
+
+<pre><code>    Helper function to identify trip legs by hour, i.e.
+         6 AM: first leg (to Caltrain) - morning_city
+         7 AM: second leg (to work) - morning_suburb
+         4 PM (16): 3rd leg (return to Caltrain) - evening_suburb
+         5 PM (17): 4th leg (return home) - evening_city
+         later - evening_later (Caltrain delays, etc)
+         other hour: other
+
+    &gt;&gt;&gt; leg_definer(6):
+    'morning_city'
+
+    &quot;&quot;&quot;
+legref = {6:&quot;morning_city&quot;, 7:&quot;morning_suburb&quot;, 16:&quot;evening_suburb&quot;, 17:&quot;evening_city&quot;, 9:&quot;other&quot;, 11:&quot;other&quot;, 12:&quot;other&quot;, 15:&quot;other&quot;, 18:&quot;evening_later&quot;}
+return legref[hour]
+
+filtered[&quot;leg_flag&quot;]=[leg_definer(hour) for hour in filtered[&quot;hour&quot;]]
+
+g = sns.lmplot(&quot;day&quot;, &quot;average_mph&quot;, filtered, hue=&quot;leg_flag&quot;, fit_reg=False)
+g.set(xticks=[0,5,10,15,20,25,30], ylim=(5,24))
+
+[/code] 
+</code></pre>
+
+<p><img src="/site_media/media/25e3a19ec5151.png" alt="2014_avmph_day_lmplot.png" /></p>
+
+<p>And I think that&rsquo;s pretty cute, but it doesn&rsquo;t really show any meaningful patterns, because we&rsquo;re looking at all the months on top of each other (day here is coming from the date, aka &lsquo;day of the month&rsquo;).</p>
+
+<hr />
+
+<p><strong>Focus on how to see what you&rsquo;re looking for</strong></p>
+
+<p>I realized grouping by weekday was more likely to be interesting. And then I got caught by one of those random little pandas gotchas: weekday is a method, not a datetime attribute. So it&rsquo;s item.weekday(), not item.weekday (so it&rsquo;s different from month, day, or hour).</p>
+
+<p>I also had to use a plotting trick of adding horizontal &lsquo;jitter&rsquo; to make it easier to see all the dots on the scatterplot that would otherwise be overlapped.</p>
+
+<p>[code]
+filtered[&ldquo;weekday&rdquo;]=[item.weekday() for item in filtered[&ldquo;zoned&rdquo;]]</p>
+
+<p>sns.set_context(&ldquo;talk&rdquo;)
+g=sns.lmplot(&ldquo;weekday&rdquo;, &ldquo;average_mph&rdquo;, filtered, hue=&ldquo;leg_flag&rdquo;, x_jitter=0.15, fit_reg=False)
+g.set(xlim=(-1,6), ylim=(5,24))
+[/code]</p>
+
+<p><img src="/site_media/media/b84c398ac5181.png" alt="2014_avgmph_weekday_flagged.png" /></p>
+
+<p>This plot is starting to make more sense. Now, we can start making some observations and generating new hypotheses (which may or may not match up with our previously qualitative impressions).</p>
+
+<ul>
+<li>Suburbs have higher average speeds (gold and red dots) than city <em>(hypothesis: traffic)</em></li>
+<li>Morning city is much faster than evening city <em>(hypothesis: traffic)</em></li>
+<li>Morning suburb is a bit faster than evening suburb <em>(hypotheses: tired? slope? wind?)</em></li>
+<li>Fewer rides on Thursdays (weekday 3) make sense, since this cyclist usually works from home on Thursdays (but not always). Interestingly, Thursday rides seem to cluster toward the faster end <em>(hypothesis: taking Wednesday off to recover makes Thursday&rsquo;s ride easier)</em></li>
+</ul>
+
+<hr />
+
+<p><strong>Sometimes a different type of plot works better to get your point across</strong></p>
+
+<p>Now, it seemed like the relevant finding was that Mornings were generally faster than Evenings, and I decided to focus on the Suburbs rides since they were less vulnerable to the confounding (!) effects of traffic.</p>
+
+<p>I chose a violin plot to show the distributions more clearly. I hadn&rsquo;t done this quite this way before, but it&rsquo;s actually very easy to create a plot object, and add a couple of subplots. Then I tweaked it a little more: I adjusted the range of the axes, as well as getting rid of the tick-marks along the edge, to make it less cluttered. (Also, I didn&rsquo;t know how to add a title to a plot, so I had to look that up!)</p>
+
+<p>[code]
+f, ax= plt.subplots()
+g = sns.violinplot(evening_suburb[&ldquo;average_mph&rdquo;], evening_suburb[&ldquo;weekday&rdquo;], color=&ldquo;Blues&rdquo;)
+g = sns.violinplot(morning_suburb[&ldquo;average_mph&rdquo;], morning_suburb[&ldquo;weekday&rdquo;], color=&ldquo;Yellow&rdquo;)
+g.set(ylim=(10,24))
+title(&ldquo;Morning(yellow) vs. Evening(blue) Suburb&rdquo;)
+sns.despine()
+[/code]</p>
+
+<p><img src="/site_media/media/bafb74eac51b1.png" alt="2014_morning_vs_suburb.png" /></p>
+
+<p>At the end of the day, I think this plot makes it pretty clear that Morning rides have higher average speeds than Evening rides. Which made me wonder: if we plot the route on a map, can we find out if the road is actually slightly inclined, such that it&rsquo;s actually downhill in the morning, and uphill at night? The incline must be minimal, since this cyclist perceives it as being &lsquo;flat&rsquo;.</p>
+
+<p>Sure enough, a rough estimate of the route using this awesome tool at <a href="http://cycleroute.org" title="Cycle Route">cycleroute.org</a> gives a plot that looks something like this:</p>
+
+<p><img src="/site_media/media/482a5698c5201.png" alt="Screen Shot 2015-03-07 at 3.18.48 PM.png" /></p>
+
+<p>Next time: Plotting the measured velocities over the distance of the actual route.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black o-50">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

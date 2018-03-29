@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Scikit Learn on </title>
+    <link>https://szeitlin.github.io/tags/scikit-learn/</link>
+    <description>Recent content in Scikit Learn on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 12 Sep 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/scikit-learn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A tutorial within a tutorial on building reusable models with scikit-learn</title>
+      <link>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
+      <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
+      <description>Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that.</description>
+    </item>
+    
+  </channel>
+</rss>

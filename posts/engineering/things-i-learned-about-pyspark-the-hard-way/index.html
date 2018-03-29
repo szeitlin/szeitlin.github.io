@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Things I learned about Pyspark the hard way</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Things I learned about Pyspark the hard way" />
+<meta property="og:description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" />
+
+
+
+<meta property="article:published_time" content="2018-03-28T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-03-28T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Things I learned about Pyspark the hard way">
+<meta itemprop="description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).">
+
+
+<meta itemprop="datePublished" content="2018-03-28T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-03-28T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1529">
+
+
+
+<meta itemprop="keywords" content="spark," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Things I learned about Pyspark the hard way"/>
+<meta name="twitter:description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster)."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Things I learned about Pyspark the hard way
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<h2 id="why-spark">Why Spark?</h2>
+
+<p>Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.</p>
+
+<p>Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.</p>
+
+<h2 id="why-spark-is-good-for-this">Why Spark is good for this</h2>
+
+<p>Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).</p>
+
+<p>It&rsquo;s very readable, re-usable and unit-testable. That means it&rsquo;s very maintainable, which makes it easier to hand off than some older map reduce tools (my team has traditionally used Pig).</p>
+
+<p>The output can be dataframes, or tables in various formats.</p>
+
+<p>It also incorporates SQL, which can be used for filtering, joining, grouping, and aggregations.</p>
+
+<p>Finally, it has functionality for machine learning, which means we could build the next parts of this project in the same place using the same tools, which also makes it easier to maintain.</p>
+
+<h2 id="what-my-python-script-was-doing">What my python script was doing</h2>
+
+<ol>
+<li>Read in files</li>
+<li>Filter for the types of rows we care about</li>
+<li>Parse out some fields</li>
+<li>Run some helper functions to make some things more human-readable</li>
+<li>Deal with missing values</li>
+<li>Convert some fields to boolean flags</li>
+<li>Optional steps to join to other tables, group, aggregate, etc.</li>
+<li>Write out a pandas dataframe and/or CSV files, with or without compression</li>
+</ol>
+
+<h2 id="my-first-question-why-is-making-dataframes-in-spark-so-hard">My first question: why is making dataframes in spark so hard?</h2>
+
+<p>First, there are too many ways to do it. Most of the ways I found on Teh Internet don&rsquo;t work because the syntax is changing so rapidly, and there are a lot of unwritten rules. Also, it&rsquo;s a lot dumber than pandas. Pandas is really good at two things that make your life easy, and if you&rsquo;re just starting out with pyspark you will miss these things dearly:</p>
+
+<p>(1) automatic type inference
+(2) dealing with missing values, so you don&rsquo;t have to</p>
+
+<h2 id="what-i-ended-up-doing">What I ended up doing:</h2>
+
+<ol>
+<li><p>Parse lines into RDDs, zipWithIndex, and use a lambda function to swap (val, index) to get (index, val)</p></li>
+
+<li><p>Make sure every item has a key (I chose to use dicts). These will become the column names (see more below).</p>
+
+<p>My items now each look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">one <span style="color:#f92672">=</span> lines<span style="color:#f92672">.</span>take(<span style="color:#ae81ff">1</span>)
+<span style="color:#66d9ef">assert</span> (one <span style="color:#f92672">==</span> (<span style="color:#ae81ff">1</span>, {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;first_column&#39;</span>: <span style="color:#ae81ff">100</span>}))</code></pre></div></li>
+
+<li><p>Fill any missing values with &lsquo;None&rsquo; (because <code>None</code> leads to weird behavior with join, I found it was better to use strings) to square everything up, because otherwise it&rsquo;s impossible to convert to dataframe.</p></li>
+
+<li><p>Join RDDs on the index</p></li>
+
+<li><p>Drop the index with a lambda function, because we don&rsquo;t want it in the dataframe, and we won&rsquo;t use it for ordering or lookups</p></li>
+
+<li><p>Flatten everything (with a flatMap lambda function)</p></li>
+
+<li><p>Write a helper function to make Row objects</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#this method is from StackOverflow, but it really should be built-in (!)</span>
+
+<span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> OrderedDict
+<span style="color:#f92672">from</span> pyspark.sql <span style="color:#f92672">import</span> Row
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert_to_row</span>(inputdict):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    For creating a pyspark DataFrame from Row objects, have to convert to Row objects first
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    Note: python3 sorts the input dict by default
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    :param: inputdict (dict) of {colname : value}
+</span><span style="color:#e6db74">    :returns: pyspark Row object
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+    <span style="color:#66d9ef">return</span> Row(<span style="color:#f92672">**</span>OrderedDict(inputdict)) <span style="color:#75715e">#Note that only the kwargs version of ** dictionary expansion is supported in python 3.4</span></code></pre></div></li>
+
+<li><p>Use the helper function to convert big RDD to Row objects, and then to dataframe</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">df <span style="color:#f92672">=</span> deindexed<span style="color:#f92672">.</span>map(ph<span style="color:#f92672">.</span>convert_to_row)<span style="color:#f92672">.</span>toDF()</code></pre></div></li>
+
+<li><p>Rename any columns that aren&rsquo;t compatible with the ultimate destination, e.g. in my case I had to convert things like &ldquo;req.id&rdquo; and &ldquo;device-type&rdquo; to &ldquo;req_id&rdquo; and &ldquo;device_type&rdquo; because Redshift and Athena will not tolerate period symbols or dashes in column names.</p>
+
+<p>1) create the list of df.columns, just like you would in pandas</p>
+
+<p>2) create a new dataframe with the new columns like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    renamed <span style="color:#f92672">=</span> df<span style="color:#f92672">.</span>toDF(<span style="color:#f92672">*</span>df_columns) <span style="color:#75715e">#note that the asterisk splat operator is supported even in python3.4, even though the ** dictionary expansion is not supported until later versions</span></code></pre></div></li>
+
+<li><p>Write out with coalesce to avoid getting a ton of tiny files</p></li>
+</ol>
+
+<p>The actual parsing ended up being a series of regular expressions, wrapped in a helper to catch exceptions (which is basically just a try:except that says it&rsquo;s ok if there&rsquo;s no match, just fill with &lsquo;None&rsquo; instead of freaking out). I also had to write a helper to flatten, because I was doing this on AWS, and the latest version of python they support is 3.4, which does not include the compact double-asterisk syntax for flattening dictionaries).</p>
+
+<h2 id="my-next-question-how-do-i-deploy-this-thing-to-run-on-aws">My next question: How do I deploy this thing to run on AWS?</h2>
+
+<p>I had trouble finding step-by-step instructions on this part, so here&rsquo;s what I ended up doing:</p>
+
+<ol>
+<li>Write a script to load code to s3 (I used boto3)</li>
+<li>Write a script to copy code from s3 to hadoop home on the EMR cluster (I did this with bash)</li>
+<li>Write a script (and/or in my case, an Airflow plugin) to spin up and configure the EMR cluster</li>
+<li>Write steps to bootstrap pyspark with the code, install dependencies, and run with python3</li>
+<li>Create an EC2 key pair using ssh keygen, if you don&rsquo;t have one already. You need this to spin up the cluster, but more importantly, to be able to log into it for debugging (you want this)</li>
+<li>setMaster(&ldquo;yarn-client&rdquo;)</li>
+<li>addPyFile to SparkContext() so it can find your helper scripts</li>
+<li>Make sure you know if auto-terminate should be on or off, depending on where you are in the development cycle (can&rsquo;t log into debug on a cluster that auto-terminated already!) and whether your job will be running continuously or not.</li>
+</ol>
+
+<p>I used a YAML file for my configuration, which includes things like the region_name, number of instances, which ec2 key pairs to use, the path to where the logs should go on s3, etc. This is really easy to import in python:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;config.yml&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
+   config <span style="color:#f92672">=</span> yaml<span style="color:#f92672">.</span>load(f)
+config_emr <span style="color:#f92672">=</span> config<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;emr&#34;</span>)
+
+cluster_name <span style="color:#f92672">=</span> config_emr<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;cluster_name&#39;</span>)</code></pre></div>
+<h2 id="other-things-that-were-non-obvious">Other things that were non-obvious:</h2>
+
+<p>When I went to scale up the job to run on more data, I did run into some problems I hadn&rsquo;t had before.</p>
+
+<p>I had to do some funky things to get the spark unit tests to work correctly. If you want to have anything that uses the spark context object, e.g. using <code>sc.textFile</code> to read in a local file, you&rsquo;ll have to do this first, even if your tests don&rsquo;t require any other setUp:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> sparktestingbase.testcase <span style="color:#f92672">import</span> SparkTestingBaseTestCase
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestFileParsing</span>(SparkTestingBaseTestCase):
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(self):
+        super()<span style="color:#f92672">.</span>setUp()</code></pre></div>
+<p>At the beginning, it wasn&rsquo;t obvious to me that zipWithIndex appends the index in the &lsquo;value&rsquo; or second position in the (key, value) tuple. So you have to use a lambda function to swap it to the front, because joins only work on the &lsquo;key&rsquo;. This seems like a strange design choice to me, although I can understand that append is always easier and there are probably (?) some use cases where you want an index but aren&rsquo;t using it for joins (I just can&rsquo;t think what those would be?).</p>
+
+<p>After my initial script was working, I ended up refactoring to remove some joins, because they involve shuffle steps, which you want to avoid in spark because they&rsquo;re slow and memory-intensive. This was actually pretty easy to fix because I had plenty of tests.</p>
+
+<p>I also ended up having to explicitly <code>repartition</code> and <code>persist()</code> my original big RDD and then explicitly <code>unpersist()</code> at the end, because although pyspark is supposed to be smart about handling this kind of stuff for you, it wasn&rsquo;t quite smart enough to do it when I was running my methods on chunks of files iteratively.</p>
+
+<p>I also ran into some serious irritations with AWS configurations, because we have data stored in different regions, and some regions (like eu-central-1 in Frankfurt) require a little extra information for security reasons. It&rsquo;s also confusing that <code>zone</code> can have an extra specification, e.g for zone it has to be &ldquo;us-east-1a&rdquo; but <code>region</code> has to be &ldquo;us-east-1&rdquo;, or you&rsquo;ll get &lsquo;cluster id is None&rsquo; errors.</p>
+
+<p>The special trick for Europe is that you have to specify the s3 host yourself and include that in your <code>s3_additional_kwargs</code> (this took a bit of googling to find out, so I&rsquo;m putting it here for safekeeping):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">if</span> region <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;eu-central-1&#39;</span>:
+    host <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;s3.eu-central-1.amazonaws.com&#39;</span></code></pre></div>
+<p>Other irritations include having to set up separate EC2 keys in each region; having to deal with multiple profiles for cross-account access (because the log data are owned by one AWS account and the s3 buckets and spark cluster are owned by another); having to deal with setting s3 bucket policies&hellip; So maybe all of that could be its own post, but ugh so boring (!).</p>
+
+<p>Finally, I did end up having to adjust the driver-memory to 10G, executory-memory to 8G, executor-cores to 5, and num-executors to 17. This took some fiddling and it may not be the final configuration, given that we are currently using r3.2xlarge to avoid having to deal with additional configuration requirements for some of the newer instance types, but there are a limited number of instances of this type available in some regions.</p>
+
+<p>I also added a bunch of handling using <code>except Py4JavaError</code> to deal with things like missing, empty, and corrupt files on s3.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black o-50">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

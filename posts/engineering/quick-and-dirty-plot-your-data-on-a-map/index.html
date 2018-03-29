@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Quick and dirty: plot your data on a map with python</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Quick and dirty: plot your data on a map with python" />
+<meta property="og:description" content="Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.
+What I wanted to do One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Quick and dirty: plot your data on a map with python">
+<meta itemprop="description" content="Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.
+What I wanted to do One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e.">
+
+
+
+<meta itemprop="wordCount" content="1083">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Quick and dirty: plot your data on a map with python"/>
+<meta name="twitter:description" content="Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.
+What I wanted to do One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Quick and dirty: plot your data on a map with python
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.</p>
+
+<hr />
+
+<h2 id="what-i-wanted-to-do">What I wanted to do</h2>
+
+<p>One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e.g. &lsquo;high&rsquo; or &lsquo;low&rsquo; values for a particular variable, which ideally could be toggled on and off.</p>
+
+<p>I tried looking at the various options for google maps, and just felt overwhelmed by the choices. My data was already in pandas dataframes, so I didn&rsquo;t want to convert it to json, or whatever. Really what I wanted was just a simple python wrapper for the API, even if I&rsquo;d have to switch to something else later.</p>
+
+<p>The most difficult question is of course this one: <em>How much interactivity will I need?</em> I don&rsquo;t know, maybe more in the future, but to start with I just wanted to get something on a map. Minimal interactivity required, at least initially.</p>
+
+<hr />
+
+<h2 id="what-i-used">What I used</h2>
+
+<p>After exploring a myriad of available options, I settled on an open-source library called <a href="https://pypi.python.org/pypi/pygmaps/0.1.1">pygmaps</a>, which seemed like it could do what I needed. But it was a little bit out of date, so when I went to try using it, I got some errors. I had to edit the source to remove a method that I didn&rsquo;t need, in order to get rid of one of the requirements that I couldn&rsquo;t find anywhere (it looks like this has since been fixed in <a href="https://github.com/Permafacture/pygmaps-ng">pygmaps-ng</a>).</p>
+
+<p>To convert my zipcode column into latitude and longitude coordinates, I used <a href="http://www.boutell.com/zipcodes/">this free zipcode database</a>, and incorporated that back into my dataframe using pandas (more on that below).</p>
+
+<hr />
+
+<h2 id="zipcode-lookup">Zipcode lookup</h2>
+
+<p>To find the zipcodes for the data points in my dataframe, I just wanted to match on zip code and return the latitude and longitude as additional columns in my existing dataframe.</p>
+
+<p>Essentially, this can be done in a one-line <a href="http://www.w3schools.com/sql/sql_join.asp">join</a>. Pandas now has this built in, but it helps to understand how it works in SQL because the arguments are that same style.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">zips <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;zipcode.csv&#34;</span>)
+
+zippier <span style="color:#f92672">=</span> zips[[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;zip&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;city&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;state&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;latitude&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;longitude&#39;</span>]]
+
+mappable <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>merge(mydata, zippier, how<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;left&#39;</span>, left_on<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ZipCode&#39;</span>, right_on<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;zip&#39;</span>, sort<span style="color:#f92672">=</span>False)</code></pre></div>
+<hr />
+
+<h2 id="divvying-up-the-data-high-medium-low">Divvying up the data: High, Medium, Low</h2>
+
+<p>I played around with different ways to do this. Quartiles and terciles are pretty easy, and it makes sense to do it this way if your data is normally distributed. For some of the stuff I did, that worked. You can either feed it the fractions or the number of bins you want.</p>
+
+<p>If your data is not a normal distribution, however, it might make more sense to set up your own thresholds to display more meaningful segments that actually correspond to &lsquo;high&rsquo; vs. &lsquo;low&rsquo;. Ultimately, this was more meaningful for some of the variables I was examining. This is why I always look at histograms before I do anything else.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">quartiles <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>qcut(df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;mycolumn&#39;</span>], [<span style="color:#ae81ff">0</span>, <span style="color:#f92672">.</span><span style="color:#ae81ff">25</span>, <span style="color:#f92672">.</span><span style="color:#ae81ff">5</span>, <span style="color:#f92672">.</span><span style="color:#ae81ff">75</span>, <span style="color:#ae81ff">1</span>])
+
+<span style="color:#75715e">#sometimes useful to check the counts to make sure this worked as expected:</span>
+quartiles_counts <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>value_counts(quartiles)
+
+<span style="color:#75715e">#another way to do the divvying</span>
+terciles <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>qcut(df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;othercolumn&#39;</span>], <span style="color:#ae81ff">3</span>, retbins<span style="color:#f92672">=</span>True, labels<span style="color:#f92672">=</span>[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;low&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;middle&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;high&#39;</span>])</code></pre></div>
+<hr />
+
+<h2 id="assigning-colors-to-groups">Assigning colors to groups</h2>
+
+<p>Hexadecimal time!</p>
+
+<p>If you ever saw <a href="http://samzeitlin.com/Sam%20Zeitlin%20Publications.html">my old website</a>, you&rsquo;ll immediately know: it&rsquo;s not a secret that I love color.</p>
+
+<p>So I was mildly frustrated when I was talking to a designer who was very concerned about whether there might be colorblind people looking at the maps I was making.</p>
+
+<p>Ultimately, I looked at a variety of <a href="http://www.color-hex.com/color-palettes/">color palettes</a>, and chose to use maximum contrast, where brighter shades were assigned for &lsquo;high&rsquo; values, and darker shades were assigned for &lsquo;low&rsquo; values. (For those who make a lot of charts, it&rsquo;s nice to know that seaborn shows examples with <a href="http://web.stanford.edu/~mwaskom/software/seaborn/tutorial/color_palettes.html?highlight=colorblind">a colorblind palette</a>).</p>
+
+<p>Having picked the colors I wanted, I had to assign them to the appropriate segments of the data. First, I made a dictionary with the flags and the colors. Then I wrote a 1-line function to match the values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">color_codes <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;low&#39;</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;660000&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;middle&#39;</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;990000&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;high&#39;</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;FF0000&#39;</span>}
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">color_picker</span>(terciles, color_codes):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;Convert &#39;low&#39; &#39;middle&#39; or &#39;high&#39; tercile flags into hexadecimal color codes. 
+</span><span style="color:#e6db74">    high is brightest, low is darkest.
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    (list of str, dict of str) -&gt; (list of str)
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    &gt;&gt;&gt; color_picker(terciles, color_codes)
+</span><span style="color:#e6db74">    [&#39;FF0000&#39;, &#39;660000&#39;,&#39;990000&#39;...]
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+    <span style="color:#66d9ef">return</span> [color_codes<span style="color:#f92672">.</span>get(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> terciles]
+
+df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;colors&#39;</span>] <span style="color:#f92672">=</span> color_picker(df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;terciles&#39;</span>], color_codes)</code></pre></div>
+<hr />
+
+<h2 id="format-labels">Format labels</h2>
+
+<p>I wanted the markers on my map to be labeled, so when I click on them I can see what they are. Formatting the labels turned out to be a bit of a pain in the neck, so I just hacked something together. The trick ended up being that it was easiest to deal with getting the data out of the dataframe by using the itertuples() method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format_labels</span>(df):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    Each df row is a list of str, float, float, float
+</span><span style="color:#e6db74">    Convert to str for display on map. 
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    #somewhat lame but ok for now 
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+    formatted <span style="color:#f92672">=</span> []
+
+    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> df<span style="color:#f92672">.</span>itertuples():
+        text <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Marker: {0} &lt;br/&gt; Value: {1} &lt;/br&gt; Zippyness: {2}&#34;</span><span style="color:#f92672">.</span>format(row[<span style="color:#ae81ff">4</span>], row[<span style="color:#ae81ff">5</span>], row[<span style="color:#ae81ff">6</span>])
+        formatted<span style="color:#f92672">.</span>append(text)
+
+    <span style="color:#66d9ef">return</span> formatted</code></pre></div>
+<hr />
+
+<h2 id="generating-the-map">Generating the map</h2>
+
+<p>Finally, after all that, I was able to incorporate my data into a map. I followed the pygmaps example almost exactly. I didn&rsquo;t immediately understand what was going on, so I wrote my methods with names to clarify which sections corresponded to which features on the map. And then I made a map!</p>
+
+<p>And then I did it a few more times, and realized this is something I might use fairly often. Maybe you will, too.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#initialize map</span>
+mymap <span style="color:#f92672">=</span> Map()
+
+app1 <span style="color:#f92672">=</span> App(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;non&#39;</span>, title<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Part1&#34;</span>)
+mymap<span style="color:#f92672">.</span>apps<span style="color:#f92672">.</span>append(app1)
+
+app2 <span style="color:#f92672">=</span> App(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;part&#39;</span>, title<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Part2&#34;</span>)
+mymap<span style="color:#f92672">.</span>apps<span style="color:#f92672">.</span>append(app2)
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_legend</span>():
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    hard-coded labels for groups of markers.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+
+    part1_legend <span style="color:#f92672">=</span> DataSet(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;part1&#39;</span>, title<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Part1 (red)&#39;</span>, key_color<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;#FF0000&#39;</span>)
+    app1<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>append(part1_legend)
+
+    part2_legend <span style="color:#f92672">=</span> DataSet(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;part2&#39;</span>, title <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Part2 (blue)&#39;</span>, key_color <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;#0000FF&#39;</span>)
+    app2<span style="color:#f92672">.</span>datasets<span style="color:#f92672">.</span>append(part2_legend)
+
+    <span style="color:#66d9ef">return</span> part1_legend, part2_legend 
+
+<span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_markers_from_df</span>(non_legend, part_legend, df):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    Extract and apply latitude and longitude columns from df.
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    (df) -&gt; appropriate columns
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    add_marker(lat,long,title,color,text)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">    where color = hexadecimal code without hashtags
+</span><span style="color:#e6db74">    title and text must be strings 
+</span><span style="color:#e6db74">    title shows on mouseover, text shows on click
+</span><span style="color:#e6db74">    note that df.itertuples treats the index column as column zero 
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">     &#39;&#39;&#39;</span>
+
+    <span style="color:#66d9ef">for</span> row <span style="color:#f92672">in</span> df<span style="color:#f92672">.</span>itertuples():
+        temp <span style="color:#f92672">=</span> row
+        part1_legend<span style="color:#f92672">.</span>add_marker([temp[<span style="color:#ae81ff">1</span>], temp[<span style="color:#ae81ff">2</span>]],title<span style="color:#f92672">=</span>temp[<span style="color:#ae81ff">4</span>], color<span style="color:#f92672">=</span>temp[<span style="color:#ae81ff">5</span>], text<span style="color:#f92672">=</span>temp[<span style="color:#ae81ff">3</span>])
+
+df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;my_data.csv&#34;</span>)
+add_points_from_df(df)
+pt <span style="color:#f92672">=</span> [<span style="color:#ae81ff">33.0000</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">117.0000</span>]
+mymap<span style="color:#f92672">.</span>build_page(center<span style="color:#f92672">=</span>pt, zoom<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, outfile<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;map_test.html&#34;</span>)</code></pre></div>
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black o-50">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

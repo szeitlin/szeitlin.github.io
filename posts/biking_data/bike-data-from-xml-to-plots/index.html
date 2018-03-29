@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Biking data from XML to analysis, part 1</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Biking data from XML to analysis, part 1" />
+<meta property="og:description" content="I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&rsquo; unfounded modesty and their actual rides.
+One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&rsquo;s also relatively consistent, which meant the data he gave me wasn&rsquo;t too terribly noisy." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Biking data from XML to analysis, part 1">
+<meta itemprop="description" content="I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&rsquo; unfounded modesty and their actual rides.
+One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&rsquo;s also relatively consistent, which meant the data he gave me wasn&rsquo;t too terribly noisy.">
+
+
+
+<meta itemprop="wordCount" content="692">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Biking data from XML to analysis, part 1"/>
+<meta name="twitter:description" content="I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&rsquo; unfounded modesty and their actual rides.
+One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&rsquo;s also relatively consistent, which meant the data he gave me wasn&rsquo;t too terribly noisy."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Biking data from XML to analysis, part 1
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        <p>I was looking for some fun time series data to hack on. Turns out <a href="http://www.garmin.com/en-US" title="Garmin">bike computers</a>  provide a great way to interface between your friends&rsquo; unfounded modesty and their actual rides.</p>
+
+<p>One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&rsquo;s also relatively consistent, which meant the data he gave me wasn&rsquo;t too terribly noisy. But everyone forgets to turn on the computer sometimes, or forgets to charge the battery.</p>
+
+<p>Garmin has an app that lets you export data from the puny bike computer and, I guess, view it. But I wanted to do more analysis, so I tried a few things. Exporting the data as regular CSV seemed to work at first, but when I went to view the data, it was missing most of the information I wanted, like time and distance.</p>
+
+<p>Eventually I realized the only way to get the values I wanted was to export as XML, which I had heard was not fun to parse.</p>
+
+<p>A snapshot of the file looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-XML" data-lang="XML"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34; ?&gt;</span>
+<span style="color:#f92672">&lt;TrainingCenterDatabase</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2&#34;</span> <span style="color:#a6e22e">xmlns:xsi=</span><span style="color:#e6db74">&#34;http://www.w3.org/2001/XMLSchema-instance&#34;</span> <span style="color:#a6e22e">xsi:schemaLocation=</span><span style="color:#e6db74">&#34;http://www.garmin.com/xmlschemas/ActivityExtension/v2 http://www.garmin.com/xmlschemas/ActivityExtensionv2.xsd http://www.garmin.com/xmlschemas/FatCalories/v1 http://www.garmin.com/xmlschemas/fatcalorieextensionv1.xsd http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd&#34;</span><span style="color:#f92672">&gt;</span>
+
+  <span style="color:#f92672">&lt;Folders/&gt;</span>
+
+  <span style="color:#f92672">&lt;Activities&gt;</span>
+    <span style="color:#f92672">&lt;Activity</span> <span style="color:#a6e22e">Sport=</span><span style="color:#e6db74">&#34;Biking&#34;</span><span style="color:#f92672">&gt;</span>
+      <span style="color:#f92672">&lt;Id&gt;</span>2013-06-11T23:18:21Z<span style="color:#f92672">&lt;/Id&gt;</span>
+      <span style="color:#f92672">&lt;Lap</span> <span style="color:#a6e22e">StartTime=</span><span style="color:#e6db74">&#34;2013-06-11T23:18:21Z&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;TotalTimeSeconds&gt;</span>1669.7500000<span style="color:#f92672">&lt;/TotalTimeSeconds&gt;</span>
+        <span style="color:#f92672">&lt;DistanceMeters&gt;</span>14122.1464844<span style="color:#f92672">&lt;/DistanceMeters&gt;</span>
+        <span style="color:#f92672">&lt;MaximumSpeed&gt;</span>11.1599998<span style="color:#f92672">&lt;/MaximumSpeed&gt;</span>
+        <span style="color:#f92672">&lt;Calories&gt;</span>575<span style="color:#f92672">&lt;/Calories&gt;</span>
+        <span style="color:#f92672">&lt;Intensity&gt;</span>Active<span style="color:#f92672">&lt;/Intensity&gt;</span>
+        <span style="color:#f92672">&lt;Cadence&gt;</span>0<span style="color:#f92672">&lt;/Cadence&gt;</span>
+        <span style="color:#f92672">&lt;TriggerMethod&gt;</span>Manual<span style="color:#f92672">&lt;/TriggerMethod&gt;</span>
+        <span style="color:#f92672">&lt;Extensions&gt;</span>
+          <span style="color:#f92672">&lt;FatCalories</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://www.garmin.com/xmlschemas/FatCalories/v1&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;Value&gt;</span>0<span style="color:#f92672">&lt;/Value&gt;</span>
+          <span style="color:#f92672">&lt;/FatCalories&gt;</span>
+          <span style="color:#f92672">&lt;LX</span> <span style="color:#a6e22e">xmlns=</span><span style="color:#e6db74">&#34;http://www.garmin.com/xmlschemas/ActivityExtension/v2&#34;</span><span style="color:#f92672">&gt;</span>
+            <span style="color:#f92672">&lt;AvgSpeed&gt;</span>8.4576416<span style="color:#f92672">&lt;/AvgSpeed&gt;</span>
+          <span style="color:#f92672">&lt;/LX&gt;</span>
+        <span style="color:#f92672">&lt;/Extensions&gt;</span>
+      <span style="color:#f92672">&lt;/Lap&gt;</span>
+      <span style="color:#f92672">&lt;Lap</span> <span style="color:#a6e22e">StartTime=</span><span style="color:#e6db74">&#34;2013-06-12T00:42:37Z&#34;</span><span style="color:#f92672">&gt;</span></code></pre></div>
+<p>Unexpectedly, the links in the file that were supposed to tell me the schema were all outdated (this bike computer is not exactly the newest model). So I hunted around a bit and found I could use <a href="http://lxml.de/1.3/objectify.html" title="LXML objectify">lxml objectify</a>. This let me parse the XML, starting with the root. Then I could &ldquo;walk&rdquo; along the tree to figure out what was where.</p>
+
+<p>In practice, without a useful map of the schema, &ldquo;walking the tree&rdquo; was more like hiking the Appalachian Trail (by which I mean, full of rocks) than a pleasant stroll. Eventually, I found <a href="http://www8.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd" title="tcx schema">this file</a>, which helped somewhat.</p>
+
+<p>Even with more of a map, the structure seems strange. Some values were nested for no apparent reason (maybe that&rsquo;s typical for XML? I don&rsquo;t know). Some basic calculations for obvious things (like average speed) were added separately as &ldquo;Extensions&rdquo;, like an afterthought.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> pandas
+<span style="color:#f92672">from</span> lxml <span style="color:#f92672">import</span> objectify
+path <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;2013_xml.tcx&#34;</span>
+parsed <span style="color:#f92672">=</span> objectify<span style="color:#f92672">.</span>parse(open(path))
+root <span style="color:#f92672">=</span> parsed<span style="color:#f92672">.</span>getroot()
+root<span style="color:#f92672">.</span>Activities<span style="color:#f92672">.</span>Activity<span style="color:#f92672">.</span>Lap<span style="color:#f92672">.</span>descendantpaths()</code></pre></div>
+<p>Which told me the actual structure looks more like this:</p>
+
+<pre><code>[u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.TotalTimeSeconds',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.DistanceMeters',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.MaximumSpeed',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Calories',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Intensity',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Cadence',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.TriggerMethod',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/FatCalories/v1}FatCalories',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/FatCalories/v1}FatCalories.Value',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/ActivityExtension/v2}LX',
+ u'{http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2}Lap.Extensions.{http://www.garmin.com/xmlschemas/ActivityExtension/v2}LX.AvgSpeed']
+</code></pre>
+
+<p>And just to make it more fun, in some cases, the data was the &ldquo;value&rdquo;, in some cases it was the &ldquo;text&rdquo;, in some cases it was the &ldquo;pyval&rdquo; (python-friendly version of otherwise deeply nested values). In some cases, where the values were &ldquo;text&rdquo; that meant they were strings when I needed floats. So I had to drill down, and then drill down some more, and convert everything, and it still isn&rsquo;t obvious to me why they structured it this way. But I parsed out the things I wanted and wrote them to lists:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">for</span> activity <span style="color:#f92672">in</span> root<span style="color:#f92672">.</span>Activities<span style="color:#f92672">.</span>Activity:
+    <span style="color:#66d9ef">for</span> lap <span style="color:#f92672">in</span> activity<span style="color:#f92672">.</span>Lap:
+        StartTime<span style="color:#f92672">.</span>append(lap<span style="color:#f92672">.</span>values()[<span style="color:#ae81ff">0</span>]) 
+        TotalTimeSeconds<span style="color:#f92672">.</span>append(float(lap<span style="color:#f92672">.</span>TotalTimeSeconds<span style="color:#f92672">.</span>text))
+        DistanceMeters<span style="color:#f92672">.</span>append(float(lap<span style="color:#f92672">.</span>DistanceMeters<span style="color:#f92672">.</span>text))
+        MaximumSpeed<span style="color:#f92672">.</span>append(float(lap<span style="color:#f92672">.</span>MaximumSpeed<span style="color:#f92672">.</span>text))
+        Calories<span style="color:#f92672">.</span>append(float(lap<span style="color:#f92672">.</span>Calories<span style="color:#f92672">.</span>text))
+        
+        kids<span style="color:#f92672">=</span> lap<span style="color:#f92672">.</span>Extensions<span style="color:#f92672">.</span>getchildren()
+        avgspeed <span style="color:#f92672">=</span> kids[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>AvgSpeed<span style="color:#f92672">.</span>pyval       <span style="color:#75715e">#use pyval to get rid of nested brackets </span>
+        AvgSpeedList<span style="color:#f92672">.</span>append(avgspeed)</code></pre></div>
+<p>Of course that was just a first pass, and I quickly realized things were still not very pretty. I got rid of extra decimal places, and converted each list to a pandas Series so I could concatenate them together into a big dataframe. For example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">AverageSpeed <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>Series(AvgSpeedList)
+AverageSpeed <span style="color:#f92672">=</span> AverageSpeed<span style="color:#f92672">.</span>round(<span style="color:#ae81ff">2</span>)
+
+<span style="color:#75715e">#join Series as columns in a new dataframe</span>
+df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>concat([StartTime, TotalTimeSeconds, DistanceMeters, \
+MaximumSpeed, Calories, AverageSpeed], axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+
+<span style="color:#75715e">#rename the columns to something useful</span>
+df<span style="color:#f92672">.</span>columns <span style="color:#f92672">=</span> [<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;StartTime&#39;</span>,<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;TotalTimeSeconds&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;DistanceMeters&#39;</span>, \
+<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;MaximumSpeed&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Calories&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AverageSpeed&#39;</span>]</code></pre></div>
+<p>Finally! Now the data table looked more like this:</p>
+
+<pre><code>StartTime      TotalTimeSeconds DistanceMeters  MaximumSpeed    Calories    AverageSpeed
+2013-06-11T23:18:21Z     1669.75     14122.15    11.16            575            8.46
+
+</code></pre>
+
+<p>But as I&rsquo;m finding with these low-level data science tools, just getting numbers into a table isn&rsquo;t going to tell you much, and every different question you want to ask, every plot you want to make, means making additional tables, usually with a lot more rearranging. (More on that in <a href="https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/">part 2</a>)</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black o-50">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

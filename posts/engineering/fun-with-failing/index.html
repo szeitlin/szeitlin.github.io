@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Fun with text file encodings</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Fun with text file encodings" />
+<meta property="og:description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
+They&rsquo;re just text files, right? What could be hard about that?
+1. Fun with encoding The problem:
+A friend sent me a dump of data from iTunes, as a table.
+Just a text file.
+She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/fun-with-failing/" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Fun with text file encodings">
+<meta itemprop="description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
+They&rsquo;re just text files, right? What could be hard about that?
+1. Fun with encoding The problem:
+A friend sent me a dump of data from iTunes, as a table.
+Just a text file.
+She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before.">
+
+
+
+<meta itemprop="wordCount" content="638">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Fun with text file encodings"/>
+<meta name="twitter:description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
+They&rsquo;re just text files, right? What could be hard about that?
+1. Fun with encoding The problem:
+A friend sent me a dump of data from iTunes, as a table.
+Just a text file.
+She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Fun with text file encodings
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>This post is about a couple of painful problems I&rsquo;ve had with reading in text files.</p>
+
+<p>They&rsquo;re just text files, right? What could be hard about that?</p>
+
+<hr />
+
+<h2 id="1-fun-with-encoding"><strong>1. Fun with encoding</strong></h2>
+
+<p>The problem:</p>
+
+<p>A friend sent me a dump of data from iTunes, as a table.</p>
+
+<p><em>Just a text file.</em></p>
+
+<p>She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before.</p>
+
+<p>I tried everything I knew how to do. I tried adding options in pandas that had worked for me in the past with various kinds of tables and csv files, but none of it worked. I couldn&rsquo;t figure out what was wrong.</p>
+
+<p>So I was doing:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> pandas
+    data <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Rawfile.txt&#34;</span>, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)</code></pre></div>
+<p>And I was getting a giant mess of stuff like this:</p>
+
+<pre><code>[\rTest Pattern #1111\t`l0u\xaeN\xf8S', '\tTest Pattern\t\tTechnical Electronic\t13149337\t432\t\t\t15\t\t2008\t9/15/08, 5:47 PM\t8/22/11, 6:37 PM\t242\t44100\t\tMPEG audio file\t\t\t\t\t\t\t\rTest Pattern #0000\t`l0u\xaeN\xf8S']
+</code></pre>
+
+<p>After banging my head against the wall for a while, I learned a few things. Here&rsquo;s what I learned.</p>
+
+<p><strong>Step 1</strong>. Open the file in an old-school text editor. Newer ones, unfortunately, are too smart, and will not show you what you need to see. For example, use this command to view the file with no automatic conversion at all:</p>
+
+<pre><code>vim -b Rawfile.txt
+</code></pre>
+
+<p><strong>Step 2</strong>. Look at the top of the file.</p>
+
+<p>In my case, there was this <a href="http://en.wikipedia.org/wiki/Byte_order_mark">byte order marker</a> (BOM):</p>
+
+<blockquote>
+<p>{ff}{fe} (*)</p>
+</blockquote>
+
+<p>It turns out that UTF-8, the usual format for text files, doesn&rsquo;t have a BOM. This BOM happens to correspond to UTF-16. Pandas couldn&rsquo;t deal with that.</p>
+
+<p>NOTE: a friend wrote in and suggested this even better unix solution:</p>
+
+<pre><code>&gt;&gt;&gt; file myfile.txt
+Little-endian UTF-16 Unicode English text, with CR line terminators
+</code></pre>
+
+<hr />
+
+<p><strong>Solution:</strong></p>
+
+<p>To get this file imported, then, I had to first read it in using the Python module called &lsquo;codecs&rsquo;. And I had to add the argument for the universal end-of-line, like so, or it wouldn&rsquo;t read it as a table:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> codecs
+
+    opened <span style="color:#f92672">=</span> codecs<span style="color:#f92672">.</span>open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;All_iPod_Music_Cleaned_Up_031114.txt&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;rU&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;UTF16&#39;</span>)
+
+    df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(opened, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)</code></pre></div>
+<hr />
+
+<ol>
+<li>Fun with invisible ink
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</li>
+</ol>
+
+<p>Lesson learned: (NOTE TO SELF): <em>check your input file!</em></p>
+
+<p>The problem:</p>
+
+<p>I wanted to try a simple twitter stream analysis. I got my API key, got a few tweets, and wrote the data to a file. It comes out in json form.</p>
+
+<p>I haven&rsquo;t done much with json. So when I started having problems, I assumed I was doing something wrong.</p>
+
+<p>I tried json.loads. Eventually, I was able to confirm that I was getting back the right kind of object (a Python dict), but I was also getting this error:</p>
+
+<pre><code>raise ValueError(&quot;No JSON object could be decoded&quot;)
+</code></pre>
+
+<p>How was that possible? It was decoding but it was not decoding?</p>
+
+<p>I re-read the json module docs and tutorial, but it didn&rsquo;t help.</p>
+
+<p>I wondered if the json object had extra text at the end, so I tried the raw_decoder instead, but that gave me a different error (it was expecting a string, not a file).</p>
+
+<hr />
+
+<p>What saved me? The same vim trick.</p>
+
+<pre><code>vim -b input_file.txt
+</code></pre>
+
+<p>This revealed a very sneaky problem. Somehow I had an extra carriage return in my test file, probably because I had manually copied and pasted two json objects from a much larger file.</p>
+
+<p>In vim, there should be a tilde (~) after the last line. Vim also shows you the number of lines at the bottom of the screen. In my case, it should have said &lsquo;2L&rsquo;. Instead, it said &lsquo;3L&rsquo;.</p>
+
+<p>That ValueError? <em>An empty line</em>.</p>
+
+<p>I also learned another, better trick for checking from the command line in unix:</p>
+
+<pre><code>wc -l input_file.txt   #wordcount, plus the option for number of lines. 
+</code></pre>
+
+<p>For future projects, adding &ldquo;if not line: continue&rdquo; may help.</p>
+
+<hr />
+
+<p>(*) note: these were actually angled brackets, but because codrspace uses markdown, I converted them to curly brackets.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black o-50">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Experimental Design on </title>
+    <link>https://szeitlin.github.io/tags/experimental-design/</link>
+    <description>Recent content in Experimental Design on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Apr 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/experimental-design/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Validating Results</title>
+      <link>https://szeitlin.github.io/posts/statistics/validating-results/</link>
+      <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/statistics/validating-results/</guid>
+      <description>I don&amp;rsquo;t believe truth is a finite value. Truth is what we know right now. Every ten years or so, a major discovery gets overturned. Scientists are just people, and we&amp;rsquo;re wrong a lot.
+So one of the scariest things about doing research, or predictions, is trying to convince yourself, and other people, that what you think you&amp;rsquo;ve discovered is &amp;lsquo;real&amp;rsquo;.
+Or at least real enough, right now, to be believable.</description>
+    </item>
+    
+  </channel>
+</rss>

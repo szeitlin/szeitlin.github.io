@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</loc>
+    <lastmod>2018-03-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</loc>
+    <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</loc>
+    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</loc>
+    <lastmod>2016-09-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</loc>
+    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/statistics/validating-results/</loc>
+    <lastmod>2016-04-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</loc>
+    <lastmod>2016-02-08T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</loc>
+    <lastmod>2016-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/device-data/</loc>
+    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/</loc>
+    <lastmod>2015-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-3/</loc>
+    <lastmod>2015-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-4/</loc>
+    <lastmod>2015-02-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</loc>
+    <lastmod>2015-01-15T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/</loc>
+    <lastmod>2018-03-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/automating-user-friendly-documentation-using-selenium-/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/bike-data/</loc>
+    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/device-data/</loc>
+    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/experimental-design/</loc>
+    <lastmod>2016-04-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/career_transition/faq-why-and-how-i-learned-to-code/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/fun-with-failing/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/game-plan-for-conferences-with-high-risk-of-harassment/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/ml/</loc>
+    <lastmod>2016-09-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/pandas/</loc>
+    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/</loc>
+    <lastmod>2018-03-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/python/</loc>
+    <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/career_transition/python-where-to-start/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/recursion/</loc>
+    <lastmod>2016-06-16T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/engineering/recursion-excursion/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/robustness-lessons-from-doing-applied-bench-science/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/scikit-learn/</loc>
+    <lastmod>2016-09-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/spark/</loc>
+    <lastmod>2018-03-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/statistics/</loc>
+    <lastmod>2016-11-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/</loc>
+    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/testing/</loc>
+    <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/posts/career_skills/tips-on-giving-presentations/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/unix/</loc>
+    <lastmod>2015-01-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/zip/</loc>
+    <lastmod>2015-01-15T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+</urlset>

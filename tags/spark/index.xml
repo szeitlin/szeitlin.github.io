@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Spark on </title>
+    <link>https://szeitlin.github.io/tags/spark/</link>
+    <description>Recent content in Spark on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 28 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://szeitlin.github.io/tags/spark/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Things I learned about Pyspark the hard way</title>
+      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</link>
+      <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</guid>
+      <description>Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&amp;rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).</description>
+    </item>
+    
+  </channel>
+</rss>

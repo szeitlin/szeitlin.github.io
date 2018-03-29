@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Test-driven data pipelining</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Test-driven data pipelining" />
+<meta property="og:description" content="When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&rsquo;s happening." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/" />
+
+
+
+<meta property="article:published_time" content="2016-02-08T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2016-02-08T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Test-driven data pipelining">
+<meta itemprop="description" content="When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&rsquo;s happening.">
+
+
+<meta itemprop="datePublished" content="2016-02-08T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2016-02-08T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="682">
+
+
+
+<meta itemprop="keywords" content="pandas,testing,python," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Test-driven data pipelining"/>
+<meta name="twitter:description" content="When to test, and why: • Write a test for every method.
+• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.
+• Think of tests as showing how your code should be used, and write them accordingly. The next person who&rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&rsquo;s happening."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Test-driven data pipelining
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<h2 id="when-to-test-and-why">When to test, and why:</h2>
+
+<p>• Write a test for every method.</p>
+
+<p>• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.</p>
+
+<p>• Think of tests as showing how your code should be used, and write them accordingly. The next person who&rsquo;s going to
+edit your code, or even just use your code, should be able to refer to your tests to see what&rsquo;s happening.</p>
+
+<p>• Think of tests as the way you&rsquo;ll make sure things don&rsquo;t break later when you have to refactor.</p>
+
+<p>• It&rsquo;s perfectly okay to write the name of the test first, and then figure out how to write the rest later. In fact, sometimes it helps to write the test so that you know it will fail, and then use that to write better code. That&rsquo;s <em>test-driven development</em>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_whether_examples_return_likes</span>(self):
+        <span style="color:#66d9ef">pass</span> </code></pre></div>
+<p>• <strong>Give your test a MEANINGFUL name.</strong></p>
+
+<p>The name should say exactly what the expected behavior is.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_savings_meets_minimum_requirement</span>(self):
+        savings<span style="color:#f92672">.</span>pct <span style="color:#f92672">=</span> calculate_savings()
+        self<span style="color:#f92672">.</span>assertGreater(savings<span style="color:#f92672">.</span>pct, <span style="color:#ae81ff">5</span>)</code></pre></div>
+<p>• <strong>Tests should be independent of each other.</strong></p>
+
+<p>If you&rsquo;re thinking about writing a test, first check whether a similar test already exists. Don&rsquo;t duplicate existing tests, because that can create confusion when looking at how many tests fail (creating the impression that things are more broken than they actually are).</p>
+
+<h2 id="what-to-test">What to Test</h2>
+
+<p>• <strong>Start with user stories</strong>. What do they expect to see? Test for that.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_user_visits_landing_page</span>(self): 
+            self<span style="color:#f92672">.</span>assertIn(title, landing_page)</code></pre></div>
+<p>• Confirm expected data types</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_answer_dict_creation</span>(self):
+            named <span style="color:#f92672">=</span> answer_dict()
+            self<span style="color:#f92672">.</span>assertTrue(isinstance(named, dict))</code></pre></div>
+<p>• Confirm expected attributes on objects</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_profile1_has_no_names</span>(self):
+            self<span style="color:#f92672">.</span>assertEqual(len(profile1<span style="color:#f92672">.</span>names), <span style="color:#ae81ff">0</span>)
+    
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_profile2_has_three_names</span>(self):
+            self<span style="color:#f92672">.</span>assertEqual(len(profile2<span style="color:#f92672">.</span>names), <span style="color:#ae81ff">3</span>)</code></pre></div>
+<p>• <strong>Features</strong> you haven&rsquo;t finished writing yet (Test-Driven Development)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_user_horoscope_is_accurate</span>(self):
+            prediction <span style="color:#f92672">=</span> None
+            self<span style="color:#f92672">.</span>assertEqual(reality, prediction)
+        </code></pre></div>
+<p>It&rsquo;s okay (and faster) to group assertions together in one test if they all refer to the same object:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">for</span> name, lookup <span style="color:#f92672">in</span> get_answers(question):
+        self<span style="color:#f92672">.</span>assertTrue(isinstance(name, str))
+        self<span style="color:#f92672">.</span>assertTrue(isinstance(lookup, dict))
+        self<span style="color:#f92672">.</span>assertTrue(isinstance(lookup[name], pd<span style="color:#f92672">.</span>DataFrame))
+        self<span style="color:#f92672">.</span>assertIn(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;answer_name&#39;</span>, lookup[name]<span style="color:#f92672">.</span>columns)</code></pre></div>
+<p>• <strong>Test pipelines</strong> sequentially and swap in positive controls for all variables except the one you&rsquo;re testing. Then in the final tests, test the whole pipeline and use only test data. You might want to do this for more complicated features. It ends up looking something like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_query_returns_objects</span>(self):
+            actual_obj_list <span style="color:#f92672">=</span> query()
+            self<span style="color:#f92672">.</span>assertEqual(set(expected_obj_list), set(actual_obj_list))
+    
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_make_dataframes_from_query_objects</span>(self):
+            expected_obj_list <span style="color:#f92672">=</span> query()
+            query_obj_dataframe<span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame<span style="color:#f92672">.</span>from_records(expected_obj_list<span style="color:#f92672">.</span>values())
+            self<span style="color:#f92672">.</span>assertTrue(isinstance(query_obj_dataframe, pd<span style="color:#f92672">.</span>Dataframe))
+   
+        <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_query_returns_objects_and_makes_dataframes</span>(self):
+            actual_obj_list <span style="color:#f92672">=</span> query()
+            query_obj_dataframe<span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame<span style="color:#f92672">.</span>from_records(actual_obj_list<span style="color:#f92672">.</span>values())
+            self<span style="color:#f92672">.</span>assertTrue(isinstance(query_obj_dataframe, pd<span style="color:#f92672">.</span>Dataframe))
+            self<span style="color:#f92672">.</span>assertIn(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;total success&#39;</span>, query_obj_dataframe<span style="color:#f92672">.</span>columns)</code></pre></div>
+<p>•<strong>Write tests for how to handle expected obstacles and failures</strong></p>
+
+<p>Write tests for things like &ldquo;test_data_cleaning&rdquo; and &ldquo;test_handle_missing_values&rdquo;. Don&rsquo;t expect to rely on inserting a debugger every time something breaks. If the same piece of code breaks more than once, you&rsquo;ve already wasted time by not writing a test.</p>
+
+<p><strong>Don&rsquo;t</strong></p>
+
+<p>• Don&rsquo;t test too many things in one test, unless you have sufficient coverage of all the supporting parts. The whole point of unittests is to help isolate the causes of problems, particularly when you change things later, i.e. to help speed up refactoring and adding new features.</p>
+
+<p>• Don&rsquo;t write useless tests. If the test fails and tells you nothing about why it failed, you did it wrong.</p>
+
+<p>• It&rsquo;s generally considered poor form to put assertions in main code. Assertions are best used in testing. If you want to check for something in the code, use an if statement. However, if a condition is expected to only occur if something has gone horribly wrong, you should raise a custom exception. This can be tremendously helpful for debugging, for example, if database queries are failing.</p>
+
+<p>Don&rsquo;t do this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assertNoErrors</span>(self, resp, msg<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;</span>):
+        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>assertEqual(len(resp[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;messages&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;error&#39;</span>]), <span style="color:#ae81ff">0</span>, msg)</code></pre></div>
+<p>Better:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">assertNoErrors</span>(self, resp, msg<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;</span>):
+        <span style="color:#66d9ef">try</span>:
+        self<span style="color:#f92672">.</span>assertEqual(len(resp[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;messages&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;error&#39;</span>]), <span style="color:#ae81ff">0</span>)
+        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">AssertionError</span>:
+            <span style="color:#66d9ef">return</span> resp[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;messages&#39;</span>][<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;error&#39;</span>] 
+            </code></pre></div>
+<p><strong>Running tests</strong></p>
+
+<ol>
+<li>Run tests locally. Whether you&rsquo;re just running unit tests, or django tests, or using some other library (nose, pytest, etc.), you can run single tests, whole test folders or the entire test suite.</li>
+<li>Set up and run automated tests through something like Jenkins. Keep in mind that Jenkins may not be using the same database that you&rsquo;re using locally.</li>
+<li>Test manually both locally and remotely.</li>
+<li>Get someone else to test manually both specifically (black-box testing) and randomly (smoke-testing).</li>
+</ol>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        25 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black o-50">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

@@ -98,6 +98,17 @@ This is an extremely simple example to show what I mean:</description>
     </item>
     
     <item>
+      <title>Biking data from XML to analysis, revised</title>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
+      <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
+      <description>Am I getting slower every day?
+If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
+ If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
+    </item>
+    
+    <item>
       <title>Working with device data</title>
       <link>https://szeitlin.github.io/posts/biking_data/device-data/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
@@ -150,6 +161,17 @@ I thought I knew what zip files were. I have used them since grad school, for tr
     </item>
     
     <item>
+      <title>Things I learned studying the cell cycle in cancer</title>
+      <link>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</link>
+      <pubDate>Tue, 29 Jul 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</guid>
+      <description>I know that from the outside, &amp;lsquo;science&amp;rsquo; seems like The Place Where Scientists Live. But &amp;lsquo;science&amp;rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.
+Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.
+My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.</description>
+    </item>
+    
+    <item>
       <title>Advice on recruiting</title>
       <link>https://szeitlin.github.io/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -177,17 +199,6 @@ Most modern user-friendly software documentation isn&amp;rsquo;t just writing, t
       <guid>https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/</guid>
       <description>I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&amp;rsquo; unfounded modesty and their actual rides.
 One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&amp;rsquo;s also relatively consistent, which meant the data he gave me wasn&amp;rsquo;t too terribly noisy.</description>
-    </item>
-    
-    <item>
-      <title>Biking data from XML to analysis, revised</title>
-      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
-      <description>Am I getting slower every day?
-If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
- If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
     </item>
     
     <item>
@@ -268,17 +279,6 @@ a) It was the first interview where I was asked to write more than a couple line
       <description>Inspired by a couple of great posts by Michael Gibson, I want to talk about what robustness means to me, as someone coming from a science background.
 I started working in a &amp;ldquo;wetlab&amp;rdquo; doing benchwork cancer research when I was in high school (I was 16). I learned early on that mistakes are:
  normal avoidable necessary.  That may sound paradoxical, so I&amp;rsquo;ll explain. Some failures will always happen: the phone rings and you drop something.</description>
-    </item>
-    
-    <item>
-      <title>Things I learned studying the cell cycle in cancer</title>
-      <link>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</guid>
-      <description>I know that from the outside, &amp;lsquo;science&amp;rsquo; seems like The Place Where Scientists Live. But &amp;lsquo;science&amp;rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.
-Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.
-My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.</description>
     </item>
     
     <item>

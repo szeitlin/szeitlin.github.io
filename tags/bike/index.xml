@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Device Data on </title>
-    <link>https://szeitlin.github.io/tags/device-data/</link>
-    <description>Recent content in Device Data on </description>
+    <title>Bike on </title>
+    <link>https://szeitlin.github.io/tags/bike/</link>
+    <description>Recent content in Bike on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2015 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://szeitlin.github.io/tags/device-data/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://szeitlin.github.io/tags/bike/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,17 +20,6 @@
       <description>Am I getting slower every day?
 If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
  If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
-    </item>
-    
-    <item>
-      <title>Working with device data</title>
-      <link>https://szeitlin.github.io/posts/biking_data/device-data/</link>
-      <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://szeitlin.github.io/posts/biking_data/device-data/</guid>
-      <description>In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.
-I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.
-Things to consider when working with devices  Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?</description>
     </item>
     
   </channel>

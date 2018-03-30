@@ -137,12 +137,13 @@ Or at least real enough, right now, to be believable."/>
 
 <p>It sounds ridiculous, but it&rsquo;s great advice. If you don&rsquo;t know what&rsquo;s been done before, how do you know you&rsquo;re actually doing something new? If it&rsquo;s been attempted before, how do you know you won&rsquo;t make all the same mistakes? How do you know you&rsquo;re not missing out on all kinds of tips and tricks that might save you a lot of time and confusion?</p>
 
-<p>###Trust but verify###
-Perhaps most importantly, if there&rsquo;s some way to verify your assumptions, like say if someone has done part or all of your project before, try to get your hands on their results. You&rsquo;re going to want to know how your results compare with theirs. Can you understand why your results might be different from what they reported? Have you improved on previous methods? Are you able to recapitulate their results using their methods? Using yours? Maybe their results are completely unreproducible. In that case, you shouldn&rsquo;t be trying to make your approach look like theirs. Or maybe your methods aren&rsquo;t very robust, in which case you have more work to do.</p>
+<h3 id="trust-but-verify">Trust but verify</h3>
+
+<p>Perhaps most importantly, if there&rsquo;s some way to verify your assumptions, like say if someone has done part or all of your project before, try to get your hands on their results. You&rsquo;re going to want to know how your results compare with theirs. Can you understand why your results might be different from what they reported? Have you improved on previous methods? Are you able to recapitulate their results using their methods? Using yours? Maybe their results are completely unreproducible. In that case, you shouldn&rsquo;t be trying to make your approach look like theirs. Or maybe your methods aren&rsquo;t very robust, in which case you have more work to do.</p>
 
 <h2 id="design-your-experiments-wisely">Design your experiments wisely</h2>
 
-<p>###Pick two###</p>
+<h3 id="pick-two">Pick two</h3>
 
 <p>Choose at least two approaches. It&rsquo;s never a good idea to base a major conclusion on a single measurement, or even a single type of measurement made in triplicate.</p>
 
@@ -176,7 +177,7 @@ Perhaps most importantly, if there&rsquo;s some way to verify your assumptions, 
 
 <h3 id="sample-selection">Sample selection</h3>
 
-<p>####Choose samples that represent:####</p>
+<h4 id="choose-samples-that-represent">Choose samples that represent:</h4>
 
 <p><strong>Positive controls:</strong> known responders. Examples that reproducibly support your original hypothesis.</p>
 
@@ -199,14 +200,14 @@ Perhaps most importantly, if there&rsquo;s some way to verify your assumptions, 
 
 <p><strong>Main samples:</strong> examples of what you expect to occur most commonly, which contain your target category and which can be sorted or otherwise identified (if only you can get the right methods and models in place!). Usually this is a mixed population, and you have some hypotheses about what variables might play a role in segmentation, even if your hypothesis is just &ldquo;there is more than one sub-population in this group.&rdquo; (Hint: if you look carefully, there is usually more than one sub-population in a group)</p>
 
-<p>###Sample size###</p>
+<h3 id="sample-size">Sample size</h3>
 
 <p>Choose samples that are big enough to be representative. For edge cases, sometimes one is enough.
 For positive and negative controls, you usually need a few, to check for variability within the populations, and also to compare against your main sample. But it all depends on the distribution of your system. If it&rsquo;s not a normal distribution, or your controls are Gaussian but your main samples are not, you&rsquo;re going to need a bigger sample to train your model, if you want it to perform well in real tests.</p>
 
 <p>It&rsquo;s also worth thinking about how your test population and controls, which are usually static, will represent the real thing, which might be streaming or otherwise changing over time. Are there known variables, like season, that might require you to periodically update your test samples? Your model can&rsquo;t account for what it hasn&rsquo;t seen.</p>
 
-<p>###Metrics to evaluate whether it worked or not###</p>
+<h3 id="metrics-to-evaluate-whether-it-worked-or-not">Metrics to evaluate whether it worked or not</h3>
 
 <p>Before you begin any experiment, think about how you&rsquo;re going to evaluate what you observe. If you have a hypothesis, your metric for success might be whether your data are consistent with your hypothesis. If you don&rsquo;t, maybe you have a threshold for what you&rsquo;d consider a believable observation. How are you going to measure that? Is it going to affect the sample sizes you choose for your test populations (probably)?</p>
 
@@ -216,7 +217,7 @@ For positive and negative controls, you usually need a few, to check for variabi
 
 <p>And then when you think you&rsquo;re done, review it again. And again. Get other people to help you look for possible mistakes. Everybody makes mistakes. It doesn&rsquo;t mean you&rsquo;re not working hard or not good at your job. Sometimes it just means you&rsquo;re too close to the problem, or you&rsquo;ve been looking at it too long. Make sure to build time into your process so you can take a break, even if it&rsquo;s just to sleep on it for one night, and then look everything over again with fresh eyes.</p>
 
-<p>##You might still be wrong##</p>
+<h2 id="you-might-still-be-wrong">You might still be wrong</h2>
 
 <p>Always remember that you might be wrong. Always re-examine all your assumptions, and all the shortcomings of the approaches you&rsquo;ve used. Sometimes this will open up new avenues for investigation, or help you shore up your findings. Sometimes someone else will come to you with evidence that you&rsquo;ve made a mistake. There will be bugs in your code. That&rsquo;s ok. Just take a deep breath and see what&rsquo;s changed with this new information.</p>
 
@@ -297,6 +298,13 @@ For positive and negative controls, you usually need a few, to check for variabi
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
           <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
             Working with device data
           </a>
@@ -332,6 +340,13 @@ For positive and negative controls, you usually need a few, to check for variabi
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
           <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
             Advice on recruiting
           </a>
@@ -348,13 +363,6 @@ For positive and negative controls, you usually need a few, to check for variabi
           
           <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
             Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
           </a>
         </li>
       
@@ -404,13 +412,6 @@ For positive and negative controls, you usually need a few, to check for variabi
           
           <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
             Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
           </a>
         </li>
       

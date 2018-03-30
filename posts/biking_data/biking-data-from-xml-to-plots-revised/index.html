@@ -31,8 +31,9 @@ If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself 
 
 
 
+<meta property="article:published_time" content="2015-08-07T00:00:00&#43;00:00"/>
 
-
+<meta property="article:modified_time" content="2015-08-07T00:00:00&#43;00:00"/>
 
 
 
@@ -50,12 +51,13 @@ If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself 
  If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?">
 
 
+<meta itemprop="datePublished" content="2015-08-07T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2015-08-07T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1026">
 
-<meta itemprop="wordCount" content="1032">
 
 
-
-<meta itemprop="keywords" content="" />
+<meta itemprop="keywords" content="device data,bike," />
 <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Biking data from XML to analysis, revised"/>
 <meta name="twitter:description" content="Am I getting slower every day?
 If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
@@ -106,7 +108,9 @@ If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself 
         </h1>
       </header>
       <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        <p><em>Am I getting slower every day?</em></p>
+        
+
+<p><em>Am I getting slower every day?</em></p>
 
 <p>If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:</p>
 
@@ -117,13 +121,13 @@ If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself 
 
 <hr />
 
-<p>Last year, I wrote <a href="http://codrspace.com/szeitlin/bike-data-from-xml-to-plots/">a few posts</a> about learning how to parse a set of Garmin XML data from 2013 and analyze it using pandas, matplotlib, and <a href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>. This year I redid the same analyses, with a new installment of data from 2014.</p>
+<p>Last year, I wrote <a href="https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/">a few posts</a> about learning how to parse a set of Garmin XML data from 2013 and analyze it using pandas, matplotlib, and <a href="http://web.stanford.edu/~mwaskom/software/seaborn/">seaborn</a>. This year I redid the same analyses, with a new installment of data from 2014.</p>
 
 <p>This new and improved version is both prettier and more interesting, thanks to having more data, and more experience with pandas and seaborn (not to mention that pandas and iPython notebook have both been updated a few times). In this series of posts, I&rsquo;ll show what I did to improve on my initial attempts. In later posts, I&rsquo;ll present some new analyses of higher-density time series data, which include detailed 3D location information in the form latitude, longitude, and altitude.</p>
 
 <hr />
 
-<p><strong>First, get a rough idea of what is going on</strong></p>
+<h2 id="first-get-a-rough-idea-of-what-is-going-on">First, get a rough idea of what is going on</h2>
 
 <p>One of the first questions we wanted to ask was about relative speeds in the city vs. suburbs, and morning vs. evening.</p>
 
@@ -140,62 +144,52 @@ If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself 
 
 <hr />
 
-<p><strong>Clarify relevant questions</strong></p>
+<h2 id="clarify-relevant-questions">Clarify relevant questions</h2>
 
 <p>So to make it a little clearer, and be able to ask better questions, I wrote a simple helper function to add a flag for the four main categories I wanted: morning city, morning suburbs, evening city, evening suburbs.</p>
 
 <p>On further revision, I added a couple of extra flags for two kinds of &lsquo;outliers&rsquo;: one I called &lsquo;evening later&rsquo; for when Caltrain was delayed, plus &lsquo;other&rsquo; for those random data points that were probably due to the Garmin device being on or off when it shouldn&rsquo;t be, aka, user error.</p>
 
 <p>Then I used a list comprehension to apply that to the &lsquo;hour&rsquo; column in my dataframe, which I had previously generated using the awesome built-in datetime handling that pandas makes so easy. Then I made a better plot with seaborn.</p>
-
-<p>[code]<br />
-     def leg_definer(hour):
-        &ldquo;&rdquo;&rdquo;
-        (int) -&gt; (str)</p>
-
-<pre><code>    Helper function to identify trip legs by hour, i.e.
-         6 AM: first leg (to Caltrain) - morning_city
-         7 AM: second leg (to work) - morning_suburb
-         4 PM (16): 3rd leg (return to Caltrain) - evening_suburb
-         5 PM (17): 4th leg (return home) - evening_city
-         later - evening_later (Caltrain delays, etc)
-         other hour: other
-
-    &gt;&gt;&gt; leg_definer(6):
-    'morning_city'
-
-    &quot;&quot;&quot;
-legref = {6:&quot;morning_city&quot;, 7:&quot;morning_suburb&quot;, 16:&quot;evening_suburb&quot;, 17:&quot;evening_city&quot;, 9:&quot;other&quot;, 11:&quot;other&quot;, 12:&quot;other&quot;, 15:&quot;other&quot;, 18:&quot;evening_later&quot;}
-return legref[hour]
-
-filtered[&quot;leg_flag&quot;]=[leg_definer(hour) for hour in filtered[&quot;hour&quot;]]
-
-g = sns.lmplot(&quot;day&quot;, &quot;average_mph&quot;, filtered, hue=&quot;leg_flag&quot;, fit_reg=False)
-g.set(xticks=[0,5,10,15,20,25,30], ylim=(5,24))
-
-[/code] 
-</code></pre>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">     <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">leg_definer</span>(hour):
+        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">        (int) -&gt; (str)
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">        Helper function to identify trip legs by hour, i.e.
+</span><span style="color:#e6db74">             6 AM: first leg (to Caltrain) - morning_city
+</span><span style="color:#e6db74">             7 AM: second leg (to work) - morning_suburb
+</span><span style="color:#e6db74">             4 PM (16): 3rd leg (return to Caltrain) - evening_suburb
+</span><span style="color:#e6db74">             5 PM (17): 4th leg (return home) - evening_city
+</span><span style="color:#e6db74">             later - evening_later (Caltrain delays, etc)
+</span><span style="color:#e6db74">             other hour: other
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">        &gt;&gt;&gt; leg_definer(6):
+</span><span style="color:#e6db74">        &#39;morning_city&#39;
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+    legref <span style="color:#f92672">=</span> {<span style="color:#ae81ff">6</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;morning_city&#34;</span>, <span style="color:#ae81ff">7</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;morning_suburb&#34;</span>, <span style="color:#ae81ff">16</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;evening_suburb&#34;</span>, <span style="color:#ae81ff">17</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;evening_city&#34;</span>, <span style="color:#ae81ff">9</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;other&#34;</span>, <span style="color:#ae81ff">11</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;other&#34;</span>, <span style="color:#ae81ff">12</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;other&#34;</span>, <span style="color:#ae81ff">15</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;other&#34;</span>, <span style="color:#ae81ff">18</span>:<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;evening_later&#34;</span>}
+    <span style="color:#66d9ef">return</span> legref[hour]
+    
+    filtered[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;leg_flag&#34;</span>]<span style="color:#f92672">=</span>[leg_definer(hour) <span style="color:#66d9ef">for</span> hour <span style="color:#f92672">in</span> filtered[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;hour&#34;</span>]]
+    
+    g <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>lmplot(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;day&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;average_mph&#34;</span>, filtered, hue<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;leg_flag&#34;</span>, fit_reg<span style="color:#f92672">=</span>False)
+    g<span style="color:#f92672">.</span>set(xticks<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">15</span>,<span style="color:#ae81ff">20</span>,<span style="color:#ae81ff">25</span>,<span style="color:#ae81ff">30</span>], ylim<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">24</span>))</code></pre></div>
 <p><img src="/site_media/media/25e3a19ec5151.png" alt="2014_avmph_day_lmplot.png" /></p>
 
 <p>And I think that&rsquo;s pretty cute, but it doesn&rsquo;t really show any meaningful patterns, because we&rsquo;re looking at all the months on top of each other (day here is coming from the date, aka &lsquo;day of the month&rsquo;).</p>
 
 <hr />
 
-<p><strong>Focus on how to see what you&rsquo;re looking for</strong></p>
+<h2 id="focus-on-how-to-see-what-you-re-looking-for">Focus on how to see what you&rsquo;re looking for</h2>
 
 <p>I realized grouping by weekday was more likely to be interesting. And then I got caught by one of those random little pandas gotchas: weekday is a method, not a datetime attribute. So it&rsquo;s item.weekday(), not item.weekday (so it&rsquo;s different from month, day, or hour).</p>
 
 <p>I also had to use a plotting trick of adding horizontal &lsquo;jitter&rsquo; to make it easier to see all the dots on the scatterplot that would otherwise be overlapped.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">filtered[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;weekday&#34;</span>]<span style="color:#f92672">=</span>[item<span style="color:#f92672">.</span>weekday() <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> filtered[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;zoned&#34;</span>]]
 
-<p>[code]
-filtered[&ldquo;weekday&rdquo;]=[item.weekday() for item in filtered[&ldquo;zoned&rdquo;]]</p>
-
-<p>sns.set_context(&ldquo;talk&rdquo;)
-g=sns.lmplot(&ldquo;weekday&rdquo;, &ldquo;average_mph&rdquo;, filtered, hue=&ldquo;leg_flag&rdquo;, x_jitter=0.15, fit_reg=False)
-g.set(xlim=(-1,6), ylim=(5,24))
-[/code]</p>
-
+sns<span style="color:#f92672">.</span>set_context(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;talk&#34;</span>)
+g<span style="color:#f92672">=</span>sns<span style="color:#f92672">.</span>lmplot(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;weekday&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;average_mph&#34;</span>, filtered, hue<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;leg_flag&#34;</span>, x_jitter<span style="color:#f92672">=</span><span style="color:#ae81ff">0.15</span>, fit_reg<span style="color:#f92672">=</span>False)
+g<span style="color:#f92672">.</span>set(xlim<span style="color:#f92672">=</span>(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">6</span>), ylim<span style="color:#f92672">=</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">24</span>))</code></pre></div>
 <p><img src="/site_media/media/b84c398ac5181.png" alt="2014_avgmph_weekday_flagged.png" /></p>
 
 <p>This plot is starting to make more sense. Now, we can start making some observations and generating new hypotheses (which may or may not match up with our previously qualitative impressions).</p>
@@ -209,21 +203,17 @@ g.set(xlim=(-1,6), ylim=(5,24))
 
 <hr />
 
-<p><strong>Sometimes a different type of plot works better to get your point across</strong></p>
+<h2 id="sometimes-a-different-type-of-plot-works-better-to-get-your-point-across">Sometimes a different type of plot works better to get your point across</h2>
 
 <p>Now, it seemed like the relevant finding was that Mornings were generally faster than Evenings, and I decided to focus on the Suburbs rides since they were less vulnerable to the confounding (!) effects of traffic.</p>
 
 <p>I chose a violin plot to show the distributions more clearly. I hadn&rsquo;t done this quite this way before, but it&rsquo;s actually very easy to create a plot object, and add a couple of subplots. Then I tweaked it a little more: I adjusted the range of the axes, as well as getting rid of the tick-marks along the edge, to make it less cluttered. (Also, I didn&rsquo;t know how to add a title to a plot, so I had to look that up!)</p>
-
-<p>[code]
-f, ax= plt.subplots()
-g = sns.violinplot(evening_suburb[&ldquo;average_mph&rdquo;], evening_suburb[&ldquo;weekday&rdquo;], color=&ldquo;Blues&rdquo;)
-g = sns.violinplot(morning_suburb[&ldquo;average_mph&rdquo;], morning_suburb[&ldquo;weekday&rdquo;], color=&ldquo;Yellow&rdquo;)
-g.set(ylim=(10,24))
-title(&ldquo;Morning(yellow) vs. Evening(blue) Suburb&rdquo;)
-sns.despine()
-[/code]</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">f, ax<span style="color:#f92672">=</span> plt<span style="color:#f92672">.</span>subplots()
+g <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>violinplot(evening_suburb[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;average_mph&#34;</span>], evening_suburb[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;weekday&#34;</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Blues&#34;</span>)
+g <span style="color:#f92672">=</span> sns<span style="color:#f92672">.</span>violinplot(morning_suburb[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;average_mph&#34;</span>], morning_suburb[<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;weekday&#34;</span>], color<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Yellow&#34;</span>)
+g<span style="color:#f92672">.</span>set(ylim<span style="color:#f92672">=</span>(<span style="color:#ae81ff">10</span>,<span style="color:#ae81ff">24</span>))
+title(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Morning(yellow) vs. Evening(blue) Suburb&#34;</span>)
+sns<span style="color:#f92672">.</span>despine()</code></pre></div>
 <p><img src="/site_media/media/bafb74eac51b1.png" alt="2014_morning_vs_suburb.png" /></p>
 
 <p>At the end of the day, I think this plot makes it pretty clear that Morning rides have higher average speeds than Evening rides. Which made me wonder: if we plot the route on a map, can we find out if the road is actually slightly inclined, such that it&rsquo;s actually downhill in the morning, and uphill at night? The incline must be minimal, since this cyclist perceives it as being &lsquo;flat&rsquo;.</p>
@@ -309,6 +299,13 @@ sns.despine()
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black o-50">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
           <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
             Working with device data
           </a>
@@ -344,6 +341,13 @@ sns.despine()
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
           <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
             Advice on recruiting
           </a>
@@ -360,13 +364,6 @@ sns.despine()
           
           <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
             Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black o-50">
-            Biking data from XML to analysis, revised
           </a>
         </li>
       
@@ -416,13 +413,6 @@ sns.despine()
           
           <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
             Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
           </a>
         </li>
       

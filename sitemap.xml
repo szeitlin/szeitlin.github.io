@@ -43,6 +43,11 @@
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</loc>
+    <lastmod>2015-08-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/posts/biking_data/device-data/</loc>
     <lastmod>2015-04-30T00:00:00+00:00</lastmod>
   </url>
@@ -68,6 +73,11 @@
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</loc>
+    <lastmod>2014-07-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/</loc>
     <lastmod>2018-03-28T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -82,6 +92,12 @@
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/tags/bike/</loc>
+    <lastmod>2015-08-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/tags/bike-data/</loc>
     <lastmod>2015-04-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -92,17 +108,19 @@
   </url>
   
   <url>
-    <loc>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</loc>
-  </url>
-  
-  <url>
     <loc>https://szeitlin.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/tags/cell-cycle/</loc>
+    <lastmod>2014-07-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/tags/device-data/</loc>
-    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2015-08-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -190,7 +208,7 @@
   
   <url>
     <loc>https://szeitlin.github.io/tags/</loc>
-    <lastmod>2015-04-30T00:00:00+00:00</lastmod>
+    <lastmod>2015-08-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -198,10 +216,6 @@
     <loc>https://szeitlin.github.io/tags/testing/</loc>
     <lastmod>2017-11-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</loc>
   </url>
   
   <url>

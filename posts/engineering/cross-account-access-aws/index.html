@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Cross-account access with AWS</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Cross-account access with AWS" />
+<meta property="og:description" content="The scene:
+I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.
+Thus began a weeks-long saga of learning about AWS the hard way." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/cross-account-access-aws/" />
+
+
+
+<meta property="article:published_time" content="2018-08-04T00:00:00&#43;00:00"/>
+
+<meta property="article:modified_time" content="2018-08-04T00:00:00&#43;00:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Cross-account access with AWS">
+<meta itemprop="description" content="The scene:
+I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.
+Thus began a weeks-long saga of learning about AWS the hard way.">
+
+
+<meta itemprop="datePublished" content="2018-08-04T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2018-08-04T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="2138">
+
+
+
+<meta itemprop="keywords" content="python,aws,s3,EMR,pyspark,KMS," />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Cross-account access with AWS"/>
+<meta name="twitter:description" content="The scene:
+I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.
+Thus began a weeks-long saga of learning about AWS the hard way."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Cross-account access with AWS
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        <p><em>The scene:</em></p>
+
+<p>I needed to process data from an s3 bucket using pyspark.
+ The s3 bucket was owned by a different account.
+ I had done this before.
+ But this time, there was a twist: we needed to encrypt the data
+ because of GDPR requirements.
+ At the end of the processing, I needed to
+ save the results to another s3 bucket for loading into Redshift.</p>
+
+<p>Thus began a weeks-long saga of learning about AWS the hard way.</p>
+
+<p>(Disclaimer: I am not a devops person. I&rsquo;ve learned about infrastructure
+ only because I wanted to be able to handle my own data pipelining.)</p>
+
+<p>The first thing you need to know about AWS, which I had never realized before
+ really being forced to understand how it all works,
+ is that everything in AWS makes more sense if you think about it from
+ the perspective of security requirements. It doesn&rsquo;t make sense if you
+ think about how you would use the services. It&rsquo;s not set up to be easy
+ to use. It&rsquo;s set up to be so secure it&rsquo;s almost unusable.</p>
+
+<p>With that in mind, here&rsquo;s some background information, before I get into the
+ stuff I learned the hard way.</p>
+
+<p><strong>AWS Services used:</strong></p>
+
+<ul>
+<li><p>S3:  Simple Storage Service, where the input data and scripts are stored, and where the results will be saved</p></li>
+
+<li><p>IAM: Identity and Access Management, the role management service that controls access for users and services</p></li>
+
+<li><p>KMS: Key Management Service, which controls encryption and access to the s3 bucket</p></li>
+
+<li><p>EC2: Elastic Cloud Compute, the AWS hosted machines that form the EMR cluster</p></li>
+
+<li><p>EMR: Elastic Map Reduce, the service that runs the spark job</p></li>
+
+<li><p>STS: Security Token Service, the token system that allows a user or role to assume another role or temporary credentials to access a service</p></li>
+</ul>
+
+<hr />
+
+<p><strong>Accounts used:</strong></p>
+
+<p>1) BucketOwner account</p>
+
+<p>2) EMROwner account</p>
+
+<p><img src="/AWS_diagram_anonymized.png" alt="summary diagram" /></p>
+
+<p><strong>Local configuration:</strong>
+I already knew how to configure my local machine to let me have multiple profiles, but if you haven&rsquo;t
+done this before, here&rsquo;s the TL;DR:</p>
+
+<p>On my local machine, I have separate profiles I’m using to access the s3 bucket
+directly on the BucketOwner account, and to launch the script that
+starts the EMR cluster and runs the spark job from the EMROwner account.</p>
+
+<hr />
+
+<pre><code>.aws/config 
+</code></pre>
+
+<p>Profiles are for parameters, in this case
+mostly just needed for the region information, and I need
+one for each account because they&rsquo;re in different regions.</p>
+
+<hr />
+
+<pre><code>.aws/credentials
+</code></pre>
+
+<p>When AWS says credentials they mean AWS access keys and secret keys,
+and they&rsquo;re specific to the account, so you need one set for each.</p>
+
+<p>Note: if you have no region in one of these accounts,
+it will fall back to whatever region you had in your default profile,
+and that will cause all kinds of weird errors,
+none of which say that you’re in the wrong region.</p>
+
+<hr />
+
+<p><strong>Configuring the S3 buckets:</strong></p>
+
+<p>1) s3://source-data</p>
+
+<p>This bucket is encrypted with a kms key because it
+includes GDPR-protected information.</p>
+
+<p>arn:aws:kms:us-west-2:111111111:alias/source-data-key</p>
+
+<p>Bucket policy: grants access to both root accounts</p>
+
+<pre><code>{
+&quot;Version&quot;: &quot;2012-10-17&quot;, &quot;Statement&quot;: [
+    {
+    &quot;Sid&quot;: &quot;Example permissions&quot;, 
+    &quot;Effect&quot;: &quot;Allow&quot;, 
+    &quot;Principal&quot;: {
+    &quot;AWS&quot;: [ &quot;arn:aws:iam::11111111:root&quot;, 
+             &quot;arn:aws:iam::22222222:root&quot;
+            ] 
+    },
+    &quot;Action&quot;: [ &quot;s3:List*&quot;,
+                &quot;s3:Get*&quot; ],
+    &quot;Resource&quot;: [ &quot;arn:aws:s3:::source-data&quot;, 
+                  &quot;arn:aws:s3:::source-data/*&quot;
+    ] }
+] }
+</code></pre>
+
+<p>Note that you have to list the bucket and objects separately,
+one without the slash + asterisk (that&rsquo;s for the bucket),
+and one with the slash + asterisk (that&rsquo;s for the objects in the bucket).
+I still find this a strange design choice.</p>
+
+<p>I ended up taking the advice from some friends to try using the most
+general List* and Get* because that way I don&rsquo;t have to worry if I&rsquo;m not listing
+every individual type of permission I might need.</p>
+
+<p>2)  s3://code-bucket</p>
+
+<p>Owned by the EMRowner account</p>
+
+<p>Where the pyspark code lives,
+and where the pyspark logs and processed output will end up.</p>
+
+<hr />
+
+<p>I also added a policy to allow the EMR_EC2_DefaultRole to assume the role I had
+created that had access to the s3 bucket (see the next section for a lot more about IAM roles).</p>
+
+<p>So I got that far and I was able to launch my cluster as usual, but I was
+getting an Access Denied (403) error on EMR,
+or an error saying that the EMR_EC2_DefaultRole can’t
+assume the role I created which has access to the s3 bucket.</p>
+
+<p>Note that there are many reasons you can get a 403 error. I don&rsquo;t understand why they are unwilling to
+disclose which aspect of your configuration is wrong, except for their security paranoia. I still think
+they should give categories of errors to give you some idea of how to troubleshoot.</p>
+
+<p>So I had to backtrack a lot to get a better understanding of how IAM roles actually work.</p>
+
+<hr />
+
+<p><strong>IAM roles:</strong></p>
+
+<p>Based on my reading, I reasoned that I could create a role with access
+to the bucket, and assume it from the other account.
+This seemed like a reasonable approach, although I wasn’t exactly
+sure about all the nuances of how it worked.</p>
+
+<p><strong><em>IAM roles can’t actually be layered.</em></strong></p>
+
+<pre><code>“The policies that are attached to the credentials that made 
+the original call to AssumeRole are not evaluated by AWS 
+when making the &quot;allow&quot; or &quot;deny&quot; authorization decision. 
+The user temporarily gives up its original permissions 
+in favor of the permissions assigned by the assumed role.“
+</code></pre>
+
+<p><strong><em>But, IAM roles can be chained:</em></strong></p>
+
+<pre><code>&quot;Role chaining occurs when you use a role to assume a second role 
+through the AWS CLI or API. To engage in role chaining, you 
+can use RoleA's short-term credentials to assume RoleB.&quot;
+</code></pre>
+
+<p>After going in circles for a while trying to do everything with the AWS CLI,
+I decided to go back to writing unit tests so I could more easily
+keep track of what was working and what wasn&rsquo;t.</p>
+
+<p>First, I wanted to confirm that I could at least list the bucket
+from the EMROwner account, from my machine:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_myEMROwner_profile_can_list_s3_bucket</span>(self): 
+    session <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>Session(profile_name <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;EMROwner&#39;</span>) 
+    s3_client <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>client(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;s3&#39;</span>)
+    response <span style="color:#f92672">=</span> s3_client<span style="color:#f92672">.</span>list_objects(Bucket <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;source-data&#39;</span>)  
+    <span style="color:#66d9ef">assert</span> isinstance (response,  dict)</code></pre></div>
+
+<p>Next, I wanted to make sure I could assume the new roles I had created, and use
+those to list the bucket, from my machine:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span>  <span style="color:#a6e22e">role_arn_to_session</span>(profile_name, 
+                         region_name<span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;us-west-2&#39;</span>,
+                         RoleArn<span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;arn:aws:iam::1111111:role/emr-s3-access&#39;</span>, 
+                         RoleSessionName<span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;test&#39;</span>):
+    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;
+</span><span style="color:#e6db74">    modified slightly from the example here:
+</span><span style="color:#e6db74">        https://gist.github.com/gene1wood/938ff578fbe57cf894a105b4107702de
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    For assuming a role to use temporary credentials via the AWS STS (security token service). 
+</span><span style="color:#e6db74">    All params are required
+</span><span style="color:#e6db74">    
+</span><span style="color:#e6db74">    :  param  profile_name: str, must match a profile in your .aws config
+</span><span style="color:#e6db74">    :  param  region_name: str, not strictly required but strongly recommended :  param  RoleArn: standard AWS ARN format
+</span><span style="color:#e6db74">    :  param  RoleSessionName: can be any string (required)
+</span><span style="color:#e6db74">    :  returns : a boto3 Session. Note that temporary credentials expire in 1 hour by default
+</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+    session <span style="color:#f92672">=</span> boto3<span style="color:#f92672">.</span>Session(profile_name <span style="color:#f92672">=</span> profile_name,  region_name <span style="color:#f92672">=</span>region_name) 
+    client <span style="color:#f92672">=</span> session<span style="color:#f92672">.</span>client(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;sts&#39;</span>)
+    response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>assume_role( RoleArn <span style="color:#f92672">=</span> RoleArn,  RoleSessionName <span style="color:#f92672">=</span>RoleSessionName)  
+    <span style="color:#66d9ef">return</span>  boto3<span style="color:#f92672">.</span>Session(
+        aws_access_key_id <span style="color:#f92672">=</span>response[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Credentials&#39;</span> ][ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AccessKeyId&#39;</span> ],  
+        aws_secret_access_key <span style="color:#f92672">=</span>response[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Credentials&#39;</span> ][ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;SecretAccessKey&#39;</span> ], 
+        aws_session_token <span style="color:#f92672">=</span>response[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Credentials&#39;</span> ][ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;SessionToken&#39;</span> ])  </code></pre></div>
+
+<p>If you&rsquo;ve done much with s3, you might already know that just because you can list a bucket, doesn&rsquo;t mean
+you can get the objects in it, or read them. So I wrote a test for that.</p>
+
+<pre><code><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span>  <span style="color:#a6e22e">test_get_object</span>(self):
+        assumed_session <span style="color:#f92672">=</span> role_arn_to_session(RoleArn <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;arn:aws:iam::11111111:role/emr-s3-access&#39;</span>)
+        assumed_client <span style="color:#f92672">=</span> assumed_session<span style="color:#f92672">.</span>client(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;s3&#39;</span>)
+        response <span style="color:#f92672">=</span> assumed_client<span style="color:#f92672">.</span>get_object(Bucket <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;source-data&#39;</span>,
+                                                Key <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;example-filename.gz&#39;</span>) 
+        <span style="color:#66d9ef">assert</span>  response[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ResponseMetadata&#39;</span>][ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;HTTPStatusCode&#39;</span> ] <span style="color:#f92672">==</span>  <span style="color:#ae81ff">200</span>
+    </code></pre></div>
+
+ I also needed to make sure I could actually access the key:
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#66d9ef">def</span>  <span style="color:#a6e22e">test_describe_key</span>( self ):
+        kms_client <span style="color:#f92672">=</span>  self <span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>client( <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;kms&#39;</span> )
+        response <span style="color:#f92672">=</span> kms_client<span style="color:#f92672">.</span>describe_key( KeyId <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;arn:aws:kms:us-west-2:1111111:alias/a-uuid&#39;</span> )
+        <span style="color:#66d9ef">assert</span>  response[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;KeyMetadata&#39;</span>][ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;KeyUsage&#39;</span> ] <span style="color:#f92672">==</span>  <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ENCRYPT_DECRYPT&#39;</span>
+    </code></pre></div>
+</code></pre>
+
+<hr />
+
+<p>In the end, I created a new IAM role, let&rsquo;s call it  arn:aws:iam::2222222:role/emr-s3-bucket-role, to
+use as the JobFlowRole in my pyspark configuration.</p>
+
+<p>This role has 3 policies:</p>
+
+<p>1) AmazonElasticMapReduceforEC2Role (you don&rsquo;t have to create this one, you just have to add it to the role)</p>
+
+<p>2)  Allow-assume-s3-role (had to create this one)</p>
+
+<pre><code>    {
+      &quot;Version&quot;: &quot;2012-10-17&quot;,
+      &quot;Statement&quot;: {
+        &quot;Effect&quot;: &quot;Allow&quot;,
+
+    &quot;Action&quot;: &quot;sts:AssumeRole&quot;,
+        &quot;Resource&quot;: &quot;arn:aws:iam::11111111:role/EMR-access-s3&quot;
+      }
+    }
+</code></pre>
+
+<p>3) Allow-kms-use (also had to create this one)</p>
+
+<pre><code>    {
+    &quot;Version&quot;: &quot;2012-10-17&quot;, 
+    &quot;Statement&quot;: [
+        {
+        &quot;Effect&quot;: &quot;Allow&quot;, 
+        &quot;Action&quot;: &quot;kms:*&quot;, 
+        &quot;Resource&quot;: &quot;*&quot;
+        } ]
+    }
+</code></pre>
+
+<p>And I also had to create this trust policy:</p>
+
+<ul>
+<li>arn:aws:iam::2222222:user/szeitlin (me, so I can assume it)</li>
+<li>The identity provider(s) ec2.amazonaws.com (so EMR can assume it)</li>
+</ul>
+
+<hr />
+
+<p><em>Great! That seems like a lot of stuff already. That&rsquo;s probably enough, right?</em></p>
+
+<p>Wrong. Still getting 403 errors. What else do I need?</p>
+
+<hr />
+
+<p>I contacted AWS support and they said the problem is that you can&rsquo;t use a default KMS key with cross-account access
+(this is documented in one place, but it&rsquo;s really not made obvious when you&rsquo;re choosing which keys to use).</p>
+
+<p>I was finding that if I logged into my EC2 instance from a failed EMR job, I
+could not copy file 00.log.gz from 2018/06/06/ encrypted with
+the default key: arn:aws:kms:us-west-2:1111111:key/e-uuid</p>
+
+<p>And I could copy, but not read, file 01.log.gz from 2018/06/06 encrypted with
+the custom key: arn:aws:kms:us-west-2:11111111:key/a-uuid</p>
+
+<p>So that clearly wasn&rsquo;t the whole story.</p>
+
+<hr />
+
+<p><strong>EMR Instance Profile:</strong></p>
+
+<p>The Instance Profile is a special thing on EC2. It&rsquo;s basically a container for the IAM role credentials,
+which you use to get temporary credentials from the EC2 instance metadata service,
+so that your code can access the other AWS services.</p>
+
+<p>The AWS tech support people suggested I should follow these instructions:</p>
+
+<p><a href="https://aws.amazon.com/blogs/big-data/securely-analyze-data-from-another-aws-account-with-emrfs/">https://aws.amazon.com/blogs/big-data/securely-analyze-data-from-another-aws-account-with-emrfs/</a></p>
+
+<p>1) Create IAM Roles on both accounts (I had already done that)
+2) Implement a custom credential provider in java.</p>
+
+<p>I wrote them back and said <em>java? really?</em></p>
+
+<p>And while I was waiting for a response, I went ahead and implemented a way to assume
+my IAM roles explicitly from inside my spark job, just to see if that would work.</p>
+
+<p>I decided to try using this (from here: <a href="https://github.com/boto/boto3/issues/222">https://github.com/boto/boto3/issues/222</a>)<br />
+with a modified version of the code I already had:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span>  botocore.credentials  <span style="color:#f92672">import</span>  InstanceMetadataProvider, InstanceMetadataFetcher
+   
+provider  <span style="color:#f92672">=</span>  InstanceMetadataProvider( iam_role_fetcher <span style="color:#f92672">=</span> InstanceMetadataFetcher( timeout <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> ,
+num_attempts <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span> ))
+creds <span style="color:#f92672">=</span> provider<span style="color:#f92672">.</span>load()
+access_key  <span style="color:#f92672">=</span>  creds<span style="color:#f92672">.</span>access_key
+secret_key <span style="color:#f92672">=</span> creds<span style="color:#f92672">.</span>secret_key</code></pre></div>
+
+<p>Then use the same code from before for assuming a role,
+but this time you&rsquo;re telling the EC2 Instance Profile
+to assume the IAM role that has the s3 bucket access</p>
+
+<p>Plus this, so the hadoop user could use the new credentials:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">sc<span style="color:#f92672">.</span>_jsc<span style="color:#f92672">.</span>hadoopConfiguration()<span style="color:#f92672">.</span>set( <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fs.s3a.access.key&#39;</span> , creds[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;access_key_id&#39;</span> ]) 
+sc<span style="color:#f92672">.</span>_jsc<span style="color:#f92672">.</span>hadoopConfiguration()<span style="color:#f92672">.</span>set( <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fs.s3a.secret.key&#39;</span> , creds[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;secret_key&#39;</span> ]) 
+sc<span style="color:#f92672">.</span>_jsc<span style="color:#f92672">.</span>hadoopConfiguration()<span style="color:#f92672">.</span>set( <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;fs.s3a.session.token&#39;</span> , creds[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;session_token&#39;</span> ])</code></pre></div>
+
+<p>But I was still getting the same AccessDenied 403 error.</p>
+
+<hr />
+
+<p>AWS finally wrote me back and said I didn&rsquo;t need a custom credential provider,
+I should instead just try using SSE-KMS in the security configuration for the EMR cluster.</p>
+
+<p>I had already tried setting up the security configuration for the EMR cluster, but by this point,
+the logic of AWS was finally starting to sink in, even though much of their documentation lacks explicit
+explanations of why you have to do a thing a specific way:</p>
+
+<p><em>You can&rsquo;t go down in security level.</em></p>
+
+<p>So since I had encryption on the source s3 bucket, that meant I <em>had</em> to
+enable the same encryption on the EMR filesystem (EMRFS),
+whether I cared about that or not (<em>at this point, I did not care</em>).</p>
+
+<p>The security configuration, in case you&rsquo;ve never used it,
+is something you can set up via this obscure tab
+on the side of the EMR service window (or via the CLI).</p>
+
+<p>I tried it first with the EMR_EC2_DefaultRole and it gave me an error about not being able to assume itself.
+This seems like a bug to me, since the permissions on that role were identical to the one that ultimately worked.</p>
+
+<p>Note that you can’t edit a security configuration, you can only delete and/or create a new one. So I started over and
+created a new one with the identical permissions and a different name.</p>
+
+<p>Finally, it worked for the ones with the custom key. (Totally anticlimactic, btw, after all that confusion.)</p>
+
+<hr />
+
+<p>And then, in case you&rsquo;re like me and didn&rsquo;t know this, it turns out that the only way to change the encryption key on
+s3 is to re-upload, or copy, the files over again. So the CLI command looks like this:</p>
+
+<pre><code>aws s3 cp s3://source-data/00.log.gz s3://source-data/00.log.gz 
+--sse aws:kms --sse-kms-key-id arn:aws:kms:us-west-2:11111111:alias/a-uuid --profile BucketOwner
+</code></pre>
+
+<p>And the boto3 code for that looks something like this:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">def</span>  <span style="color:#a6e22e">re_encrypt_objects</span>(datestring, keyid<span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;arn:aws:kms:us-west-2:111111111:alias/a-uuid&#39;</span> ):
+     <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
+</span><span style="color:#e6db74">    :  param  datestring: str, format &#39;YYYY/MM/DD&#39; 
+</span><span style="color:#e6db74">    :  param  keyid: str
+</span><span style="color:#e6db74">    &#39;&#39;&#39;</span>
+    <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> list_of_objects:
+        copy_source <span style="color:#f92672">=</span> { <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Bucket&#39;</span> : bucketname,
+                         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Key&#39;</span> :  objectname}
+        s3<span style="color:#f92672">.</span>meta<span style="color:#f92672">.</span>client<span style="color:#f92672">.</span>copy(copy_source, copy_source[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Bucket&#39;</span> ], copy_source[ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;Key&#39;</span> ],  
+                            ExtraArgs <span style="color:#f92672">=</span>{ <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;ServerSideEncryption&#39;</span> : <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;aws:kms&#39;</span> ,
+                                         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;SSEKMSKeyId&#39;</span> :keyid}) 
+        logging<span style="color:#f92672">.</span>info( <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;re-encrypting {}&#39;</span> <span style="color:#f92672">.</span>format(item))</code></pre></div>
+
+<hr />
+
+<p>Overall, I&rsquo;d say I have one major suggestion for AWS: give us some easier ways to tell which parts of our configurations
+are working correctly. Sure, you don&rsquo;t want to give us too many hints if it&rsquo;s a security risk, I can almost understand that
+(<em>almost</em>). But almost all of your documentation gives advice on how to do something, with zero advice on how to check
+if that step succeeded. It&rsquo;s like writing code with no tests: a recipe for headaches.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        26 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black o-50">
+            Cross-account access with AWS
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2018 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

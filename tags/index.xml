@@ -6,10 +6,19 @@
     <description>Recent content in Tags on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 07 Aug 2015 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 Aug 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Aws</title>
+      <link>https://szeitlin.github.io/tags/aws/</link>
+      <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/tags/aws/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Bike</title>
@@ -48,11 +57,29 @@
     </item>
     
     <item>
+      <title>Emr</title>
+      <link>https://szeitlin.github.io/tags/emr/</link>
+      <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/tags/emr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Experimental Design</title>
       <link>https://szeitlin.github.io/tags/experimental-design/</link>
       <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
       
       <guid>https://szeitlin.github.io/tags/experimental-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kms</title>
+      <link>https://szeitlin.github.io/tags/kms/</link>
+      <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/tags/kms/</guid>
       <description></description>
     </item>
     
@@ -75,9 +102,18 @@
     </item>
     
     <item>
+      <title>Pyspark</title>
+      <link>https://szeitlin.github.io/tags/pyspark/</link>
+      <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/tags/pyspark/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>https://szeitlin.github.io/tags/python/</link>
-      <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
       
       <guid>https://szeitlin.github.io/tags/python/</guid>
       <description></description>
@@ -89,6 +125,15 @@
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
       
       <guid>https://szeitlin.github.io/tags/recursion/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>S3</title>
+      <link>https://szeitlin.github.io/tags/s3/</link>
+      <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://szeitlin.github.io/tags/s3/</guid>
       <description></description>
     </item>
     

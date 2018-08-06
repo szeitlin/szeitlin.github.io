@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://szeitlin.github.io/posts/engineering/cross-account-access-aws/</loc>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</loc>
     <lastmod>2018-03-28T00:00:00+00:00</lastmod>
   </url>
@@ -79,7 +84,7 @@
   
   <url>
     <loc>https://szeitlin.github.io/</loc>
-    <lastmod>2018-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -89,6 +94,12 @@
   
   <url>
     <loc>https://szeitlin.github.io/posts/engineering/automating-user-friendly-documentation-using-selenium-/</loc>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/aws/</loc>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -125,6 +136,12 @@
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/tags/emr/</loc>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/tags/experimental-design/</loc>
     <lastmod>2016-04-15T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -143,6 +160,12 @@
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/tags/kms/</loc>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/tags/ml/</loc>
     <lastmod>2016-09-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -156,13 +179,19 @@
   
   <url>
     <loc>https://szeitlin.github.io/posts/</loc>
-    <lastmod>2018-03-28T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://szeitlin.github.io/tags/pyspark/</loc>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://szeitlin.github.io/tags/python/</loc>
-    <lastmod>2017-11-18T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -189,6 +218,12 @@
   </url>
   
   <url>
+    <loc>https://szeitlin.github.io/tags/s3/</loc>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/tags/scikit-learn/</loc>
     <lastmod>2016-09-12T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -208,7 +243,7 @@
   
   <url>
     <loc>https://szeitlin.github.io/tags/</loc>
-    <lastmod>2015-08-07T00:00:00+00:00</lastmod>
+    <lastmod>2018-08-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

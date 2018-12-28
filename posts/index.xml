@@ -6,10 +6,21 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 Aug 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Dec 2018 16:29:47 -0800</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>More AWS things I learned the hard way: S3 best practices and VPCs</title>
+      <link>https://szeitlin.github.io/posts/engineering/aws-s3-vpc/</link>
+      <pubDate>Sun, 02 Dec 2018 16:29:47 -0800</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/aws-s3-vpc/</guid>
+      <description>To make a long, mostly whiny story short, as part of my current role, I&amp;rsquo;ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I&amp;rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&amp;rsquo;s advice, so I thought I&amp;rsquo;d collect some of them here.
+Best practices for storing big data on S3</description>
+    </item>
     
     <item>
       <title>Cross-account access with AWS</title>

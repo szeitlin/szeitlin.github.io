@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>  | Fun with text file encodings</title>
+    <title>  | More AWS things I learned the hard way: S3 best practices and VPCs</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -22,15 +22,18 @@
 
     
 
-    <meta property="og:title" content="Fun with text file encodings" />
-<meta property="og:description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
-They&rsquo;re just text files, right? What could be hard about that?
-1. Fun with encoding The problem:
-A friend sent me a dump of data from iTunes, as a table.
-Just a text file.
-She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before." />
+    <meta property="og:title" content="More AWS things I learned the hard way: S3 best practices and VPCs" />
+<meta property="og:description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
+Best practices for storing big data on S3" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/fun-with-failing/" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/aws-s3-vpc/" />
+
+
+
+<meta property="article:published_time" content="2018-12-02T16:29:47-08:00"/>
+
+<meta property="article:modified_time" content="2018-12-02T16:29:47-08:00"/>
 
 
 
@@ -42,33 +45,23 @@ She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, P
 
 
 
+<meta itemprop="name" content="More AWS things I learned the hard way: S3 best practices and VPCs">
+<meta itemprop="description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
+Best practices for storing big data on S3">
 
 
-
-
-
-<meta itemprop="name" content="Fun with text file encodings">
-<meta itemprop="description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
-They&rsquo;re just text files, right? What could be hard about that?
-1. Fun with encoding The problem:
-A friend sent me a dump of data from iTunes, as a table.
-Just a text file.
-She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before.">
-
-
-
-<meta itemprop="wordCount" content="638">
+<meta itemprop="datePublished" content="2018-12-02T16:29:47-08:00" />
+<meta itemprop="dateModified" content="2018-12-02T16:29:47-08:00" />
+<meta itemprop="wordCount" content="1081">
 
 
 
 <meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Fun with text file encodings"/>
-<meta name="twitter:description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
-They&rsquo;re just text files, right? What could be hard about that?
-1. Fun with encoding The problem:
-A friend sent me a dump of data from iTunes, as a table.
-Just a text file.
-She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before."/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="More AWS things I learned the hard way: S3 best practices and VPCs"/>
+<meta name="twitter:description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
+Best practices for storing big data on S3"/>
 
   </head>
 
@@ -111,120 +104,151 @@ She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, P
           POSTS
         </p>
         <h1 class="f1">
-          Fun with text file encodings
+          More AWS things I learned the hard way: S3 best practices and VPCs
         </h1>
       </header>
       <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+        <p>To make a long, mostly whiny story short, as part of my current role,
+I&rsquo;ve been doing a lot of fighting with AWS to help support my team.</p>
 
-<p>This post is about a couple of painful problems I&rsquo;ve had with reading in text files.</p>
-
-<p>They&rsquo;re just text files, right? What could be hard about that?</p>
-
-<hr />
-
-<h2 id="1-fun-with-encoding"><strong>1. Fun with encoding</strong></h2>
-
-<p>The problem:</p>
-
-<p>A friend sent me a dump of data from iTunes, as a table.</p>
-
-<p><em>Just a text file.</em></p>
-
-<p>She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before.</p>
-
-<p>I tried everything I knew how to do. I tried adding options in pandas that had worked for me in the past with various kinds of tables and csv files, but none of it worked. I couldn&rsquo;t figure out what was wrong.</p>
-
-<p>So I was doing:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> pandas
-    data <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Rawfile.txt&#34;</span>, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)</code></pre></div>
-<p>And I was getting a giant mess of stuff like this:</p>
-
-<pre><code>[\rTest Pattern #1111\t`l0u\xaeN\xf8S', '\tTest Pattern\t\tTechnical Electronic\t13149337\t432\t\t\t15\t\t2008\t9/15/08, 5:47 PM\t8/22/11, 6:37 PM\t242\t44100\t\tMPEG audio file\t\t\t\t\t\t\t\rTest Pattern #0000\t`l0u\xaeN\xf8S']
-</code></pre>
-
-<p>After banging my head against the wall for a while, I learned a few things. Here&rsquo;s what I learned.</p>
-
-<p><strong>Step 1</strong>. Open the file in an old-school text editor. Newer ones, unfortunately, are too smart, and will not show you what you need to see. For example, use this command to view the file with no automatic conversion at all:</p>
-
-<pre><code>vim -b Rawfile.txt
-</code></pre>
-
-<p><strong>Step 2</strong>. Look at the top of the file.</p>
-
-<p>In my case, there was this <a href="http://en.wikipedia.org/wiki/Byte_order_mark">byte order marker</a> (BOM):</p>
-
-<blockquote>
-<p>{ff}{fe} (*)</p>
-</blockquote>
-
-<p>It turns out that UTF-8, the usual format for text files, doesn&rsquo;t have a BOM. This BOM happens to correspond to UTF-16. Pandas couldn&rsquo;t deal with that.</p>
-
-<p>NOTE: a friend wrote in and suggested this even better unix solution:</p>
-
-<pre><code>&gt;&gt;&gt; file myfile.txt
-Little-endian UTF-16 Unicode English text, with CR line terminators
-</code></pre>
+<p>Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying
+mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.</p>
 
 <hr />
 
-<p><strong>Solution:</strong></p>
+<p><strong>Best practices for storing big data on S3</strong></p>
 
-<p>To get this file imported, then, I had to first read it in using the Python module called &lsquo;codecs&rsquo;. And I had to add the argument for the universal end-of-line, like so, or it wouldn&rsquo;t read it as a table:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> codecs
+<p>___<em>Think about your bucket structure</em></p>
 
-    opened <span style="color:#f92672">=</span> codecs<span style="color:#f92672">.</span>open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;All_iPod_Music_Cleaned_Up_031114.txt&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;rU&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;UTF16&#39;</span>)
+<p>One of the things I ran into in my previous role was how hard it can be
+to find a specific file in s3 if your file naming isn&rsquo;t set up to make this easy.</p>
 
-    df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(opened, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)</code></pre></div>
-<hr />
+<p>Although S3 is not a real filesystem, you can almost treat it like one, but it can take a little
+bit of finagling to write your code to help with this issue.</p>
 
-<ol>
-<li>Fun with invisible ink
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</li>
-</ol>
+<p>So I recommend against, for example, putting dates in your filenames, like so:</p>
 
-<p>Lesson learned: (NOTE TO SELF): <em>check your input file!</em></p>
+<p>Don&rsquo;t do this: <em>s3://mybucket/2018-12-02_server-1_file-1.csv</em></p>
 
-<p>The problem:</p>
+<p>Why not?</p>
 
-<p>I wanted to try a simple twitter stream analysis. I got my API key, got a few tweets, and wrote the data to a file. It comes out in json form.</p>
+<p>Here&rsquo;s the scenario: let&rsquo;s say you&rsquo;re looking for a specific file from server 13 on Nov 12th.
+But you can&rsquo;t grep for it because the file naming conventions changed at some point
+and nobody&rsquo;s sure what the structure was at this particular point in time.</p>
 
-<p>I haven&rsquo;t done much with json. So when I started having problems, I assumed I was doing something wrong.</p>
+<p>In order to make sure it exists, find out how big it is, and copy it to your machine,
+you now have to list your <em>entire</em> bucket.</p>
 
-<p>I tried json.loads. Eventually, I was able to confirm that I was getting back the right kind of object (a Python dict), but I was also getting this error:</p>
+<p>This is going to take a while. Like, probably minutes if your
+data has been accumulating for a few years, especially if you have a lot of files.</p>
 
-<pre><code>raise ValueError(&quot;No JSON object could be decoded&quot;)
-</code></pre>
+<p>In fact, the list
+might be so long that you won&rsquo;t be able to scroll through it all, you might have to write it out
+to a file and then search through that.</p>
 
-<p>How was that possible? It was decoding but it was not decoding?</p>
-
-<p>I re-read the json module docs and tutorial, but it didn&rsquo;t help.</p>
-
-<p>I wondered if the json object had extra text at the end, so I tried the raw_decoder instead, but that gave me a different error (it was expecting a string, not a file).</p>
+<p>I say this from experience, having worked with legacy log files that were stored this way.</p>
 
 <hr />
 
-<p>What saved me? The same vim trick.</p>
+<p>___<em>Coalesce</em></p>
 
-<pre><code>vim -b input_file.txt
-</code></pre>
+<p>I recommend against using whatever the default output is, if you&rsquo;re writing out from a cluster,
+for example, with something like spark.</p>
 
-<p>This revealed a very sneaky problem. Somehow I had an extra carriage return in my test file, probably because I had manually copied and pasted two json objects from a much larger file.</p>
+<p>Most cluster systems will by default write out 1 file per partition or node,
+which means you end up with a gazillion tiny files of different sizes and it rarely makes sense for
+any downstream usage.</p>
 
-<p>In vim, there should be a tilde (~) after the last line. Vim also shows you the number of lines at the bottom of the screen. In my case, it should have said &lsquo;2L&rsquo;. Instead, it said &lsquo;3L&rsquo;.</p>
+<p>Instead, I recommend grouping, coalescing, and compressing your files.</p>
 
-<p>That ValueError? <em>An empty line</em>.</p>
+<p>___<em>Add slashes into your filenames.</em></p>
 
-<p>I also learned another, better trick for checking from the command line in unix:</p>
+<p>This (artifically) groups your files by year, month, and day.</p>
 
-<pre><code>wc -l input_file.txt   #wordcount, plus the option for number of lines. 
-</code></pre>
+<p>Then you can coalesce them down into, say, 1 file per day or per hour
+(depending on how much data you have).</p>
 
-<p>For future projects, adding &ldquo;if not line: continue&rdquo; may help.</p>
+<p><strong>I recommend a structure more like this:</strong> <em>s3://mybucket/2018/12/02/platform_name/file-1.gz</em></p>
+
+<p>Now, when you list your bucket, you can easily jump to the date and platform you want, and
+download a minimum number of files that meet your criteria.</p>
 
 <hr />
 
-<p>(*) note: these were actually angled brackets, but because codrspace uses markdown, I converted them to curly brackets.</p>
+<p>___<em>Think about your bucket policies and locations</em></p>
+
+<p>Although new S3 buckets are now global, up until very recently they were restricted to certain regions for a variety
+of reasons - availability, price, and latency are the main ones.</p>
+
+<p>So if you&rsquo;re working with legacy buckets, remember that some AWS services will still restrict access if you don&rsquo;t
+pass the correct region to go with the bucket (ask me how I know this after spending a couple of days
+tracking down an AccessDenied error from EC2&hellip;).</p>
+
+<p>Until recently, setting up strict bucket policies was sort of optional, but thanks to another recent change
+in security measures, now you&rsquo;ll have to set explicit policies or you&rsquo;re going to find yourself
+locked out of your own buckets.</p>
+
+<p>And don&rsquo;t forget that if you use any kind of encryption, if you&rsquo;re trying to access those buckets from
+another account, you have to use custom KMS keys,
+and create an IAM role that has access to your encryption keys.</p>
+
+<hr />
+
+<p><strong>Some things I learned about VPCs</strong></p>
+
+<p>As part of the Pachyderm setup (see separate post about that),
+I had to set up a connection to our Redshift instance, which
+lives on a separate account from our kubernetes cluster.</p>
+
+<p>I tried following the instructions in the AWS docs, because it seemed pretty straightforward, but
+as with my experience trying to set up cross-account access for EMR (see separate post about that),
+it just didn&rsquo;t work.</p>
+
+<p>Again, I couldn&rsquo;t
+figure out why because I wasn&rsquo;t getting any useful feedback like error messages or logs that could
+point me toward what I was missing.</p>
+
+<p>After a lot of digging around in docs and asking for help from a variety of people online,
+I finally found someone who was willing to help me troubleshoot (thanks, Drew Davies!).</p>
+
+<p>What I ended up having to do was set up a new, custom VPC for Redshift.</p>
+
+<p><strong><em>Hint 1: AWS doesn&rsquo;t really want you to use the default VPC for anything.</em></strong></p>
+
+<p>It seems like the default VPC is there mostly as a way to make it easy to get started prototyping,
+but for production it&rsquo;s of limited utility because there are a lot of features that
+just don&rsquo;t work with the default VPC. (In this regard, it&rsquo;s similar
+to how they won&rsquo;t let you use default encryption on s3 with cross-account access.)</p>
+
+<p>So to solve my problem, I had to create a new VPC for Redshift,
+update the IAM roles, and redeploy Redshift inside the new VPC. All of that worked as described
+in the AWS docs.</p>
+
+<p>Then I had to create the peering connection,
+create new security groups,
+and add the CIDR blocks to the routing tables.</p>
+
+<p>The AWS docs were ok for getting me this far. I had to do a bit of reading about CIDR blocks.</p>
+
+<p>Then I logged into the kubernetes cluster and tried to access the database, but it didn&rsquo;t work.</p>
+
+<p><strong><em>Hint 2: You have to turn on DNS resolution for the peering connection.</em></strong></p>
+
+<p>Finally, with Drew&rsquo;s help, we figured out that I needed to
+go into a hidden menu and click a box for DNS resolution on the peering connection.
+I had to do this on <em>both accounts</em>.</p>
+
+<p>Then I had to wait a while before it propagated.</p>
+
+<p>This is another thing that&rsquo;s frustrating about AWS - they
+don&rsquo;t do a great job of telling you what you can expect might happen instantaneously vs. what might take
+a few minutes.</p>
+
+<p>This was all poorly documented and I genuinely don&rsquo;t understand why it&rsquo;s not the default
+when you&rsquo;re setting up a peering connection between two VPCs.</p>
+
+<p>After all that, I heard another friend struggling with the same problem, which is why I wanted to write
+this up. Sorry it took so long for me to publish it!</p>
 
       </div>
     </article>
@@ -245,7 +269,7 @@ Little-endian UTF-16 Unicode English text, with CR line terminators
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
+          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black o-50">
             More AWS things I learned the hard way: S3 best practices and VPCs
           </a>
         </li>
@@ -392,7 +416,7 @@ Little-endian UTF-16 Unicode English text, with CR line terminators
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black o-50">
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
             Fun with text file encodings
           </a>
         </li>

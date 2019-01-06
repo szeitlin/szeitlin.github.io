@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Pachyderm vs Airflow</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Pachyderm vs Airflow" />
+<meta property="og:description" content="If you do a lot of data pipelining, you&rsquo;ve probably heard a lot about Airflow by now. I gave a talk about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow was essentially &ldquo;Look, it&rsquo;s so much better than cron.&rdquo;
+Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm, what I love about it, some things that can be improved about it, and some of the tricks you&rsquo;ll need to know if you want to start using it." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/" />
+
+
+
+<meta property="article:published_time" content="2018-12-02T17:10:01-08:00"/>
+
+<meta property="article:modified_time" content="2018-12-02T17:10:01-08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Pachyderm vs Airflow">
+<meta itemprop="description" content="If you do a lot of data pipelining, you&rsquo;ve probably heard a lot about Airflow by now. I gave a talk about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow was essentially &ldquo;Look, it&rsquo;s so much better than cron.&rdquo;
+Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm, what I love about it, some things that can be improved about it, and some of the tricks you&rsquo;ll need to know if you want to start using it.">
+
+
+<meta itemprop="datePublished" content="2018-12-02T17:10:01-08:00" />
+<meta itemprop="dateModified" content="2018-12-02T17:10:01-08:00" />
+<meta itemprop="wordCount" content="2400">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Pachyderm vs Airflow"/>
+<meta name="twitter:description" content="If you do a lot of data pipelining, you&rsquo;ve probably heard a lot about Airflow by now. I gave a talk about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow was essentially &ldquo;Look, it&rsquo;s so much better than cron.&rdquo;
+Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm, what I love about it, some things that can be improved about it, and some of the tricks you&rsquo;ll need to know if you want to start using it."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Pachyderm vs Airflow
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>If you do a lot of data pipelining, you&rsquo;ve probably heard a lot about Airflow by now. I gave a talk
+about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow
+was essentially <em>&ldquo;Look, it&rsquo;s so much better than cron.&rdquo;</em></p>
+
+<p>Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm,
+what I love about it, some things that can be improved about it, and some of the tricks you&rsquo;ll need to know if you want to start using it.</p>
+
+<p><em>Note: I am not in any way being paid by Pachyderm.</em></p>
+
+<hr />
+
+<h1 id="what-is-appealing-about-pachyderm">What is appealing about Pachyderm</h1>
+
+<ul>
+<li><p>Designed for a machine learning model workflow, but can also handle regular data pipelining
+(including cron-style scheduling). This is incredibly reassuring to me, because Airflow is kind of the other way around.</p></li>
+
+<li><p>Scalability (parallelization support). I haven&rsquo;t done much with this yet, but it&rsquo;s also reassuring to know it&rsquo;s there,
+since we&rsquo;re a rapidly growing company, and I&rsquo;m sure our data needs are going to continue to expand.</p></li>
+
+<li><p>Data and code provenance tracking are built-in.</p></li>
+</ul>
+
+<p><em>What that means:</em> It&rsquo;s easy to figure out what version
+ of your code was running at any given time, and on what data. This is critical if you&rsquo;re iterating on
+ code for ETL processes or models, or tracking a model that&rsquo;s going to evolve over time based on what data it has seen.</p>
+
+<ul>
+<li>The egress feature and built-in feed-forward are amazingly elegant.<br /></li>
+</ul>
+
+<p>Feed-forward (I don&rsquo;t know what they call it, that&rsquo;s just what I call it) means
+you can have one pipeline read from the output of another, and trigger off of that directly.</p>
+
+<p>In Airflow, for comparison, you had to configure this with messaging and it was kind of clunky
+(and originally there was no push, only pull, so you were always polling for <em>is that thing done yet?</em>).</p>
+
+<p>In Pachyderm, it&rsquo;s an extremely simple configuration.</p>
+
+<p>Egress means you don&rsquo;t have to write a plugin to do something as basic as push your data to s3. Pachyderm already
+knows how to do that for you (see below for an example of how this is specified in a pipeline).</p>
+
+<p>There&rsquo;s also an easy way to tell it to re-process as much data as you want (*except for cron inputs, but they&rsquo;re
+going to fix that).</p>
+
+<ul>
+<li>Not having to clean up the fallout from runaway backfills</li>
+</ul>
+
+<p>Runaway backfill in Airflow made our server fall down more than once whenever anybody
+forgot to update the start date or name of their DAG. This was a built-in default setting that we couldn&rsquo;t change,
+where Airflow would try to backfill any missing data to the beginning of time
+(1970, of course), and celery would get overloaded.</p>
+
+<p>We tried numerous approaches to make it impossible to do this
+by accident, including having tests for checking that the start_date for a revised DAG
+was always after the date of the latest changes.</p>
+
+<p>It was the bane of my Airflow existence. Clearing the celery cache
+and getting it to restart, and then backfill what we <em>actually</em> wanted was always a time-consuming process, including
+kicking the web server again and getting everything back online.</p>
+
+<ul>
+<li>Smart re-tries by default (and this is configurable).</li>
+</ul>
+
+<p>Having retries at all was a big advantage of Airflow over basic cron, especially since it&rsquo;s modular, so you can
+have different re-try settings for each step of an ETL pipeline.</p>
+
+<p>Having said that, this was a also kind of a pain to deal with in Airflow, because
+if somebody set a ridiculous number of retries, or a backfill job was failing,
+it could easily become a blocker for unrelated pipelines just by
+gunking up the celery queue with tons of re-tries for something that was
+ already failing (see above re: runaway backfill).</p>
+
+<p>With Airflow, we were always having to guess about how many
+retries to do, and how much back-off to add in between tries.</p>
+
+<p>Pachyderm&rsquo;s defaults for this are completely reasonable
+(3 retries, with increasing delay in between each try).</p>
+
+<p>If you get the enterprise version (which is cheap for an enterprise product):</p>
+
+<ul>
+<li><p>It&rsquo;s more secure than Airflow, with built-in encryption (There&rsquo;s also no risk of exposing
+passwords by printing all the logs to a webpage that anyone can see, the way Airflow did by default.)</p></li>
+
+<li><p>Really responsive and smart team, and a growing community of users</p></li>
+
+<li><p>Nice dashboard to go with the CLI tool</p></li>
+
+<li><p>Finally, if you don&rsquo;t like writing DAGs in Airflow, and are considering one of the myriad (!) new tools
+to simplify that for you, this is even simpler than that. (And in my opinion, makes a lot more sense.)</p></li>
+</ul>
+
+<p>And here&rsquo;s an example of a full ETL process with 3 pipeline steps:</p>
+
+<p><strong>1. Get the data from an api</strong></p>
+
+<pre><code>{
+    &quot;pipeline&quot;: {
+       &quot;name&quot;: &quot;api_to_s3_pipeline&quot;
+    },
+
+    &quot;transform&quot;: {
+       &quot;cmd&quot;: [&quot;python3&quot;, &quot;get_requests.py&quot;],
+       &quot;image&quot;: &quot;pathto.ecr.region.aws.com/mydockerregistry:my_api_image_v1&quot;,
+       &quot;image_pull_secrets&quot;: [&quot;regcred&quot;]
+    },
+    &quot;input&quot;:{
+        &quot;cron&quot;: {
+            &quot;name&quot;: &quot;api_daily_job&quot;,
+            &quot;spec&quot;: &quot;16 6 * * *&quot;,
+            &quot;repo&quot;: &quot;api_to_s3&quot;
+         }
+    },
+    &quot;egress&quot;: {&quot;URL&quot;: &quot;s3://mys3bucket/&quot;},
+    &quot;enable_stats&quot;: true,
+    &quot;job_timeout&quot;: 10m
+}
+</code></pre>
+
+<p><strong>2. Process the data with pyspark on kubernetes</strong></p>
+
+<pre><code>{
+    &quot;pipeline&quot;: {
+       &quot;name&quot;: &quot;pyspark_pipeline&quot;
+    },
+
+    &quot;transform&quot;: {
+       &quot;cmd&quot;: [&quot;python3&quot;, &quot;pyspark_processsing.py&quot;],
+       &quot;image&quot;: &quot;pathto.ecr.region.aws.com/mydockerregistry:my_pyspark_image_v1&quot;,
+       &quot;image_pull_secrets&quot;: [&quot;regcred&quot;]
+    },
+    &quot;input&quot;:{
+        &quot;atom&quot;: {
+            &quot;name&quot;: &quot;pyspark_daily_job&quot;,
+            &quot;repo&quot;: &quot;pyspark_daily_job&quot;,
+            &quot;glob: &quot;/*/*/*/&quot;
+         }
+    },
+    &quot;egress&quot;: {&quot;URL&quot;: &quot;s3://my-pyspark-bucket/&quot;},
+    &quot;enable_stats&quot;: true,
+    &quot;job_timeout&quot;: 120m
+}
+</code></pre>
+
+<p><strong>3. Load the data to Redshift</strong></p>
+
+<pre><code>{
+    &quot;pipeline&quot;: {
+       &quot;name&quot;: &quot;load_to_redshift_pipeline&quot;
+    },
+
+    &quot;transform&quot;: {
+       &quot;cmd&quot;: [&quot;python3&quot;, &quot;load_to_redshift.py&quot;],
+       &quot;image&quot;: &quot;pathto.ecr.region.aws.com/mydockerregistry:my_psycopg2_image_v1&quot;,
+       &quot;image_pull_secrets&quot;: [&quot;regcred&quot;]
+    },
+    &quot;input&quot;:{
+        &quot;atom&quot;: {
+            &quot;name&quot;: &quot;daily_load_job&quot;,
+            &quot;repo&quot;: &quot;daily_load_job&quot;,
+            &quot;glob: &quot;daily_*.gz&quot;
+         }
+    },
+    &quot;enable_stats&quot;: true,
+    &quot;job_timeout&quot;: 125m
+}
+</code></pre>
+
+<p>Also, they just got Series A funding, so they&rsquo;re going to be around for a while.</p>
+
+<hr />
+
+<h1 id="the-tradeoffs-of-kubernetes-and-containerization">The tradeoffs of kubernetes and containerization</h1>
+
+<p>This was my first time using kubernetes, never mind suddenly being in charge of it (!).</p>
+
+<p>Fair warning: Minikube is deceptively easy to set up and use for very basic testing. If this is all you do with
+kubernetes, you&rsquo;ll think Kubernetes very simple.</p>
+
+<p>Kubernetes itself
+isn&rsquo;t that hard to deploy if you know what needs to be configured, but I really didn&rsquo;t
+know any of that when I started. I ran into some weird issues where the kubernetes control script
+<code>kubectl</code> didn&rsquo;t set the permissions correctly on some of the config files. (Shoutout to Sean Jezewski for helping me
+troubleshoot unintuitive stuff like that.)</p>
+
+<p>In case you&rsquo;re wondering, as did almost everyone I spoke to while I was doing this,
+EKS on AWS is not really ready for prime-time yet.</p>
+
+<p>I ended up relying on a script that the Pachyderm guys wrote to deploy Kubernetes
+directly on EC2, and just adapted that for our needs.</p>
+
+<p>Things that are great about deploying in the cloud:</p>
+
+<ul>
+<li><p>Encapsulation is your friend. It&rsquo;s so much easier when you have complete control of the environment, and there&rsquo;s no mystery
+about what packages are available or what the paths are.</p></li>
+
+<li><p>Scaling becomes relatively easy. Just split your data and run more jobs in parallel.</p></li>
+</ul>
+
+<p>Things to remember about deploying in the cloud:</p>
+
+<ul>
+<li><p>Logging is your friend. You won&rsquo;t be able to debug with print statements on a remote, headless machine. Some of my
+teammates didn&rsquo;t quite understand this until they actually did it. Good logging makes it trivially easy to figure out what went wrong.</p></li>
+
+<li><p>Versioning is your friend. Kubernetes won&rsquo;t pull the container unless it knows it needs to, so you have to keep renaming your container
+if you want to test changes. It&rsquo;s kind of a pain, but it&rsquo;s simple enough to
+just make it part of the workflow (and our next step is to have Jenkins do this for us as part of our
+CICD workflow).</p></li>
+
+<li><p>Having to rebuild the container and version it and push it up each time does a couple of things:</p></li>
+</ul>
+
+<p>a) Testing is even more important. It&rsquo;s a lot nicer if you can do enough testing that after a few bug fixes you&rsquo;re on version 4, rather than
+(as one of my early pipelines is) version 16.</p>
+
+<p>b) It can be a little bit more annoying to push bug fixes/updates (especially without a CICD system
+to build and deploy the containers for you)</p>
+
+<hr />
+
+<h1 id="the-learning-curve-at-least-for-me">The learning curve (at least for me)</h1>
+
+<ul>
+<li>People steered us away from EKS, so then setting up our own kubernetes cluster without a
+devops person (!) was challenging, mostly because of</li>
+
+<li><p>AWS permissions issues, including but not limited to:</p>
+
+<p>a) giving the cluster the ability to run queries on the RDS database in the same account</p>
+
+<p>b) creating a separate VPC for Redshift so I could create a peering connection for that (see separate post)</p>
+
+<p>c) giving the cluster the ability to access s3 buckets</p>
+
+<p>d) giving my team access to the docker registries on ECS</p>
+
+<p>e) stupid things like legacy s3 bucket region restrictions that are (or should be?)
+going away any minute now(?), but EC2 still cares about, which generate completely
+uninformative AccessDenied errors</p></li>
+
+<li><p>Figuring out the workflow for deploying and debugging. This was a little weird at first, but once I got the hang of it,
+actually very easy (more on that below)</p></li>
+
+<li><p>Setting up a docker registry and using that (and we don&rsquo;t have Jenkins handling that for us yet)</p></li>
+
+<li><p>Managing two clusters on two separate accounts, and switching between them (learning in hard mode is not
+always twice as fun as just learning!)</p></li>
+
+<li><p>There is a built-in outlet to connect Pachyderm up with Prometheus, but no built-in monitoring means we&rsquo;re doing it downstream
+(i.e with automated email alerts sent from Looker if something fails) or manually checking via the
+CLI or dashboard view. I have been using the CLI thus far, but now that we have more than a few pipelines
+going on one cluster, the dashboard is starting to make more sense.</p></li>
+
+<li><p>Understanding how the pachyderm filesystem (pfs) and egress work, and coding accordingly (more on that in the next section).</p>
+
+<hr /></li>
+</ul>
+
+<h1 id="some-things-that-are-currently-being-improved">Some things that are currently being improved</h1>
+
+<ul>
+<li><p>The docs are being updated all the time. There are a lot of platform-specific (read
+Google Cloud or AWS or whatever) things that users are finding and contributing.</p></li>
+
+<li><p>The deployment/upgrade process is still a little bit under construction and not
+all features are supported for all versions yet, but mostly it just works.</p></li>
+
+<li><p>Logging/visibility is not bad now, but could be better. Basically you have to make sure your logging is sufficiently noisy and has
+timestamps, or you might find yourself wondering why you can&rsquo;t tell what time a retry happened.</p></li>
+
+<li><p>Minor configuration things that maybe most people wouldn&rsquo;t care about, but which affect us
+with our cross-account access issues (like the ability to pass a region and/or profile flag to the egress
+if you need that).</p></li>
+
+<li><p>With my current setup, I&rsquo;m not sure how I can have two dashboards for two clusters going at once. I&rsquo;m sure there&rsquo;s a way.
+I just haven&rsquo;t had time to figure it out yet.</p></li>
+
+<li><p>Some silly timeout issues, like in the example above, the load_to_redshift pipeline has to &lsquo;run&rsquo; for as long as
+the job before it, because it wants to start trying to load data as soon as the one before it starts running. So the actual
+process might take less than 5 minutes, but if it tries to run before the upstream pipeline finishes, it will fail. This is
+easy enough to work around for now (now that we know about it).</p></li>
+
+<li><p>It&rsquo;s easy to re-process a whole pipeline, but it&rsquo;s not easy to pass a list of failed jobs and only re-process those,
+for example with an ETL job that only fails intermittently (I had one that was timing out every few days
+over the holidays, when I was out on vacation and the data got too big to finish in the time I had allotted)</p>
+
+<hr /></li>
+</ul>
+
+<h1 id="using-the-pachyderm-filesystem-for-ingress-and-best-practices-for-egress-with-s3">Using the pachyderm filesystem for ingress, and best practices for egress with s3</h1>
+
+<p><em>Note: Pachyderm is under rapid development (it&rsquo;s open-source, and I&rsquo;m a watcher on the repo so I&rsquo;m constantly seeing all the work they&rsquo;re
+doing), so some of this may already be out of date by the time I actually post it.</em></p>
+
+<p>At the time of this writing, my team is using version 1.7.11.</p>
+
+<p>One thing to note about Pachyderm: the equivalent of a DAG here is composed of multiple pipelines (each pipeline can be one
+or more tasks).</p>
+
+<p>To make my life easier, I&rsquo;ve been naming the repositories and the pipelines
+with the same string. You&rsquo;ll see why that&rsquo;s helpful when you have several pipelines you want to string together.</p>
+
+<p>So for example I have one ETL job I just finished, which goes like this (names have been changed for security reasons):
+1. data-api
+2. data-parsing
+3. data-loading-to-db</p>
+
+<p>The simplest thing to do with the output of a job on pachyderm
+is to write it to <code>/pfs/out</code>.</p>
+
+<p>So let&rsquo;s say you&rsquo;re running <code>data-parsing-pipeline</code>. That pipeline writes to <code>/pfs/out</code>.
+Then the next pipeline can pick it up from there in a folder named for the upstream pipeline&rsquo;s internal pfs repository, in this case
+it would be <code>/pfs/data-parsing-pipeline/</code>.</p>
+
+<p>One thing to note, if you want to follow s3 best practices (see my other
+post) for partitioning file names with forward slashes, you&rsquo;ll have to actually make those sub-directories inside the
+pachyderm filesystem.</p>
+
+<p>Otherwise, you&rsquo;re going to write out <code>mydatafile.csv</code> and then you&rsquo;ll want to put something like
+<code>s3://mybucket/2018/12/08/</code> for egress, but what you&rsquo;ll end up with in s3 is just <code>s3://mybucket/mydatafile.csv</code>.</p>
+
+<p>(And in case
+it&rsquo;s not obvious, the reason you may not want that is you either have to put some other identifier in the file names, or you&rsquo;re going to be
+overwriting the files every time the pipeline runs).</p>
+
+<hr />
+
+<h1 id="tl-dr">TL;DR</h1>
+
+<p>Almost every
+problem we&rsquo;ve run into (aside from the AWS headaches) were because I didn&rsquo;t know what I was doing, or had a bug in my code, or the data got too
+big for the space or time I had allocated for a given step. So, the usual reasons why anything (everything) fails in
+software.</p>
+
+<p>I like that we can all interact with the cluster
+directly from our own machines, using the CLI, for quickly debugging. It has been fairly easy for my team
+to start learning how to write and run pipelines.</p>
+
+<p>There are some features that can be improved, and that&rsquo;s actually happening.
+So overall, I&rsquo;m a huge fan. So far Pachyderm has been rock-solid on the stuff it&rsquo;s running. In that sense,
+it has been a lot easier to deal with than Airflow.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        28 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black o-50">
+            Pachyderm vs Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
+            More AWS things I learned the hard way: S3 best practices and VPCs
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
+            Cross-account access with AWS
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2019 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

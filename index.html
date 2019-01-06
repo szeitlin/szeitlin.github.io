@@ -32,7 +32,7 @@
 
 
 
-<meta property="og:updated_time" content="2018-12-02T16:29:47-08:00"/>
+<meta property="og:updated_time" content="2018-12-02T17:10:01-08:00"/>
 
 
 
@@ -125,6 +125,31 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/posts/engineering/pachyderm-vs-airflow/" class="color-inherit dim link">
+            Pachyderm vs Airflow
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          If you do a lot of data pipelining, you&rsquo;ve probably heard a lot about Airflow by now. I gave a talk about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow was essentially &ldquo;Look, it&rsquo;s so much better than cron.&rdquo;
+Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm, what I love about it, some things that can be improved about it, and some of the tricks you&rsquo;ll need to know if you want to start using it.
+        </div>
+          <a href="/posts/engineering/pachyderm-vs-airflow/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/posts/engineering/aws-s3-vpc/" class="color-inherit dim link">
             More AWS things I learned the hard way: S3 best practices and VPCs
             </a>
@@ -169,38 +194,18 @@ Thus began a weeks-long saga of learning about AWS the hard way.
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="color-inherit dim link">
-            Things I learned about Pyspark the hard way
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
-Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
-Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).
-        </div>
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link black dim">
+              Things I learned about Pyspark the hard way
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link black dim">
@@ -220,12 +225,6 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
             </a>
           </h2>
         
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link black dim">
-              Shuffling the deck: an interview experience
-            </a>
-          </h2>
-        
 
         
         
@@ -241,7 +240,7 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
     <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2018 
+    &copy; 2019 
   </a>
   
 

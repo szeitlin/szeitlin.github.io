@@ -6,10 +6,20 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Dec 2018 16:29:47 -0800</lastBuildDate>
+    <lastBuildDate>Sun, 02 Dec 2018 17:10:01 -0800</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Pachyderm vs Airflow</title>
+      <link>https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/</link>
+      <pubDate>Sun, 02 Dec 2018 17:10:01 -0800</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/</guid>
+      <description>If you do a lot of data pipelining, you&amp;rsquo;ve probably heard a lot about Airflow by now. I gave a talk about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow was essentially &amp;ldquo;Look, it&amp;rsquo;s so much better than cron.&amp;rdquo;
+Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm, what I love about it, some things that can be improved about it, and some of the tricks you&amp;rsquo;ll need to know if you want to start using it.</description>
+    </item>
     
     <item>
       <title>More AWS things I learned the hard way: S3 best practices and VPCs</title>

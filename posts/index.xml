@@ -6,10 +6,20 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Dec 2018 17:10:01 -0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 May 2019 13:29:53 -0700</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python_oop</title>
+      <link>https://szeitlin.github.io/posts/engineering/python_oop/</link>
+      <pubDate>Fri, 24 May 2019 13:29:53 -0700</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/python_oop/</guid>
+      <description>I frequently hear Python referred to as a &amp;lsquo;scripting&amp;rsquo; language, because it&amp;rsquo;s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can&amp;rsquo;t write &amp;lsquo;real&amp;rsquo; programs with it. This post is about moving beyond using Python as a scripting language. I&amp;rsquo;m assuming you&amp;rsquo;re already comfortable with basic python data types and methods.
+Note: Most of the content here is specific to Python 3. If you&amp;rsquo;re just learning Python now, don&amp;rsquo;t learn Python 2, it&amp;rsquo;s being deprecated and many current libraries already stopped supporting it.</description>
+    </item>
     
     <item>
       <title>Pachyderm vs Airflow</title>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>  | Fun with text file encodings</title>
+    <title>  | Manager</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
 
@@ -22,15 +22,19 @@
 
     
 
-    <meta property="og:title" content="Fun with text file encodings" />
-<meta property="og:description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
-They&rsquo;re just text files, right? What could be hard about that?
-1. Fun with encoding The problem:
-A friend sent me a dump of data from iTunes, as a table.
-Just a text file.
-She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before." />
+    <meta property="og:title" content="Manager" />
+<meta property="og:description" content="I was chatting with some friends recently, and this question came up:
+What does a good working relationship with your manager look like?
+This is the list I came up with. I&rsquo;m not saying I&rsquo;ve been perfect at all of these myself as a manager, but it&rsquo;s what I strive for, and it&rsquo;s what I look for in a good manager.
+ They trust you  They ask for your input when appropriate They promote your work to others in the company where appropriate  You trust them  No surprises You feel safe asking them for help when you need it They discuss your career goals with you, and help steer you toward them   This post is just an elaboration on what I mean by each of the things on that list." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/fun-with-failing/" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/career_skills/manager/" />
+
+
+
+<meta property="article:published_time" content="2019-08-30T16:35:24-07:00"/>
+
+<meta property="article:modified_time" content="2019-08-30T16:35:24-07:00"/>
 
 
 
@@ -42,33 +46,25 @@ She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, P
 
 
 
+<meta itemprop="name" content="Manager">
+<meta itemprop="description" content="I was chatting with some friends recently, and this question came up:
+What does a good working relationship with your manager look like?
+This is the list I came up with. I&rsquo;m not saying I&rsquo;ve been perfect at all of these myself as a manager, but it&rsquo;s what I strive for, and it&rsquo;s what I look for in a good manager.
+ They trust you  They ask for your input when appropriate They promote your work to others in the company where appropriate  You trust them  No surprises You feel safe asking them for help when you need it They discuss your career goals with you, and help steer you toward them   This post is just an elaboration on what I mean by each of the things on that list.">
 
 
-
-
-
-<meta itemprop="name" content="Fun with text file encodings">
-<meta itemprop="description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
-They&rsquo;re just text files, right? What could be hard about that?
-1. Fun with encoding The problem:
-A friend sent me a dump of data from iTunes, as a table.
-Just a text file.
-She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before.">
-
-
-
-<meta itemprop="wordCount" content="638">
+<meta itemprop="datePublished" content="2019-08-30T16:35:24-07:00" />
+<meta itemprop="dateModified" content="2019-08-30T16:35:24-07:00" />
+<meta itemprop="wordCount" content="980">
 
 
 
 <meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Fun with text file encodings"/>
-<meta name="twitter:description" content="This post is about a couple of painful problems I&rsquo;ve had with reading in text files.
-They&rsquo;re just text files, right? What could be hard about that?
-1. Fun with encoding The problem:
-A friend sent me a dump of data from iTunes, as a table.
-Just a text file.
-She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before."/>
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Manager"/>
+<meta name="twitter:description" content="I was chatting with some friends recently, and this question came up:
+What does a good working relationship with your manager look like?
+This is the list I came up with. I&rsquo;m not saying I&rsquo;ve been perfect at all of these myself as a manager, but it&rsquo;s what I strive for, and it&rsquo;s what I look for in a good manager.
+ They trust you  They ask for your input when appropriate They promote your work to others in the company where appropriate  You trust them  No surprises You feel safe asking them for help when you need it They discuss your career goals with you, and help steer you toward them   This post is just an elaboration on what I mean by each of the things on that list."/>
 
   </head>
 
@@ -111,120 +107,165 @@ She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, P
           POSTS
         </p>
         <h1 class="f1">
-          Fun with text file encodings
+          Manager
         </h1>
       </header>
       <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+        <p>I was chatting with some friends recently, and this question came up:</p>
 
-<p>This post is about a couple of painful problems I&rsquo;ve had with reading in text files.</p>
+<p>What does a good working relationship with your manager look like?</p>
 
-<p>They&rsquo;re just text files, right? What could be hard about that?</p>
+<p>This is the list I came up with. I&rsquo;m not saying I&rsquo;ve been perfect at all of these myself as a manager,
+but it&rsquo;s what I strive for, and it&rsquo;s what I look for in a good manager.</p>
 
-<hr />
-
-<h2 id="1-fun-with-encoding"><strong>1. Fun with encoding</strong></h2>
-
-<p>The problem:</p>
-
-<p>A friend sent me a dump of data from iTunes, as a table.</p>
-
-<p><em>Just a text file.</em></p>
-
-<p>She&rsquo;s on a Mac. I&rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&rsquo;t seen before.</p>
-
-<p>I tried everything I knew how to do. I tried adding options in pandas that had worked for me in the past with various kinds of tables and csv files, but none of it worked. I couldn&rsquo;t figure out what was wrong.</p>
-
-<p>So I was doing:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> pandas
-    data <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;Rawfile.txt&#34;</span>, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)</code></pre></div>
-<p>And I was getting a giant mess of stuff like this:</p>
-
-<pre><code>[\rTest Pattern #1111\t`l0u\xaeN\xf8S', '\tTest Pattern\t\tTechnical Electronic\t13149337\t432\t\t\t15\t\t2008\t9/15/08, 5:47 PM\t8/22/11, 6:37 PM\t242\t44100\t\tMPEG audio file\t\t\t\t\t\t\t\rTest Pattern #0000\t`l0u\xaeN\xf8S']
-</code></pre>
-
-<p>After banging my head against the wall for a while, I learned a few things. Here&rsquo;s what I learned.</p>
-
-<p><strong>Step 1</strong>. Open the file in an old-school text editor. Newer ones, unfortunately, are too smart, and will not show you what you need to see. For example, use this command to view the file with no automatic conversion at all:</p>
-
-<pre><code>vim -b Rawfile.txt
-</code></pre>
-
-<p><strong>Step 2</strong>. Look at the top of the file.</p>
-
-<p>In my case, there was this <a href="http://en.wikipedia.org/wiki/Byte_order_mark">byte order marker</a> (BOM):</p>
-
-<blockquote>
-<p>{ff}{fe} (*)</p>
-</blockquote>
-
-<p>It turns out that UTF-8, the usual format for text files, doesn&rsquo;t have a BOM. This BOM happens to correspond to UTF-16. Pandas couldn&rsquo;t deal with that.</p>
-
-<p>NOTE: a friend wrote in and suggested this even better unix solution:</p>
-
-<pre><code>&gt;&gt;&gt; file myfile.txt
-Little-endian UTF-16 Unicode English text, with CR line terminators
-</code></pre>
-
-<hr />
-
-<p><strong>Solution:</strong></p>
-
-<p>To get this file imported, then, I had to first read it in using the Python module called &lsquo;codecs&rsquo;. And I had to add the argument for the universal end-of-line, like so, or it wouldn&rsquo;t read it as a table:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> codecs
-
-    opened <span style="color:#f92672">=</span> codecs<span style="color:#f92672">.</span>open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;All_iPod_Music_Cleaned_Up_031114.txt&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;rU&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;UTF16&#39;</span>)
-
-    df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(opened, sep<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\t</span><span style="color:#e6db74">&#39;</span>)</code></pre></div>
 <hr />
 
 <ol>
-<li>Fun with invisible ink
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-</li>
+<li>They trust you
+
+<ul>
+<li>They ask for your input when appropriate</li>
+<li>They promote your work to others in the company where appropriate</li>
+</ul></li>
+<li>You trust them
+
+<ul>
+<li>No surprises</li>
+<li>You feel safe asking them for help when you need it</li>
+<li>They discuss your career goals with you, and help steer you toward them</li>
+</ul></li>
 </ol>
 
-<p>Lesson learned: (NOTE TO SELF): <em>check your input file!</em></p>
-
-<p>The problem:</p>
-
-<p>I wanted to try a simple twitter stream analysis. I got my API key, got a few tweets, and wrote the data to a file. It comes out in json form.</p>
-
-<p>I haven&rsquo;t done much with json. So when I started having problems, I assumed I was doing something wrong.</p>
-
-<p>I tried json.loads. Eventually, I was able to confirm that I was getting back the right kind of object (a Python dict), but I was also getting this error:</p>
-
-<pre><code>raise ValueError(&quot;No JSON object could be decoded&quot;)
-</code></pre>
-
-<p>How was that possible? It was decoding but it was not decoding?</p>
-
-<p>I re-read the json module docs and tutorial, but it didn&rsquo;t help.</p>
-
-<p>I wondered if the json object had extra text at the end, so I tried the raw_decoder instead, but that gave me a different error (it was expecting a string, not a file).</p>
-
 <hr />
 
-<p>What saved me? The same vim trick.</p>
+<p>This post is just an elaboration on what I mean by each of the things on that list.</p>
 
-<pre><code>vim -b input_file.txt
-</code></pre>
+<ol>
+<li><p><em>They trust you:</em></p>
 
-<p>This revealed a very sneaky problem. Somehow I had an extra carriage return in my test file, probably because I had manually copied and pasted two json objects from a much larger file.</p>
+<ul>
+<li>to be honest with them</li>
+<li>to do your job</li>
+<li>to know yourself (your learning style, your skills, your weaknesses). A good manager will recognize if you don&rsquo;t know yourself
+that well, and work with you on this.</li>
+<li>to communicate about what you need</li>
+<li>They know:
 
-<p>In vim, there should be a tilde (~) after the last line. Vim also shows you the number of lines at the bottom of the screen. In my case, it should have said &lsquo;2L&rsquo;. Instead, it said &lsquo;3L&rsquo;.</p>
+<ul>
+<li>you&rsquo;re not going to leave without warning</li>
+<li>you&rsquo;re not going to try to steal their job</li>
+<li>you&rsquo;ll ask for help when you need it</li>
+<li>you&rsquo;ll keep them in the loop on what you&rsquo;re doing</li>
+<li>you&rsquo;ll tell them if there&rsquo;s a problem on the team, or with anyone else at the company who might be having a hard time,
+or behaving unprofessionally towards you.</li>
+</ul></li>
+</ul>
 
-<p>That ValueError? <em>An empty line</em>.</p>
+<p><em>They ask for, and actually value, your input.</em></p>
 
-<p>I also learned another, better trick for checking from the command line in unix:</p>
+<ul>
+<li><p>They&rsquo;ll talk to you about scope and requirements before they commit you or your team to a deadline.</p></li>
 
-<pre><code>wc -l input_file.txt   #wordcount, plus the option for number of lines. 
-</code></pre>
+<li><p>And an important corollary: they&rsquo;re psychologically ready for it, even if your input is not what they were hoping to hear.
+It doesn&rsquo;t count if the only kind of feedback that&rsquo;s ok is positive feedback.</p></li>
 
-<p>For future projects, adding &ldquo;if not line: continue&rdquo; may help.</p>
+<li><p>They listen to you, take your suggestions seriously if the status quo isn&rsquo;t a great fit for you,
+and try to adjust the status quo if needed. They recognize that if something isn&rsquo;t working for you,
+it probably isn&rsquo;t working for other people, either.</p></li>
+</ul>
 
-<hr />
+<p><em>They promote your work</em></p>
 
-<p>(*) note: these were actually angled brackets, but because codrspace uses markdown, I converted them to curly brackets.</p>
+<ul>
+<li><p>Good managers know that the better you look, the better they look.</p></li>
+
+<li><p>Smart leadership knows that successful teams get that way because they have a good manager.</p></li>
+
+<li><p>What a particular team needs can vary widely: from a strong hand that keeps everyone on the same page,
+to someone who just stays out of the way and helps give the team protected time to do what they do best. The best managers can do both, as needed.</p></li>
+
+<li><p>Good managers know that helping you get promoted or move to another team is good for them,
+because it means you&rsquo;ll be a loyal ally and collaborator even if you&rsquo;re somewhere else in the company.</p></li>
+</ul></li>
+
+<li><p><em>You trust them:</em></p>
+
+<ul>
+<li>to be honest with you</li>
+<li>to keep you in the loop on things you need to know to do your job</li>
+<li>to do their job. To be clear on what that is, and to communicate with you about how they view their role.</li>
+<li>to know themselves (their insecurities, their strengths and weaknesses)</li>
+<li>to understand that you&rsquo;re not going to be exactly the same as them in every way, and that&rsquo;s a good thing</li>
+<li>to express appreciation for your work</li>
+
+<li><p>to introduce you to relevant people at the company, and set you up for successful relationships with those people. That might mean
+validating your expertise when you need someone to back you up, and it might mean letting you stand on your own two feet when you don&rsquo;t.</p></li>
+
+<li><p>to try to help you: when you know what you need to be more effective at your job. Also: when you don&rsquo;t know what you need, but they do.</p></li>
+
+<li><p>to give you space to do your job. They will stay in their own lane.</p></li>
+
+<li><p>to not promote your work as their own.</p></li>
+
+<li><p>to be clear with you if they think you&rsquo;re not doing a good job</p></li>
+
+<li><p>to give you instructions on what needs to improve, as well as time to improve those things</p></li>
+
+<li><p>to not suddenly fire you if you make a mistake</p></li>
+
+<li><p>to be straight with you if your performance is a real concern</p></li>
+
+<li><p>to follow through on their word</p>
+
+<ul>
+<li>If they say that something is going to happen that will make your job infinitely easier,
+and it&rsquo;s their responsibility to make sure it happens, they&rsquo;re going to do their best to make it happen in a reasonable time frame,
+whether that&rsquo;s something technical, or a promotion, or a team offsite. You&rsquo;ll receive periodic updates if it&rsquo;s a long-running process.
+You won&rsquo;t be hearing an endless stream of excuses for why it hasn&rsquo;t happened yet.</li>
+</ul></li>
+</ul>
+
+<p><em>No surprises: planning and transparency</em></p>
+
+<ul>
+<li><p>Your manager provides clarity on roles and responsibilities: both theirs and yours.</p></li>
+
+<li><p>They clearly communicate expectations for you, regarding:</p>
+
+<ul>
+<li>your projects (ownership, scope, requirements, timelines)</li>
+<li>your teammates</li>
+<li>your tech leads</li>
+<li>collaborations with other teams</li>
+<li>relationships with representatives from third-party services or clients
+<br /></li>
+</ul></li>
+</ul>
+
+<p><em>You feel safe asking them for help</em></p>
+
+<ul>
+<li><p>You feel encouraged to ask for help, whether that&rsquo;s related to technical questions,
+career questions, problems with people on your team, or problems with other people in the company.</p></li>
+
+<li><p>They have your back, and you know they&rsquo;re not going to judge you for struggling or admitting you don&rsquo;t know how to handle something.</p></li>
+</ul>
+
+<p><em>They discuss your career goals with you</em></p>
+
+<ul>
+<li><p>The best managers:</p>
+
+<ul>
+<li><p>won&rsquo;t try to force you into a role you don&rsquo;t want, or bait-and-switch you from what you originally
+agreed when you interviewed. If your current role isn&rsquo;t quite what you want to be doing,
+they work with you to focus on the good parts, and advocate for you to be able to do more of what you enjoy.</p></li>
+
+<li><p>help steer you toward projects and opportunities to grow your skills and promote your work,
+both within the company and outside of it. They encourage you to be ambitious.</p></li>
+</ul></li>
+</ul></li>
+</ol>
 
       </div>
     </article>
@@ -245,7 +286,7 @@ Little-endian UTF-16 Unicode English text, with CR line terminators
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
+          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black o-50">
             Manager
           </a>
         </li>
@@ -413,7 +454,7 @@ Little-endian UTF-16 Unicode English text, with CR line terminators
       
         <li class="list f5 w-100 hover-bg-white nl1">
           
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black o-50">
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
             Fun with text file encodings
           </a>
         </li>

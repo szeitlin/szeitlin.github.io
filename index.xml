@@ -6,10 +6,20 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 30 Aug 2019 16:35:24 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 08 Oct 2019 15:03:46 -0700</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Postgres With Docker</title>
+      <link>https://szeitlin.github.io/posts/engineering/postgres-with-docker/</link>
+      <pubDate>Tue, 08 Oct 2019 15:03:46 -0700</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/postgres-with-docker/</guid>
+      <description>Recently, someone asked for help with setting up postgres in docker and connecting to it with python.
+While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&amp;rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&amp;rsquo;m sure it&amp;rsquo;s something other people would also find useful. A few years ago I wouldn&amp;rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!</description>
+    </item>
     
     <item>
       <title>Manager</title>

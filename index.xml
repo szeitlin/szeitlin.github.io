@@ -6,10 +6,20 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 08 Oct 2019 15:03:46 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2019 10:29:00 -0800</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Recruiting and Training Nontraditional Candidates</title>
+      <link>https://szeitlin.github.io/posts/career_skills/recruiting-and-training-nontraditional-candidates/</link>
+      <pubDate>Tue, 19 Nov 2019 10:29:00 -0800</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_skills/recruiting-and-training-nontraditional-candidates/</guid>
+      <description>Question: How come we don&amp;rsquo;t have more diversity at our company? This is one of those posts, I&amp;rsquo;m writing it because I keep hearing people asking the same questions over and over. I hear these questions at meetups and in Slack groups every week, and I hate seeing people trying to reinvent the wheel when it&amp;rsquo;s really not necessary.
+Answer: You haven&amp;rsquo;t tried that hard. For the purposes of this blog post, let&amp;rsquo;s go with the hypothesis that there are plenty of nontraditional candidates out there like me.</description>
+    </item>
     
     <item>
       <title>Postgres With Docker</title>

@@ -6,10 +6,21 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Nov 2019 10:29:00 -0800</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 09:47:10 -0700</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Data Engineering Is Software Engineering</title>
+      <link>https://szeitlin.github.io/posts/engineering/data-eng-is-real-eng/</link>
+      <pubDate>Thu, 15 Oct 2020 09:47:10 -0700</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/data-eng-is-real-eng/</guid>
+      <description>Recently, a coworker asked me what the difference is between data science and data engineering. She seemed to think that data engineering was “just analytics”, which is a definition I&amp;rsquo;ve often heard applied to data science, as well.
+After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:
+ Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases.</description>
+    </item>
     
     <item>
       <title>Recruiting and Training Nontraditional Candidates</title>

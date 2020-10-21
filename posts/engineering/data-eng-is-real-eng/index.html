@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Data Engineering Is Software Engineering</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Data Engineering Is Software Engineering" />
+<meta property="og:description" content="Recently, a coworker asked me what the difference is between data science and data engineering. She seemed to think that data engineering was “just analytics”, which is a definition I&rsquo;ve often heard applied to data science, as well.
+After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:
+ Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/data-eng-is-real-eng/" />
+
+
+
+<meta property="article:published_time" content="2020-10-15T09:47:10-07:00"/>
+
+<meta property="article:modified_time" content="2020-10-15T09:47:10-07:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Data Engineering Is Software Engineering">
+<meta itemprop="description" content="Recently, a coworker asked me what the difference is between data science and data engineering. She seemed to think that data engineering was “just analytics”, which is a definition I&rsquo;ve often heard applied to data science, as well.
+After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:
+ Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases.">
+
+
+<meta itemprop="datePublished" content="2020-10-15T09:47:10-07:00" />
+<meta itemprop="dateModified" content="2020-10-15T09:47:10-07:00" />
+<meta itemprop="wordCount" content="1216">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Data Engineering Is Software Engineering"/>
+<meta name="twitter:description" content="Recently, a coworker asked me what the difference is between data science and data engineering. She seemed to think that data engineering was “just analytics”, which is a definition I&rsquo;ve often heard applied to data science, as well.
+After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:
+ Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Data Engineering Is Software Engineering
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>Recently, a coworker asked me what the difference is between data science and data engineering.
+She seemed to think that data engineering was “just analytics”, which is a definition I&rsquo;ve often
+heard applied to data science, as well.</p>
+
+<p>After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:</p>
+
+<blockquote>
+<p><em>Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases.
+Data science is all of that, plus analyzing the data and figuring out how to display it in a way that makes sense,
+ and sometimes also building models and doing machine learning.</em></p>
+</blockquote>
+
+<p>She seemed somewhat enlightened by this answer, but I didn’t love it, because there&rsquo;s a lot more to it than that.
+So I wanted to write something here about what data engineers do all day,
+because I’ve noticed a belief in many engineering orgs that data engineers are somehow not doing “real” engineering.
+And there&rsquo;s a lot of confusion about what data scientists do with regard to data engineering.</p>
+
+<p>I&rsquo;ve also noticed that there are some serious misconceptions about how standard web development CICD practices should work
+for data engineering, and it&rsquo;s because there&rsquo;s not enough understanding of how data engineering needs are different. So this post
+will touch on that, too.</p>
+
+<h3 id="first-what-is-an-engineer">First, what is an engineer?</h3>
+
+<p>I like <a href="https://www.careerexplorer.com/careers/engineer/">this definition</a>:</p>
+
+<blockquote>
+<p><em>An engineer uses science, technology and math to solve problems.</em></p>
+</blockquote>
+
+<p>By that definition, analysts and data scientists are engineers, too.</p>
+
+<p>The main difference between data scientists and data engineers are who owns what.</p>
+
+<p>Data scientists generally own more analyses and models, while data engineers own more pipelines.</p>
+
+<p>But plenty of orgs don&rsquo;t consider analysts or data scientists to be Real Engineers.</p>
+
+<p>Where Real Engineers == Software Engineers.</p>
+
+<h3 id="what-s-a-software-engineer">What&rsquo;s a software engineer?</h3>
+
+<p>From <a href="https://www.thoughtco.com/what-is-software-engineering-958652">this definition</a></p>
+
+<blockquote>
+<p><em>Software engineers use well-defined scientific principles and procedures to deliver an efficient and reliable software product.</em></p>
+</blockquote>
+
+<p>Ok, so data engineers definitely do that. But you could argue that the things we&rsquo;re building are not &ldquo;a product&rdquo;.</p>
+
+<h3 id="what-s-a-software-product">What&rsquo;s a software product?</h3>
+
+<p>Software products might be business products. They might be things we sell.</p>
+
+<p>&ldquo;Software products&rdquo; can also be a catchall term for software-related work products.
+They can include free and open-source software.</p>
+
+<p>The typical data engineering work product usually looks something like this:</p>
+
+<pre><code>code that gets data --&gt; code that makes data more usable --&gt; code that writes data out (optional: --&gt; make data visible)
+</code></pre>
+
+<p>If that&rsquo;s the product, and it&rsquo;s running in a container, or a set of containers, then it might be a microservice,
+with a charting tool or dashboard as the optional &lsquo;frontend&rsquo; piece (I say optional because sometimes someone else
+makes the dashboard with the charts).</p>
+
+<h2 id="what-data-engineering-has-in-common-with-other-software-engineering">What data engineering has in common with other software engineering</h2>
+
+<ul>
+<li><p>We use logging, just like everyone else</p></li>
+
+<li><p>We use debugging tools, just like everyone else</p></li>
+
+<li><p>We write and run tests, just like everyone else</p></li>
+
+<li><p>We use CICD, just like everyone else (see below for more about this)</p></li>
+
+<li><p>We use monitoring, probably more than some software engineers</p></li>
+
+<li><p>We use containers, maybe more than some software engineers</p></li>
+
+<li><p>We use databases, a lot more than most software engineers</p></li>
+</ul>
+
+<h2 id="what-makes-data-engineering-its-own-thing">What makes data engineering its own thing</h2>
+
+<p>The customers for data engineering are usually all internal. That&rsquo;s the major difference.</p>
+
+<p>The customers for data engineering may include, but are not limited to:</p>
+
+<ul>
+<li>data science/machine learning engineers</li>
+<li>business analysts</li>
+<li>marketing</li>
+<li>sales</li>
+<li>customer support teams</li>
+<li>finance</li>
+<li>the board</li>
+<li>product managers</li>
+<li>engineers</li>
+</ul>
+
+<p>But this is also true for another team of
+engineers who are essential to a software business: your devops team.</p>
+
+<p>You could just look at it as another form
+of backend infrastructure: the front end doesn&rsquo;t work without the back end.</p>
+
+<p>Similarly, many parts of the business are serving garbage, or not running at all, without data. But this kind of work can
+feel thankless at times, because in some ways it&rsquo;s kind of invisible.</p>
+
+<p>We are often, but not always, like a separate startup within a company.
+By that I mean, we usually do most, if not all, our own devops and product management.
+This is partly because data teams usually have a separate tech stack. It&rsquo;s mostly because
+devops teams traditionally aren&rsquo;t big enough to support a data team&rsquo;s separate stack
+on top of everything a devops team normally does. I&rsquo;m not saying this is how it should be,
+but it&rsquo;s where most companies fail to plan for sufficient resourcing.</p>
+
+<p>Some of the tools we use are different. For example, we have to know about, and typically have to support,
+a lot of different databases. And at scale, more of our databases are columnar. We have to architect our tables
+and queries while accounting for the potential cost of storing and retrieving data at scale.</p>
+
+<p>We do a lot of ETL. We have special tools that we use to automate
+ETL. Some of these tools are basically their own ecosystem. At this point, I&rsquo;m not
+really exaggerating when I say that Airflow is approximately on par with
+Django for how complex and specific it is, in terms of how much knowledge is needed to use and maintain it, even in a
+&lsquo;hosted&rsquo; environment like Google Composer.</p>
+
+<p>We have to know all about streaming and cloud stuff. We have to understand distributed systems, and we have to know
+enough about all the infrastructure running our distributed systems that we can at least know what to google for,
+and who to ask, when we need help.</p>
+
+<p>We also use containers. We have to know how to use docker, and often kubernetes as well. Most modern
+software engineering stacks use docker now, and many use kubernetes. But we also need to know, again, specialized
+systems that use kubernetes to serve models and pipelines. These systems are still under rapid development, so
+it&rsquo;s always a moving target. We rarely get to just sit back and practice doing things we&rsquo;ve done before.</p>
+
+<h2 id="why-our-cicd-has-to-be-a-little-different-from-the-usual-setup-for-web-development">Why our CICD has to be a little different from the usual setup for web development</h2>
+
+<p>For data engineering, integration tests are way more important than unit tests. Unit tests are great,
+and we use them, but most of the time we&rsquo;re working with distributed systems and databases, where state matters a lot.
+So we can test some things locally, but generally we need to be testing things on remote systems.</p>
+
+<p>Mocks don&rsquo;t work for everything, or are too much work to maintain.</p>
+
+<p>Test databases are good for some things, but can fall out of sync
+quickly if they&rsquo;re not set up with automation to constantly pull in current data.</p>
+
+<p>Then we get into a situation where we have to hit the &lsquo;production&rsquo; databases in order to run meaningful tests,
+or we have to have a whole system to clone the production databases, or reproduce production tables, which can get
+expensive (in terms of both money and time). All of these
+options also have security and privacy complications to consider.</p>
+
+<p>For ETL, it&rsquo;s usually necessary to have an additional kubernetes cluster just for testing data pipelines.</p>
+
+<p>This is such a big topic that I&rsquo;ve got a whole separate blog post on it (coming soon).</p>
+
+<h3 id="special-thanks-to-people-who-read-and-commented-on-drafts-of-this-post">Special thanks to people who read and commented on drafts of this post:</h3>
+
+<p>Binal Patel, Caleb Hyde, Sam Johnson, Adam Boscarino, James Felix Black, Danek Duvall</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        33 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black o-50">
+            Data Engineering Is Software Engineering
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
+            Recruiting and Training Nontraditional Candidates
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
+            Postgres With Docker
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
+            Manager
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
+            Python OOP
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
+            Pachyderm vs Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
+            More AWS things I learned the hard way: S3 best practices and VPCs
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
+            Cross-account access with AWS
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2020 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

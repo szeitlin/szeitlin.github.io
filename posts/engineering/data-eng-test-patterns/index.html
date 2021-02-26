@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>  | Test Patterns for Data Engineering</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="generator" content="Hugo 0.32.2" />
+    
+    
+      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+
+    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+      
+    
+
+    
+
+    <meta property="og:title" content="Test Patterns for Data Engineering" />
+<meta property="og:description" content="Coming from a background in bench science, or what we affectionately referred to as &ldquo;wetlab&rdquo;, I like to test everything I do, and I like my tests to be fast and representative of what I expect to find when I run things &ldquo;for real&rdquo;.
+Most people I&rsquo;ve met who are newer to data engineering find that it&rsquo;s not immediately obvious how to write and run tests for data things. It&rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/data-eng-test-patterns/" />
+
+
+
+<meta property="article:published_time" content="2021-02-26T12:45:27-07:00"/>
+
+<meta property="article:modified_time" content="2021-02-26T12:45:27-07:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Test Patterns for Data Engineering">
+<meta itemprop="description" content="Coming from a background in bench science, or what we affectionately referred to as &ldquo;wetlab&rdquo;, I like to test everything I do, and I like my tests to be fast and representative of what I expect to find when I run things &ldquo;for real&rdquo;.
+Most people I&rsquo;ve met who are newer to data engineering find that it&rsquo;s not immediately obvious how to write and run tests for data things. It&rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of.">
+
+
+<meta itemprop="datePublished" content="2021-02-26T12:45:27-07:00" />
+<meta itemprop="dateModified" content="2021-02-26T12:45:27-07:00" />
+<meta itemprop="wordCount" content="1588">
+
+
+
+<meta itemprop="keywords" content="" />
+<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Test Patterns for Data Engineering"/>
+<meta name="twitter:description" content="Coming from a background in bench science, or what we affectionately referred to as &ldquo;wetlab&rdquo;, I like to test everything I do, and I like my tests to be fast and representative of what I expect to find when I run things &ldquo;for real&rdquo;.
+Most people I&rsquo;ve met who are newer to data engineering find that it&rsquo;s not immediately obvious how to write and run tests for data things. It&rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of."/>
+
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+    </a>
+    <div class="flex-l items-center">
+      
+      
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+    <main class="pb7" role="main">
+      
+  <div class="flex-l mt2 mw8 center">
+    <article class="center cf pv5 ph3 ph4-ns mw7">
+      <header>
+        <p class="f6 b helvetica tracked">
+          POSTS
+        </p>
+        <h1 class="f1">
+          Test Patterns for Data Engineering
+        </h1>
+      </header>
+      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
+        
+
+<p>Coming from a background in bench science, or what we affectionately referred to as &ldquo;wetlab&rdquo;, I like to test everything I do, and I like my tests
+to be fast and representative of what I expect to find when I run things &ldquo;for real&rdquo;.</p>
+
+<p>Most people I&rsquo;ve met who are newer to data engineering find that it&rsquo;s not immediately obvious how to write and run tests for data things.
+It&rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of. This post is about that.</p>
+
+<h1 id="1-what-to-test-and-why">1. What to test and why?</h1>
+
+<p>I&rsquo;ve blogged about this <a href="https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/">before</a>, but that post is more of a &lsquo;tips and tricks&rsquo; post.
+This post is more about the nuts and bolts.</p>
+
+<hr />
+
+<p>There are several great reasons to write and run automated tests. These are the ones I usually repeat to remind myself and others why it&rsquo;s worth doing:</p>
+
+<p>1) You&rsquo;re already testing when you check your code manually, you&rsquo;re just doing it the slow way.</p>
+
+<p>2) It&rsquo;s actually faster to automate tests early and often.</p>
+
+<p>3) Tests require that your code is modular. If you&rsquo;re struggling to write tests, it may mean you
+need to simplify your code.</p>
+
+<p>4) Tests require that you understand how your code actually works. It&rsquo;s a great way to doublecheck your logic and assumptions.</p>
+
+<p><strong>Test for these: positive, negative, missing/unknown cases, duplicates</strong></p>
+
+<p>When dealing with data, these are the cases I usually try to cover with tests: </p>
+
+<ul>
+<li><em>This thing meets my expectations</em>: test should always succeed.</li>
+</ul>
+
+<p>I use these the most with new libraries to make sure I understand how
+they work (it also makes my code easier for other people to understand),
+and for regression tests/ahead of refactoring.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> uuid
+   
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">make_token_dict</span>():
+        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;Returns a dictionary with key &#34;token&#34; and a new UUID as its value&#34;&#34;&#34;</span>
+        test_token <span style="color:#f92672">=</span> uuid<span style="color:#f92672">.</span>uuid4()
+        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;token&#39;</span>: test_token}
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_valid_token_found</span>():
+        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;Check that the config_dict token object is a valid UUID object&#34;&#34;&#34;</span>
+        config_dict <span style="color:#f92672">=</span> make_token_dict()
+        token <span style="color:#f92672">=</span> config_dict<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;token&#39;</span>)
+        <span style="color:#66d9ef">assert</span> isinstance(token, uuid<span style="color:#f92672">.</span>UUID)</code></pre></div>
+<ul>
+<li><em>This thing is very wrong</em>: code should always throw an error if this happens</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_missing_token_throws_error</span>(self):
+       <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;We always expect there to be a token in the config_dict&#34;&#34;&#34;</span>
+       empty_config_dict <span style="color:#f92672">=</span> dict()
+       <span style="color:#66d9ef">with</span> self<span style="color:#f92672">.</span>assertRaises(<span style="color:#a6e22e">KeyError</span>):
+           empty_config_dict<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;token&#39;</span>)</code></pre></div>
+<ul>
+<li><em>Something is missing or just kind of wrong, but it&rsquo;s handled correctly.</em></li>
+</ul>
+
+<p>To error or just log usually depends on scale:
+sometimes you&rsquo;re better off just logging some types of errors or warnings, rather than actually causing your program
+to stop.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> logging
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_optional_thing_missing_does_not_raise_error</span>():
+        fake_data <span style="color:#f92672">=</span> {<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;a&#39;</span>:<span style="color:#ae81ff">1</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;b&#39;</span>:<span style="color:#ae81ff">2</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;d&#39;</span>:<span style="color:#ae81ff">4</span>}
+        results <span style="color:#f92672">=</span> fake_data<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;c&#39;</span>,<span style="color:#ae81ff">3</span>)
+        logging<span style="color:#f92672">.</span>warning(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;key &#39;c&#39; was missing&#34;</span>)
+        <span style="color:#66d9ef">assert</span> results <span style="color:#f92672">==</span> <span style="color:#ae81ff">3</span></code></pre></div>
+<ul>
+<li><em>Check that code handles duplicates the way you want</em></li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    
+    <span style="color:#f92672">from</span> collections <span style="color:#f92672">import</span> Counter
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_keep_duplicates</span>():
+        fake_data_list <span style="color:#f92672">=</span> [(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#ae81ff">1</span>), (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#ae81ff">2</span>), (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#ae81ff">2</span>)]
+        count <span style="color:#f92672">=</span> Counter(fake_data_list)
+        results <span style="color:#f92672">=</span> count<span style="color:#f92672">.</span>values()
+        <span style="color:#66d9ef">assert</span>  list(results) <span style="color:#f92672">==</span> [<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>]        
+
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_drop_duplicates</span>():
+        fake_data <span style="color:#f92672">=</span> {(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#ae81ff">1</span>), (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#ae81ff">2</span>), (<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#ae81ff">2</span>)}
+        count <span style="color:#f92672">=</span> Counter(fake_data)
+        result <span style="color:#f92672">=</span> set(count<span style="color:#f92672">.</span>values())
+        <span style="color:#66d9ef">assert</span>  result <span style="color:#f92672">==</span> {<span style="color:#ae81ff">1</span>} </code></pre></div>
+<h1 id="unit-tests">Unit tests</h1>
+
+<p><em>What&rsquo;s a unit test?</em></p>
+
+<p>When I&rsquo;m talking about unit tests, I&rsquo;m talking about testing a single method, often using static data, e.g. a hard-coded dictionary.
+All the examples shown above are unit tests.</p>
+
+<p><em>Ok but how do I write one for database operations, with or without a database? what about s3 buckets?</em></p>
+
+<p>You don&rsquo;t. For that, you need integration tests.</p>
+
+<h1 id="integration-tests">Integration tests</h1>
+
+<p><em>What&rsquo;s an integration test?</em></p>
+
+<p>An integration test bridges across multiple methods, classes, or services.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> s3fs
+    
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_list_my_bucket_years</span>():
+        <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;Using correct credentials, connect to s3 and confirm list of years there&#34;&#34;&#34;</span>
+        src_bucket <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;my_bucket&#34;</span>
+        conn <span style="color:#f92672">=</span> s3fs<span style="color:#f92672">.</span>S3FileSystem(anon<span style="color:#f92672">=</span>False, profile_name<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;my_company&#39;</span>)
+        years <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>ls(src_bucket)
+        <span style="color:#66d9ef">assert</span> years <span style="color:#f92672">==</span> [<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;my_bucket/2017&#39;</span>,
+                         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;my_bucket/2018&#39;</span>,
+                         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;my_bucket/2019&#39;</span>,
+                         <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;my_bucket/2020&#39;</span>]</code></pre></div>
+<p>Wherever possible, test on (copies or samples of) actual data. Ideally, if it&rsquo;s for data pipelining,
+your code should be able to pull fresh data and test on that.</p>
+
+<p>If your code needs to be able to backfill historical data, you should have a reference data set.
+Typically I use files that represent samples of
+data sources, and whenever I update the code, I pull a fresh sample file, and make sure the updated code
+works on the new data and is also still backwards-compatible.</p>
+
+<p>Things worth testing: </p>
+
+<ul>
+<li><p>configurations to do certain types of operations</p></li>
+
+<li><p>table inserts, joins, updates</p></li>
+
+<li><p>logic that spans more than 1 operation (sequences of operations)</p></li>
+</ul>
+
+<h2 id="how-to-do-it">How to do it</h2>
+
+<h3 id="there-are-several-options-here-are-some-common-ones">There are several options. Here are some common ones:</h3>
+
+<p> 
+<strong>1. Make a whole test database, i.e. a copy of your real database.</strong></p>
+
+<p><strong>Pro:</strong> You can insert and change data without worrying about messing up your real data.</p>
+
+<p><strong>Cons:</strong> Have to automate keeping the copy up to date, and/or
+you may end up with extra code to keep schema consistent with your real database.
+It can also get expensive if your database is big, so you&rsquo;ll probably want to only have samples, rather than full tables.</p>
+
+<hr />
+
+<p><strong>2. Set up a lightweight local database that’s sorta similar in dialect, e.g. sqlite, maybe in a docker container.</strong></p>
+
+<p><strong>Pro:</strong> You can insert and change data without worrying about messing up your real data. This is the approach
+used most commonly with ORM frameworks like Django. You might want to check out something like <a href="https://github.com/testcontainers/testcontainers-python">testcontainers</a>
+for dockerized versions of some commonly-used databases.</p>
+
+<p><strong>Cons:</strong> same as (1), plus it can take a while to populate, if your database gets big, plus dialect differences can lead to confusion.</p>
+
+<hr />
+
+<p><strong>3. If it’s a table, just mock it with a file or pandas.</strong></p>
+
+<p><strong>Pro:</strong> This works nicely for things that fit in memory, and I do it a lot for non-SQL things.</p>
+
+<p><strong>Cons:</strong> You may have to replace the file, or add additional files, if the table changes a lot.</p>
+
+<hr />
+
+<p><strong>4. Make an actual test table in a real database, do some stuff, and then delete it (setup and teardown)</strong></p>
+
+<p><strong>Pro:</strong> This is my preferred method for working with large databases. It&rsquo;s the closest you&rsquo;ll get to testing
+in a setup that mimics what will happen when you do it for real.</p>
+
+<p><strong>Cons:</strong> It can take some finagling to set up credentials etc. the first time, and you may not be allowed to do it
+depending on your CICD system. It can also make your tests take longer to run.</p>
+
+<hr />
+
+<p><strong>5. Make a whole test cluster (for e.g. airflow or pachyderm)</strong></p>
+
+<p><strong>Pro:</strong> As with having a test database, it means you can muck around with abandon and feel pretty confident that you
+won&rsquo;t break anything too important.</p>
+
+<p><strong>Cons:</strong> Same as for a test database, it&rsquo;s another thing you have to set up and maintain. It&rsquo;s easy for the test cluster to
+fall behind the real one, if you don&rsquo;t have everything automated so it&rsquo;s easy to apply changes to both &lsquo;test&rsquo; and &lsquo;prod&rsquo;.
+It can also get expensive.</p>
+
+<p><em>What’s good about mocks:</em></p>
+
+<p>Not much, in my experience. But it can be better than nothing.
+A mock will, at a minimum, fulfill the purpose of forcing you to doublecheck your logic,
+at least while you’re writing the test. Most of the examples I put in blog posts are mocks.</p>
+
+<p><em>What’s bad about mocks:</em></p>
+
+<p>Testing with a mock is usually an exercise in redundantly creating extra work and checking nothing useful.
+It won’t be automatically updated if the dependencies or deployment environment(s) change.
+And those are the things that usually break.</p>
+
+<hr />
+
+<p>Take-home points:</p>
+
+<ul>
+<li><p>If you&rsquo;re doing anything at scale, you&rsquo;re usually running a distributed database in the cloud,
+which means you can’t always run a copy of your database locally like you can with Postgres or MySQL.</p></li>
+
+<li><p>Permissions &amp; security considerations can be major blockers for running real integration tests in CICD systems.
+It can be risky to give your test environment access to your production databases.
+If you&rsquo;re going to do this, it&rsquo;s best to
+have your tests use a separate namespace or create their own tables.</p></li>
+
+<li><p>If you&rsquo;re running in the cloud on a real database, costs can add up,
+especially if your tests are going to run on a lot of data, or very frequently.</p></li>
+</ul>
+
+<h1 id="testing-etl">Testing ETL</h1>
+
+<p>These days, batch and streaming ETL generally have the same steps, it&rsquo;s only the batch size that differs.
+Ingest the data (&lsquo;Extract&rsquo;), do something to it (&lsquo;Transform&rsquo;), write it back out (&lsquo;Load&rsquo;).</p>
+
+<p>So how it testing ETL different from other kinds of testing?</p>
+
+<p>ETL testing is sort of like any other kind of integration testing, except that it generally has to always run in the same order.</p>
+
+<ol>
+<li><p><strong>Simplify, simplify, simplify.</strong></p>
+
+<p><em>If you need to mock your ETL in order to test it, it&rsquo;s too complicated.</em></p>
+
+<p>You can mock the database, and you may have to, but don&rsquo;t use mocks to test the actual steps.</p></li>
+
+<li><p><strong>Test at the interfaces.</strong></p>
+
+<p>Test the data going in and out of each step.</p>
+
+<p>Usually you&rsquo;ll want an assert making sure your raw data looks as expected, before you do anything to it.
+Then you run your code, and assert that it looks the way you want.</p></li>
+
+<li><p><strong>Test obvious things.</strong></p>
+
+<p>Are my columns in the right order? Are they the right data type?
+Did we get the right number of rows back out?
+Are we handling nulls correctly?
+Is everything formatted correctly at the end?</p></li>
+</ol>
+
+<h1 id="regression-tests">Regression tests</h1>
+
+<p>So you’ve finally got your stuff working. Congratulations!</p>
+
+<p><em>How do I make sure nobody (including Future Me) accidentally breaks it?</em></p>
+
+<p>You can&rsquo;t. Stuff will break.</p>
+
+<p>What kinds of things usually cause stuff to break?</p>
+
+<ul>
+<li>Changes to assumptions you made that were ‘temporary’</li>
+<li>Missing/renamed/swapped parameters</li>
+<li>Deprecations in your dependencies</li>
+<li>Unannounced changes from upstream (also known as, &ldquo;whoops we forgot to tell the data team&rdquo;)</li>
+<li>Major shifts from baseline</li>
+<li>Slow data drift</li>
+</ul>
+
+<hr />
+
+<p>Thanks to Adam Laiacano and Deron Aucoin for helpful comments on the first draft of this post.</p>
+
+      </div>
+    </article>
+    <aside class="ph3 mt2 mt6-ns">
+      
+
+
+
+
+
+
+
+  <div class="bg-light-gray pa3">
+    <ul>
+      <li class="list b mb3">
+        34 More Posts
+      </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black o-50">
+            Test Patterns for Data Engineering
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
+            Data Engineering Is Software Engineering
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
+            Recruiting and Training Nontraditional Candidates
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
+            Postgres With Docker
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
+            Manager
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
+            Python OOP
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
+            Pachyderm vs Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
+            More AWS things I learned the hard way: S3 best practices and VPCs
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
+            Cross-account access with AWS
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
+            Things I learned about Pyspark the hard way
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
+            Airflow
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
+            Probability binning: simple and fast
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
+            A tutorial within a tutorial on building reusable models with scikit-learn
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
+            Shuffling the deck: an interview experience
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
+            Validating Results
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
+            Test-driven data pipelining
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
+            Data pipelining with pandas
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, revised
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
+            Working with device data
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 2
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 3
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 4
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
+            Things I learned about zip files
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
+            Things I learned studying the cell cycle in cancer
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
+            Advice on recruiting
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
+            Automating user-friendly documentation with Selenium
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
+            Biking data from XML to analysis, part 1
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
+            FAQ: why and how I learned to code
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
+            Fun with text file encodings
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
+            Game plan for attending conferences with a high risk of harassment
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
+            Python: where to start
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
+            Quick and dirty: plot your data on a map with python
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
+            Recursion excursion
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
+            Robustness: lessons from applied bench science
+          </a>
+        </li>
+      
+        <li class="list f5 w-100 hover-bg-white nl1">
+          
+          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
+            Tips on giving presentations
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+    </aside>
+  </div>
+
+    </main>
+    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
+    &copy; 2021 
+  </a>
+  
+
+
+
+
+
+
+
+
+  </div>
+</footer>
+
+    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
+
+  </body>
+</html>

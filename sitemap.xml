@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://szeitlin.github.io/posts/engineering/data-eng-test-patterns/</loc>
+    <lastmod>2021-02-26T12:45:27-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://szeitlin.github.io/posts/engineering/data-eng-is-real-eng/</loc>
     <lastmod>2020-10-15T09:47:10-07:00</lastmod>
   </url>
@@ -119,7 +124,7 @@
   
   <url>
     <loc>https://szeitlin.github.io/</loc>
-    <lastmod>2020-10-15T09:47:10-07:00</lastmod>
+    <lastmod>2021-02-26T12:45:27-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -214,7 +219,7 @@
   
   <url>
     <loc>https://szeitlin.github.io/posts/</loc>
-    <lastmod>2020-10-15T09:47:10-07:00</lastmod>
+    <lastmod>2021-02-26T12:45:27-07:00</lastmod>
     <priority>0</priority>
   </url>
   

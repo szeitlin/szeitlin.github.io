@@ -6,19 +6,18 @@
     <description>Recent content in Posts on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Feb 2021 12:45:27 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 03 Mar 2021 13:13:57 -0800</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Test Patterns for Data Engineering</title>
-      <link>https://szeitlin.github.io/posts/engineering/data-eng-test-patterns/</link>
-      <pubDate>Fri, 26 Feb 2021 12:45:27 -0700</pubDate>
+      <title>DVC_vs_Pachyderm</title>
+      <link>https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/</link>
+      <pubDate>Wed, 03 Mar 2021 13:13:57 -0800</pubDate>
       
-      <guid>https://szeitlin.github.io/posts/engineering/data-eng-test-patterns/</guid>
-      <description>Coming from a background in bench science, or what we affectionately referred to as &amp;ldquo;wetlab&amp;rdquo;, I like to test everything I do, and I like my tests to be fast and representative of what I expect to find when I run things &amp;ldquo;for real&amp;rdquo;.
-Most people I&amp;rsquo;ve met who are newer to data engineering find that it&amp;rsquo;s not immediately obvious how to write and run tests for data things. It&amp;rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/</guid>
+      <description>I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&amp;rsquo;s why we have forks, and spoons, and sometimes when we&amp;rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&amp;rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?</description>
     </item>
     
     <item>

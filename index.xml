@@ -6,10 +6,28 @@
     <description>Recent content on </description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 26 Feb 2021 12:45:27 -0700</lastBuildDate>
+    <lastBuildDate>Wed, 17 Mar 2021 11:35:05 -0800</lastBuildDate>
     
 	<atom:link href="https://szeitlin.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Hiring data teams</title>
+      <link>https://szeitlin.github.io/posts/career_skills/hiring_data_teams/</link>
+      <pubDate>Wed, 17 Mar 2021 11:35:05 -0800</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/career_skills/hiring_data_teams/</guid>
+      <description>This is one of those posts that I&amp;rsquo;m writing mostly because I&amp;rsquo;m still frequently hearing people say they&amp;rsquo;re struggling with the question of how to interview data people. I&amp;rsquo;ve blogged and spoken previously about the misery of being an interviewee, so suffice it to say I have a ton of empathy for how awful it is to go through a bad interview process, and how disappointing it is to go through a long, grueling interview and not get an offer.</description>
+    </item>
+    
+    <item>
+      <title>DVC_vs_Pachyderm</title>
+      <link>https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/</link>
+      <pubDate>Wed, 03 Mar 2021 13:13:57 -0800</pubDate>
+      
+      <guid>https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/</guid>
+      <description>I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&amp;rsquo;s why we have forks, and spoons, and sometimes when we&amp;rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&amp;rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?</description>
+    </item>
     
     <item>
       <title>Test Patterns for Data Engineering</title>

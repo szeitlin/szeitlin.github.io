@@ -32,7 +32,7 @@
 
 
 
-<meta property="og:updated_time" content="2017-11-18T00:00:00&#43;00:00"/>
+<meta property="og:updated_time" content="2018-08-04T00:00:00&#43;00:00"/>
 
 
 
@@ -103,6 +103,44 @@
   <div class="mw8 center">
     
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/engineering/cross-account-access-aws/" class="link black dim">
+        Cross-account access with AWS
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The scene:
+I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.
+Thus began a weeks-long saga of learning about AWS the hard way.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link black dim">
+        Things I learned about Pyspark the hard way
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
+Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).
+    </div>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100  mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">
@@ -248,43 +286,6 @@ This is an extremely simple example to show what I mean:
       Am I getting slower every day?
 If you&rsquo;ve ever been a bike commuter, you&rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
  If I&rsquo;m going to work from home one day a week, which day would maximize my recovery?
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/biking_data/device-data/" class="link black dim">
-        Working with device data
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.
-I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&rsquo;s working and what&rsquo;s not.
-Things to consider when working with devices  Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link black dim">
-        Biking data from XML to analysis, part 2
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.
-Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.
     </div>
   </div>
 </div>

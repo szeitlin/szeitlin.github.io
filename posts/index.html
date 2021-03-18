@@ -32,7 +32,7 @@
 
 
 
-<meta property="og:updated_time" content="2021-02-26T12:45:27-07:00"/>
+<meta property="og:updated_time" content="2021-03-17T11:35:05-08:00"/>
 
 
 
@@ -103,6 +103,40 @@
   <div class="mw8 center">
     
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/career_skills/hiring_data_teams/" class="link black dim">
+        Hiring data teams
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      This is one of those posts that I&rsquo;m writing mostly because I&rsquo;m still frequently hearing people say they&rsquo;re struggling with the question of how to interview data people. I&rsquo;ve blogged and spoken previously about the misery of being an interviewee, so suffice it to say I have a ton of empathy for how awful it is to go through a bad interview process, and how disappointing it is to go through a long, grueling interview and not get an offer.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/engineering/dvc_vs_pachyderm/" class="link black dim">
+        DVC_vs_Pachyderm
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?
+    </div>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100  mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">
@@ -246,44 +280,6 @@ Fast-forward a year or two, and my team is using Pachyderm now. This post is abo
       To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
 Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
 Best practices for storing big data on S3
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/engineering/cross-account-access-aws/" class="link black dim">
-        Cross-account access with AWS
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      The scene:
-I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.
-Thus began a weeks-long saga of learning about AWS the hard way.
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100  mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link black dim">
-        Things I learned about Pyspark the hard way
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
-Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
-Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).
     </div>
   </div>
 </div>

@@ -4,22 +4,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | More AWS things I learned the hard way: S3 best practices and VPCs</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>More AWS things I learned the hard way: S3 best practices and VPCs | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
+Best practices for storing big data on S3">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/engineering/aws-s3-vpc/">
     
 
     <meta property="og:title" content="More AWS things I learned the hard way: S3 best practices and VPCs" />
@@ -27,65 +40,47 @@
 Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
 Best practices for storing big data on S3" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/aws-s3-vpc/" />
-
-
-
-<meta property="article:published_time" content="2018-12-02T16:29:47-08:00"/>
-
-<meta property="article:modified_time" content="2018-12-02T16:29:47-08:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/engineering/aws-s3-vpc/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2018-12-02T16:29:47-08:00" />
+<meta property="article:modified_time" content="2018-12-02T16:29:47-08:00" />
 
 <meta itemprop="name" content="More AWS things I learned the hard way: S3 best practices and VPCs">
 <meta itemprop="description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
 Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
-Best practices for storing big data on S3">
-
-
-<meta itemprop="datePublished" content="2018-12-02T16:29:47-08:00" />
+Best practices for storing big data on S3"><meta itemprop="datePublished" content="2018-12-02T16:29:47-08:00" />
 <meta itemprop="dateModified" content="2018-12-02T16:29:47-08:00" />
 <meta itemprop="wordCount" content="1081">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="More AWS things I learned the hard way: S3 best practices and VPCs"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="More AWS things I learned the hard way: S3 best practices and VPCs"/>
 <meta name="twitter:description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
 Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
 Best practices for storing big data on S3"/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -95,470 +90,165 @@ Best practices for storing big data on S3"/>
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          More AWS things I learned the hard way: S3 best practices and VPCs
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        <p>To make a long, mostly whiny story short, as part of my current role,
-I&rsquo;ve been doing a lot of fighting with AWS to help support my team.</p>
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">More AWS things I learned the hard way: S3 best practices and VPCs</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2018-12-02T16:29:47-08:00">December 2, 2018</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>To make a long, mostly whiny story short, as part of my current role,
+I&rsquo;ve been doing a lot of fighting with AWS to help support my team.</p>
 <p>Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying
 mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.</p>
-
-<hr />
-
+<hr>
 <p><strong>Best practices for storing big data on S3</strong></p>
-
 <p>___<em>Think about your bucket structure</em></p>
-
 <p>One of the things I ran into in my previous role was how hard it can be
 to find a specific file in s3 if your file naming isn&rsquo;t set up to make this easy.</p>
-
 <p>Although S3 is not a real filesystem, you can almost treat it like one, but it can take a little
 bit of finagling to write your code to help with this issue.</p>
-
 <p>So I recommend against, for example, putting dates in your filenames, like so:</p>
-
 <p>Don&rsquo;t do this: <em>s3://mybucket/2018-12-02_server-1_file-1.csv</em></p>
-
 <p>Why not?</p>
-
 <p>Here&rsquo;s the scenario: let&rsquo;s say you&rsquo;re looking for a specific file from server 13 on Nov 12th.
 But you can&rsquo;t grep for it because the file naming conventions changed at some point
 and nobody&rsquo;s sure what the structure was at this particular point in time.</p>
-
 <p>In order to make sure it exists, find out how big it is, and copy it to your machine,
 you now have to list your <em>entire</em> bucket.</p>
-
 <p>This is going to take a while. Like, probably minutes if your
 data has been accumulating for a few years, especially if you have a lot of files.</p>
-
 <p>In fact, the list
 might be so long that you won&rsquo;t be able to scroll through it all, you might have to write it out
 to a file and then search through that.</p>
-
 <p>I say this from experience, having worked with legacy log files that were stored this way.</p>
-
-<hr />
-
+<hr>
 <p>___<em>Coalesce</em></p>
-
 <p>I recommend against using whatever the default output is, if you&rsquo;re writing out from a cluster,
 for example, with something like spark.</p>
-
 <p>Most cluster systems will by default write out 1 file per partition or node,
 which means you end up with a gazillion tiny files of different sizes and it rarely makes sense for
 any downstream usage.</p>
-
 <p>Instead, I recommend grouping, coalescing, and compressing your files.</p>
-
 <p>___<em>Add slashes into your filenames.</em></p>
-
 <p>This (artifically) groups your files by year, month, and day.</p>
-
 <p>Then you can coalesce them down into, say, 1 file per day or per hour
 (depending on how much data you have).</p>
-
 <p><strong>I recommend a structure more like this:</strong> <em>s3://mybucket/2018/12/02/platform_name/file-1.gz</em></p>
-
 <p>Now, when you list your bucket, you can easily jump to the date and platform you want, and
 download a minimum number of files that meet your criteria.</p>
-
-<hr />
-
+<hr>
 <p>___<em>Think about your bucket policies and locations</em></p>
-
 <p>Although new S3 buckets are now global, up until very recently they were restricted to certain regions for a variety
 of reasons - availability, price, and latency are the main ones.</p>
-
 <p>So if you&rsquo;re working with legacy buckets, remember that some AWS services will still restrict access if you don&rsquo;t
 pass the correct region to go with the bucket (ask me how I know this after spending a couple of days
 tracking down an AccessDenied error from EC2&hellip;).</p>
-
 <p>Until recently, setting up strict bucket policies was sort of optional, but thanks to another recent change
 in security measures, now you&rsquo;ll have to set explicit policies or you&rsquo;re going to find yourself
 locked out of your own buckets.</p>
-
 <p>And don&rsquo;t forget that if you use any kind of encryption, if you&rsquo;re trying to access those buckets from
 another account, you have to use custom KMS keys,
 and create an IAM role that has access to your encryption keys.</p>
-
-<hr />
-
+<hr>
 <p><strong>Some things I learned about VPCs</strong></p>
-
 <p>As part of the Pachyderm setup (see separate post about that),
 I had to set up a connection to our Redshift instance, which
 lives on a separate account from our kubernetes cluster.</p>
-
 <p>I tried following the instructions in the AWS docs, because it seemed pretty straightforward, but
 as with my experience trying to set up cross-account access for EMR (see separate post about that),
 it just didn&rsquo;t work.</p>
-
 <p>Again, I couldn&rsquo;t
 figure out why because I wasn&rsquo;t getting any useful feedback like error messages or logs that could
 point me toward what I was missing.</p>
-
 <p>After a lot of digging around in docs and asking for help from a variety of people online,
 I finally found someone who was willing to help me troubleshoot (thanks, Drew Davies!).</p>
-
 <p>What I ended up having to do was set up a new, custom VPC for Redshift.</p>
-
-<p><strong><em>Hint 1: AWS doesn&rsquo;t really want you to use the default VPC for anything.</em></strong></p>
-
+<p><em><strong>Hint 1: AWS doesn&rsquo;t really want you to use the default VPC for anything.</strong></em></p>
 <p>It seems like the default VPC is there mostly as a way to make it easy to get started prototyping,
 but for production it&rsquo;s of limited utility because there are a lot of features that
 just don&rsquo;t work with the default VPC. (In this regard, it&rsquo;s similar
 to how they won&rsquo;t let you use default encryption on s3 with cross-account access.)</p>
-
 <p>So to solve my problem, I had to create a new VPC for Redshift,
 update the IAM roles, and redeploy Redshift inside the new VPC. All of that worked as described
 in the AWS docs.</p>
-
 <p>Then I had to create the peering connection,
 create new security groups,
 and add the CIDR blocks to the routing tables.</p>
-
 <p>The AWS docs were ok for getting me this far. I had to do a bit of reading about CIDR blocks.</p>
-
 <p>Then I logged into the kubernetes cluster and tried to access the database, but it didn&rsquo;t work.</p>
-
-<p><strong><em>Hint 2: You have to turn on DNS resolution for the peering connection.</em></strong></p>
-
+<p><em><strong>Hint 2: You have to turn on DNS resolution for the peering connection.</strong></em></p>
 <p>Finally, with Drew&rsquo;s help, we figured out that I needed to
 go into a hidden menu and click a box for DNS resolution on the peering connection.
 I had to do this on <em>both accounts</em>.</p>
-
 <p>Then I had to wait a while before it propagated.</p>
-
 <p>This is another thing that&rsquo;s frustrating about AWS - they
 don&rsquo;t do a great job of telling you what you can expect might happen instantaneously vs. what might take
 a few minutes.</p>
-
 <p>This was all poorly documented and I genuinely don&rsquo;t understand why it&rsquo;s not the default
 when you&rsquo;re setting up a peering connection between two VPCs.</p>
-
 <p>After all that, I heard another friend struggling with the same problem, which is why I wanted to write
 this up. Sorry it took so long for me to publish it!</p>
-
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
+</aside>
 
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black o-50">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

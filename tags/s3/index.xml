@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>S3 on Always Be Getting Data (ABGD)</title>
-    <link>https://szeitlin.github.io/tags/s3/</link>
-    <description>Recent content in S3 on Always Be Getting Data (ABGD)</description>
+    <title>s3 on Sam&#39;s Work Blog</title>
+    <link>https://example.org/tags/s3/</link>
+    <description>Recent content in s3 on Sam&#39;s Work Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Aug 2018 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://szeitlin.github.io/tags/s3/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://example.org/tags/s3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cross-account access with AWS</title>
-      <link>https://szeitlin.github.io/posts/engineering/cross-account-access-aws/</link>
+      <link>https://example.org/posts/engineering/cross-account-access-aws/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      
-      <guid>https://szeitlin.github.io/posts/engineering/cross-account-access-aws/</guid>
-      <description>The scene:
-I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.
-Thus began a weeks-long saga of learning about AWS the hard way.</description>
+      <guid>https://example.org/posts/engineering/cross-account-access-aws/</guid>
+      <description>The scene:&#xA;I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.&#xA;Thus began a weeks-long saga of learning about AWS the hard way.</description>
     </item>
-    
   </channel>
 </rss>

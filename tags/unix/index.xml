@@ -1,25 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Unix on Always Be Getting Data (ABGD)</title>
-    <link>https://szeitlin.github.io/tags/unix/</link>
-    <description>Recent content in Unix on Always Be Getting Data (ABGD)</description>
+    <title>unix on Sam&#39;s Work Blog</title>
+    <link>https://example.org/tags/unix/</link>
+    <description>Recent content in unix on Sam&#39;s Work Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 15 Jan 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://szeitlin.github.io/tags/unix/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://example.org/tags/unix/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Things I learned about zip files</title>
-      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</link>
+      <link>https://example.org/posts/engineering/things-i-learned-about-zip-files-last-week/</link>
       <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</guid>
-      <description>In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
-I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.</description>
+      <guid>https://example.org/posts/engineering/things-i-learned-about-zip-files-last-week/</guid>
+      <description>In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.&#xA;I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.</description>
     </item>
-    
   </channel>
 </rss>

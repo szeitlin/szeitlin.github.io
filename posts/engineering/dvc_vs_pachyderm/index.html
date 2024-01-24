@@ -4,82 +4,75 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | DVC_vs_Pachyderm</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>DVC_vs_Pachyderm | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/engineering/dvc_vs_pachyderm/">
     
 
     <meta property="og:title" content="DVC_vs_Pachyderm" />
 <meta property="og:description" content="I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/" />
-
-
-
-<meta property="article:published_time" content="2021-03-03T13:13:57-08:00"/>
-
-<meta property="article:modified_time" content="2021-03-03T13:13:57-08:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/engineering/dvc_vs_pachyderm/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-03T13:13:57-08:00" />
+<meta property="article:modified_time" content="2021-03-03T13:13:57-08:00" />
 
 <meta itemprop="name" content="DVC_vs_Pachyderm">
-<meta itemprop="description" content="I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?">
-
-
-<meta itemprop="datePublished" content="2021-03-03T13:13:57-08:00" />
+<meta itemprop="description" content="I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?"><meta itemprop="datePublished" content="2021-03-03T13:13:57-08:00" />
 <meta itemprop="dateModified" content="2021-03-03T13:13:57-08:00" />
-<meta itemprop="wordCount" content="1627">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="DVC_vs_Pachyderm"/>
+<meta itemprop="wordCount" content="1625">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="DVC_vs_Pachyderm"/>
 <meta name="twitter:description" content="I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?"/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -89,526 +82,208 @@
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          DVC_vs_Pachyderm
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
-<p>I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">DVC_vs_Pachyderm</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2021-03-03T13:13:57-08:00">March 3, 2021</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&rsquo;s why
 we have forks, and spoons, and sometimes when we&rsquo;re camping, sporks. Although Pachyderm claims to use a git-style
 approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&rsquo;t exactly
 like git. So one thing I wanted to know is, how well does this analogy to git work for DVC? And are there use cases
 where one should definitely use DVC or Pachyderm?</p>
-
 <p>So here&rsquo;s the bottom line, and if you want more details, scroll down to read about my experience trying out DVC
 on my own.</p>
-
 <h1 id="high-level-comparison">High-level comparison</h1>
-
 <p>Both DVC and Pachyderm can:</p>
-
 <ul>
-<li><p>track and save data and ML models</p></li>
-
-<li><p>connect data transformation steps and models in pipelines</p></li>
-
-<li><p>switch between versions easily*</p></li>
-
-<li><p>easily pull in data from cloud storage, and push back out</p></li>
-
-<li><p>facilitate work on a shared development server (or cluster, in the case of Pachyderm)</p></li>
+<li>
+<p>track and save data and ML models</p>
+</li>
+<li>
+<p>connect data transformation steps and models in pipelines</p>
+</li>
+<li>
+<p>switch between versions easily*</p>
+</li>
+<li>
+<p>easily pull in data from cloud storage, and push back out</p>
+</li>
+<li>
+<p>facilitate work on a shared development server (or cluster, in the case of Pachyderm)</p>
+</li>
 </ul>
-
 <p>One major difference is that Pachyderm expects you to use kubernetes. You can run it locally with minikube, but
 the whole point is to containerize models. DVC has no such expectation.</p>
-
 <p>Another major difference is that Pachyderm is designed to serve models, both for development and production. DVC
 isn&rsquo;t a model serving service.</p>
-
 <p>There are some minor differences, too. Pachyderm uses json for pipeline definitions; DVC uses yaml. Pachyderm has you
 create a separate pipeline file for each step, wherease DVC has you create DAGs, a little more like Airflow (but simpler).
 But these differences are what one of my former coworkers would refer to as &ldquo;implementation details&rdquo;.</p>
-
 <h1 id="deciding-which-one-to-use">Deciding which one to use</h1>
-
 <p>So let&rsquo;s say you&rsquo;re thinking about starting a new project, and you&rsquo;re wondering which tool to use (DVC or Pachyderm).
 Here are some questions that should help you decide:</p>
-
 <p><em>1. Do you already use git?</em></p>
-
 <p>DVC assumes you will be using git.</p>
-
 <p>Pachyderm doesn&rsquo;t care what you use for version control for your code.</p>
-
 <p><em>2. Do you plan to use, or already have, kubernetes?</em></p>
-
 <p>Kubernetes can be a big devops project if you haven&rsquo;t used it before, or if you don&rsquo;t have the resources to help configure and
 maintain it. If you don&rsquo;t want to be dealing with that, you could use the hosted Pachyderm service,
 if that works with your scale and security restrictions. Otherwise you should probably use DVC.</p>
-
 <p>If you&rsquo;re at a place that already uses microservices and has some kubernetes experience in-house,
 or if you just want to do microservices for managing models, you might want to use Pachyderm.</p>
-
 <p><em>3. Do you want to version your DAGs, or version your pipeline steps separately?</em></p>
-
 <p>This is sort of a minor workflow question, or potentially a major architecture question.</p>
-
 <p>If you want to be able to branch off at any point in your DAG (any data import step, or any model step)
 at any point in your development process, then you should probably use Pachyderm.</p>
-
 <p>If you expect to version entire DAGs from beginning to end, you should probably use DVC.</p>
-
 <p><em>4. Do you want a system where your development environment mimics your deployment environment (and plan to deploy in kubernetes)?</em></p>
-
 <p>Both DVC and Pachyderm assume you&rsquo;re going to do some amount of development on your local machine.</p>
-
 <p>Pachyderm makes sense if you plan to always be running models in containers, and the enterprise version includes
 encryption over the wire, and role-based access controls. Pachyderm is meant to be used for <em>serving</em> models,
 not just tracking and developing them.</p>
-
 <p>If you know you&rsquo;re <em>not</em> going to be using containers to serve your models, and you primarily want something to help you with
 <em>tracking</em> data and models, you probably should use DVC.</p>
-
 <h1 id="would-you-ever-use-both">Would you ever use both?</h1>
-
 <p>I can imagine a scenario where you&rsquo;d use DVC for data and model tracking during local development, and Pachyderm for serving and iteration
 once the model is deployed.</p>
-
-<hr />
-
+<hr>
 <h1 id="other-things-dvc-can-do">Other things DVC can do</h1>
-
-<p>There are at least a couple of things that DVC can do, which Pachyderm doesn&rsquo;t have at all. For example, DVC can:
-- visualize the structure of a dag with ascii art (this is super cute!)
-- compare model metrics among experiments, e.g <code>dvc metrics diff</code></p>
-
+<p>There are at least a couple of things that DVC can do, which Pachyderm doesn&rsquo;t have at all. For example, DVC can:</p>
+<ul>
+<li>visualize the structure of a dag with ascii art (this is super cute!)</li>
+<li>compare model metrics among experiments, e.g <code>dvc metrics diff</code></li>
+</ul>
 <p>It&rsquo;s also worth mentioning that Iterative, the company that created DVC, has another project called CML (Continuous Machine Learning),
- for CI/CD in ML projects. Pachyderm doesn&rsquo;t have anything like this.</p>
-
+for CI/CD in ML projects. Pachyderm doesn&rsquo;t have anything like this.</p>
 <p>CML includes functionality for monitoring and reporting on model performance, and it&rsquo;s designed to work with DVC.</p>
-
-<hr />
-
+<hr>
 <p>If you want to know more about Pachyderm, [here&rsquo;s a post][1] I wrote a while back comparing Pachyderm to Airflow.</p>
-
-<hr />
-
+<hr>
 <h1 id="dvc-first-impressions">DVC first impressions</h1>
-
 <p>First, I started trying to go through one of the tutorials, but I don&rsquo;t have enough free space on my laptop!</p>
-
 <p>So, then I thought, let&rsquo;s see if I can do something with a small data set I had leftover from a recent job interview.</p>
-
 <p>Starting with a folder that has a data file in it, I created an environment:</p>
-
 <p><code>$ conda create -n iterative python=3 pandas numpy scikit-learn jupyter notebook</code></p>
-
 <p>Conda install failed with my usual channels and I&rsquo;m too lazy to look for others, so I did:</p>
-
 <p><code>$ pip install dvc</code></p>
-
 <p>Then I did</p>
-
 <p><code>$ git init</code></p>
-
 <p>and then</p>
-
 <p><code>$ dvc init</code></p>
-
 <p>I didn&rsquo;t have to add my data files to my .gitignore, as usual, because dvc takes care of that when you do:</p>
-
 <p><code>$ dvc add win-rate-small.data.pickle</code></p>
-
 <p>So now files that I&rsquo;d normally never put into git, are tracked with dvc instead.
 I like this.</p>
-
 <p>And then I put the tracking file into git for safekeeping:</p>
-
 <p><code>$ git add win-rate-small.data.pickle.dvc</code></p>
-
 <p>A big advantage of this seems to be if you want to store your large data files
 remotely, and then pull them into your working environment only as needed.</p>
-
 <p>I think this is cute, but I&rsquo;m not sure how it works in practice. Do you always delete the local copy of the file
 to save space? I may just be paranoid, but I always get nervous when I have to delete data, even if I know it&rsquo;s
 backed up somewhere else. I&rsquo;m not sure if it&rsquo;s just because I first started working with data when disks could go bad
 and it took forever to load things, but it just feels weird to me.</p>
-
 <p>Anyway, in the interest of time, I&rsquo;m going to skip over this for now and maybe come back later.</p>
-
-<hr />
-
+<hr>
 <p>Next, I went and built a model in a jupyter notebook, and the first version wasn&rsquo;t very good (unsurprisingly).
 Just to be safe, I dumped it out anyway:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">from</span> joblib <span style="color:#f92672">import</span> dump, load
-dump(clf, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;logit_bad.joblib&#39;</span>) </code></pre></div>
-<p>Then we add that with <code>dvc add</code> and <code>git add</code> and <code>git tag</code>. Although I don&rsquo;t have aliases for my usual
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> joblib <span style="color:#f92672">import</span> dump, load
+</span></span><span style="display:flex;"><span>dump(clf, <span style="color:#e6db74">&#39;logit_bad.joblib&#39;</span>) 
+</span></span></code></pre></div><p>Then we add that with <code>dvc add</code> and <code>git add</code> and <code>git tag</code>. Although I don&rsquo;t have aliases for my usual
 git workflow, since this adds another line (or two, with tagging) of typing to every git command,
 if I were going to do this a lot, I would want an alias in my terminal.</p>
-
 <p>The next thing the tutorial does makes perfect sense: try to improve the model and save another version of it.</p>
-
 <p>Back to my notebook.</p>
-
 <p>Since I didn&rsquo;t spend much time on it, the second version of the model isn&rsquo;t much better, but I write out <code>logit_bad2.joblib</code> anyway.</p>
-
 <p>The next step is to demonstrate switching between workspaces, so you can check out the data and the model
 versions easily. This is where I think DVC really shines, and is easier than Pachyderm.</p>
-
 <p>Because we tagged the versions, it&rsquo;s trivial to say <code>git checkout v1.0</code> and then <code>dvc checkout</code>.</p>
-
 <p>With Pachyderm, at scale anyway, this was not so easy. The times when I needed this the most were not during development,
 though, they were during debugging. And then the hard part was going through to find which chunk of data was
 associated with a failed model run, and track back to get the uuid of that commit.
 It&rsquo;s doable, but it&rsquo;s not smooth.</p>
-
-<hr />
-
+<hr>
 <p>The <code>dvc get</code> command is not that different from how Pachyderm works. Both systems use remote file storage like s3 or GCS,
 so you use <code>dvc get</code> or <code>pachctl get</code> instead of having to use the aws or GCP CLI to retrieve your files.</p>
-
 <p>The way DVC sets up sharing for multiple users on a single development server is different from how Pachyderm does it,
 because DVC relies on git and caching, and you have to manually set permissions on those caches.
 This seems like a pain to set up the first time.</p>
-
 <p>Pachyderm&rsquo;s enterprise offering has role-based access controls, but we never bothered to set those up, either.
 (We always said we&rsquo;d do it later&hellip;) Instead, we just gave everyone on the team access, and as long as we didn&rsquo;t
 touch each other&rsquo;s pipelines, it was fine.</p>
-
 <p>I think if we were going to have multiple people working directly on the same data and/or same models,
 we would want more granular controls (and the equivalent of <code>git blame</code>) for this.</p>
-
 <p>Another major difference between DVC and Pachyderm is that DVC can be run as a python library.
 I was curious to try this out, so I opened a new notebook and typed <code>import dvc.api</code>.
 This looks like it should be very easy, in the sense that you don&rsquo;t have to build and push up a container to a container
 registry in order to pull an updated version of your model. So I think that&rsquo;s potentially really useful in situations
 where you won&rsquo;t be building microservices.</p>
-
 <p>One thing I like about the containerized approach is that it&rsquo;s extremely reproducible, and well, contained. DVC seems to
 be able to make the reproducible part pretty straightforward with helping you track, for example, what files are in a folder,
 and by taking advantage of git tagging.</p>
-
 <p>[1] : <a href="https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/">https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/</a></p>
-
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
+</aside>
 
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black o-50">
-            DVC_vs_Pachyderm
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

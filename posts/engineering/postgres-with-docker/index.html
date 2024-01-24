@@ -4,85 +4,79 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | Postgres With Docker</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>Postgres With Docker | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="Recently, someone asked for help with setting up postgres in docker and connecting to it with python.
+While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&rsquo;m sure it&rsquo;s something other people would also find useful. A few years ago I wouldn&rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/engineering/postgres-with-docker/">
     
 
     <meta property="og:title" content="Postgres With Docker" />
 <meta property="og:description" content="Recently, someone asked for help with setting up postgres in docker and connecting to it with python.
 While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&rsquo;m sure it&rsquo;s something other people would also find useful. A few years ago I wouldn&rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/postgres-with-docker/" />
-
-
-
-<meta property="article:published_time" content="2019-10-08T15:03:46-07:00"/>
-
-<meta property="article:modified_time" content="2019-10-08T15:03:46-07:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/engineering/postgres-with-docker/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2019-10-08T15:03:46-07:00" />
+<meta property="article:modified_time" content="2019-10-08T15:03:46-07:00" />
 
 <meta itemprop="name" content="Postgres With Docker">
 <meta itemprop="description" content="Recently, someone asked for help with setting up postgres in docker and connecting to it with python.
-While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&rsquo;m sure it&rsquo;s something other people would also find useful. A few years ago I wouldn&rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!">
-
-
-<meta itemprop="datePublished" content="2019-10-08T15:03:46-07:00" />
+While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&rsquo;m sure it&rsquo;s something other people would also find useful. A few years ago I wouldn&rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!"><meta itemprop="datePublished" content="2019-10-08T15:03:46-07:00" />
 <meta itemprop="dateModified" content="2019-10-08T15:03:46-07:00" />
-<meta itemprop="wordCount" content="1368">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Postgres With Docker"/>
+<meta itemprop="wordCount" content="1354">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Postgres With Docker"/>
 <meta name="twitter:description" content="Recently, someone asked for help with setting up postgres in docker and connecting to it with python.
 While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&rsquo;m sure it&rsquo;s something other people would also find useful. A few years ago I wouldn&rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!"/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -92,63 +86,80 @@ While helping this person, I realized this is something that should be fairly st
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          Postgres With Docker
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
-<p>Recently, someone asked for help with setting up postgres in docker and connecting to it with python.</p>
 
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Postgres With Docker</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2019-10-08T15:03:46-07:00">October 8, 2019</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Recently, someone asked for help with setting up postgres in docker and connecting to it with python.</p>
 <p>While helping this person, I realized this is something that should be fairly straightforward with a
 simple set of instructions, but there aren&rsquo;t a lot good beginner tutorials out there. So I decided
 to write this up because I&rsquo;m sure it&rsquo;s something other people would also find useful. A few years ago
 I wouldn&rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!).</p>
-
-<hr />
-
+<hr>
 <h1 id="some-beginner-advice-before-we-get-started-on-the-actual-steps">Some beginner advice, before we get started on the actual steps</h1>
-
 <p>If you&rsquo;re doing database infrastructure stuff for the first time, don&rsquo;t worry about security.
 Don&rsquo;t change the name of the default database, and don&rsquo;t set up a user and a password.
 Just use the defaults for everything.</p>
-
 <p>Keep things as simple as possible. Make sure you can get the thing running and connect to it.
 There&rsquo;s no data in there yet anyway, so it doesn&rsquo;t matter if it&rsquo;s secure!</p>
-
 <p>Most times, you&rsquo;ll tie yourself up into knots trying to figure out if your problem is authentication or
 authorization, when actually you don&rsquo;t have anything configured correctly, so the first time through,
 just skip that stuff and add it later.</p>
-
 <p>Another tip: make sure you don&rsquo;t have another database instance running on your system. For example, if you
 installed postgres on your mac with homebrew, make sure that&rsquo;s been shut down, just to avoid confusion when you
 try to log in.</p>
-
-<hr />
-
+<hr>
 <h1 id="step-1-get-set-up-with-docker-and-make-sure-you-can-run-the-postgres-container">Step 1. Get set up with docker and make sure you can run the postgres container</h1>
-
-<p>1) <a href="https://docs.docker.com/v17.12/install/">Install docker</a> if you don&rsquo;t have it already
+<ol>
+<li>
+<p><a href="https://docs.docker.com/v17.12/install/">Install docker</a> if you don&rsquo;t have it already
 (I didn&rsquo;t have it on my current laptop at home). Docker has great documentation, I recommend reading it. You really only need to know a few commands
 to get started.</p>
-
-<p>2) Get the postgres image: <code>docker pull postgres:alpine</code>.
-  Alpine is just a very lightweight operating system.</p>
-
-<p>3) Check the name by running <code>docker images</code>.
-  You should see <code>postgres</code> under <code>REPOSITORY</code>, and <code>alpine</code> under <code>tag</code>.</p>
-
-<p>4) Start the container: <code>docker run postgres</code>. Your output should look something like this:</p>
-
+</li>
+<li>
+<p>Get the postgres image: <code>docker pull postgres:alpine</code>.
+Alpine is just a very lightweight operating system.</p>
+</li>
+<li>
+<p>Check the name by running <code>docker images</code>.
+You should see <code>postgres</code> under <code>REPOSITORY</code>, and <code>alpine</code> under <code>tag</code>.</p>
+</li>
+<li>
+<p>Start the container: <code>docker run postgres</code>. Your output should look something like this:</p>
+</li>
+</ol>
 <pre><code>The files belonging to this database system will be owned by user &quot;postgres&quot;.
 This user must also own the server process.
 
@@ -212,430 +223,122 @@ PostgreSQL init process complete; ready for start up.
 2019-09-25 16:50:08.021 UTC [51] LOG:  database system was shut down at 2019-09-25 16:50:07 UTC
 2019-09-25 16:50:08.026 UTC [1] LOG:  database system is ready to accept connections
 </code></pre>
-
-<hr />
-
+<hr>
 <h1 id="step-2-log-into-the-running-container-with-bash-and-psql">Step 2. Log into the running container with bash and psql</h1>
-
 <p>This is basically just a sanity check, but you&rsquo;ll probably want it anyway.</p>
-
-<p>1) In a separate terminal window, log into the running container. First, run <code>docker ps</code> to get the container ID.</p>
-
+<ol>
+<li>In a separate terminal window, log into the running container. First, run <code>docker ps</code> to get the container ID.</li>
+</ol>
 <p>Then <code>$ docker exec -it &lt;container ID&gt; bash</code>.</p>
-
 <p><code>-it</code> means interactive terminal.</p>
-
 <p>You should see a prompt that looks something like this: <code>root@5be3bfd7d2b6:/#</code></p>
-
-<p>2) At the prompt, connect with the postgres command-line interface, which is called <em>psql</em>,
- using the default username, which happens to also be <code>postgres</code>.</p>
-
+<ol start="2">
+<li>At the prompt, connect with the postgres command-line interface, which is called <em>psql</em>,
+using the default username, which happens to also be <code>postgres</code>.</li>
+</ol>
 <p><code>root@5be3bfd7d2b6:/# psql -U postgres</code>.</p>
-
 <p><code>-U postgres</code> means &ldquo;with username as postgres&rdquo;</p>
-
-<p>3) Now we can check a couple of things. First, check if there&rsquo;s a database there.</p>
-
+<ol start="3">
+<li>Now we can check a couple of things. First, check if there&rsquo;s a database there.</li>
+</ol>
 <p><code>postgres-# \l</code></p>
-
-<p><em>lowercase L is for &lsquo;list&rsquo;</em></p>
-
+<p><em>lowercase L is for &rsquo;list'</em></p>
 <p>You should see something like this:</p>
-
-<pre><code>postgres-# \l
+<pre tabindex="0"><code>postgres-# \l
                                  List of databases
    Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges   
 -----------+----------+----------+------------+------------+-----------------------
  postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 | 
-</code></pre>
-
-<p>4) Make sure you can connect to the default database.</p>
-
+</code></pre><ol start="4">
+<li>Make sure you can connect to the default database.</li>
+</ol>
 <p><code>postgres-# \c postgres</code></p>
-
 <p><em>c is for connect, and postgres is the database name</em></p>
-
 <p>Here&rsquo;s what it looks like if it works:</p>
-
-<pre><code>postgres-# \c postgres
-You are now connected to database &quot;postgres&quot; as user &quot;postgres&quot;.
-</code></pre>
-
-<hr />
-
+<pre tabindex="0"><code>postgres-# \c postgres
+You are now connected to database &#34;postgres&#34; as user &#34;postgres&#34;.
+</code></pre><hr>
 <h1 id="step-3-connect-to-the-database-using-python">Step 3. Connect to the database using python</h1>
-
-<p>1) In a third terminal window, fire up a conda environment. (To do this the way I did, you&rsquo;ll have to install anaconda
-if you don&rsquo;t have it already.)</p>
-
+<ol>
+<li>In a third terminal window, fire up a conda environment. (To do this the way I did, you&rsquo;ll have to install anaconda
+if you don&rsquo;t have it already.)</li>
+</ol>
 <p><code>conda create -n postgres-test python=3 psycopg2 ipython jupyter notebook</code></p>
-
 <p>Conda has <a href="https://docs.anaconda.com/anaconda/">great documentation</a>, I recommend reading it.</p>
-
 <p>Psycopg2 is the name of the library we&rsquo;ll use to connect to postgres.</p>
-
 <p>I always install ipython and jupyter notebooks
 because I almost always end up using them for development and/or debugging.</p>
-
-<p>2) Start up that environment: <code>conda activate postgres-test</code></p>
-
+<ol start="2">
+<li>Start up that environment: <code>conda activate postgres-test</code></li>
+</ol>
 <p>You should see your prompt change again, so now it should show the environment name: <code>(postgres-test) ~/postgres-docker$</code></p>
-
-<p>3) Start ipython (or jupyter if you&rsquo;re doing more elaborate things).</p>
-
+<ol start="3">
+<li>Start ipython (or jupyter if you&rsquo;re doing more elaborate things).</li>
+</ol>
 <p><code>ipython</code> Then <code>import psycopg2</code></p>
-
 <p>If ^this step gives an error, the package isn’t on your path. Run <code>!conda list</code> to see if psycopg2 is in the list
 of packages that are in your environment.</p>
-
 <p>If ipython is not in the environment, conda will pull it from elsewhere on your machine.
 So ipython will run, but the path will be wrong, and you’ll be confused.</p>
-
 <p>If that happens, exit out of ipython,
 run <code>conda list</code> again,
 and make sure you have what you need.</p>
-
 <p>If any packages are missing, you can activate the conda environment and then
 <code>conda install &lt;packagename&gt;</code> or <code>pip install &lt;packagename&gt;</code>.</p>
-
 <p>I generally use pip as a fallback for anything conda
 can&rsquo;t find.</p>
-
-<p>4) Finally, connect to the database. Note that the documentation for psycogp2 is not completely up to date, and
-there is more than one way to do this, some of which may or may not work, depending on your situation.</p>
-
+<ol start="4">
+<li>Finally, connect to the database. Note that the documentation for psycogp2 is not completely up to date, and
+there is more than one way to do this, some of which may or may not work, depending on your situation.</li>
+</ol>
 <p><code>conn = psycopg2.connect(host=&quot;0.0.0.0&quot;, port=5432, database=&quot;postgres&quot;, user=&quot;postgres&quot;, password=&quot;postgres&quot;)</code></p>
-
 <p>This should fail because you need to change the default password.</p>
-
 <p><code>OperationalError: FATAL:  password authentication failed for user &quot;postgres&quot;</code></p>
-
-<p>5) Go back to the terminal where you connected with psql. Now you can change the default password
-  to something simple (again, we&rsquo;re just trying to get it set up the first time!).</p>
-
+<ol start="5">
+<li>Go back to the terminal where you connected with psql. Now you can change the default password
+to something simple (again, we&rsquo;re just trying to get it set up the first time!).</li>
+</ol>
 <p><code>ALTER USER postgres with password 'test';</code></p>
-
 <p>It should return <code>ALTER ROLE</code> to indicate that it worked.</p>
-
-<p>6) Now you should be able to actually connect using your new password:</p>
-
+<ol start="6">
+<li>Now you should be able to actually connect using your new password:</li>
+</ol>
 <p><code>conn = psycopg2.connect(host=&quot;0.0.0.0&quot;, port=5432, database=&quot;postgres&quot;, user=&quot;postgres&quot;, password=&quot;test&quot;)</code></p>
-
 <p>After that, you&rsquo;ll have to create a cursor, and then you can create some tables,
 and run queries, as described in the basic usage section of <a href="http://initd.org/psycopg/docs/usage.html">the psycopg2 docs</a>.</p>
-
 <p>Later, <strong>don&rsquo;t forget to create a new user role, and change your password to something that&rsquo;s actually secure</strong>,
 before you deploy your new app in the cloud, collect underpants, and profit!</p>
-
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
+</aside>
 
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black o-50">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

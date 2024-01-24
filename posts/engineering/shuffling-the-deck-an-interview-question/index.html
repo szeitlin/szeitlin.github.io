@@ -4,88 +4,83 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | Shuffling the deck: an interview experience</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>Shuffling the deck: an interview experience | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="Here is a story about an interesting interview question and how I approached it.
+The company in question wasn&rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.
+Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck.">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/engineering/shuffling-the-deck-an-interview-question/">
     
 
     <meta property="og:title" content="Shuffling the deck: an interview experience" />
 <meta property="og:description" content="Here is a story about an interesting interview question and how I approached it.
 The company in question wasn&rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.
- Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck." />
+Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/" />
-
-
-
-<meta property="article:published_time" content="2016-06-16T00:00:00&#43;00:00"/>
-
-<meta property="article:modified_time" content="2016-06-16T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/engineering/shuffling-the-deck-an-interview-question/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-06-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-06-16T00:00:00+00:00" />
 
 <meta itemprop="name" content="Shuffling the deck: an interview experience">
 <meta itemprop="description" content="Here is a story about an interesting interview question and how I approached it.
 The company in question wasn&rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.
- Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck.">
-
-
-<meta itemprop="datePublished" content="2016-06-16T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2016-06-16T00:00:00&#43;00:00" />
+Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck."><meta itemprop="datePublished" content="2016-06-16T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2016-06-16T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1015">
-
-
-
-<meta itemprop="keywords" content="python,recursion," />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Shuffling the deck: an interview experience"/>
+<meta itemprop="keywords" content="python,recursion," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Shuffling the deck: an interview experience"/>
 <meta name="twitter:description" content="Here is a story about an interesting interview question and how I approached it.
 The company in question wasn&rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.
- Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck."/>
+Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck."/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -95,456 +90,206 @@ The company in question wasn&rsquo;t interested in actually looking at my code, 
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          Shuffling the deck: an interview experience
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        <p>Here is a story about an interesting interview question and how I approached it.</p>
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Shuffling the deck: an interview experience</h1>
+      
+      <p class="tracked">
+        By <strong>Samantha G. Zeitlin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2016-06-16T00:00:00Z">June 16, 2016</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Here is a story about an interesting interview question and how I approached it.</p>
 <p>The company in question wasn&rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.</p>
-
 <blockquote>
 <p><em>Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck. This is repeated until one portion is used up. The remaining cards go on top.</em></p>
-
+</blockquote>
+<blockquote>
 <p><em>Determine the number of perfect shuffles before the deck returns to its original order. This can be done in any language. A successful solution will solve the problem for 1002 cards and a cut size of 101 in under a second even on a slow machine.</em></p>
 </blockquote>
-
 <p>I looked at that and did what they tell you to do for interviews, and coding in general, especially when you don&rsquo;t know where to start: start with the naive, simple approach.</p>
-
 <p>Step 1. make_deck</p>
-
 <pre><code> cards = [x for x in range(1,n+1)] 
 </code></pre>
-
 <p>Step 2.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   
-  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shuffle</span>(cards,c):
-
-   <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">   :param: c, where to cut the deck (int)
-</span><span style="color:#e6db74">   &#34;&#34;&#34;</span>
-    top <span style="color:#f92672">=</span> cards[<span style="color:#ae81ff">0</span>:c]
-    bottom <span style="color:#f92672">=</span> cards[c:]
-
-    stopping_criteria <span style="color:#f92672">=</span> min(len(top), len(bottom))
-
-    newstack <span style="color:#f92672">=</span> deque()
-
-    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(stopping_criteria):
-        newstack<span style="color:#f92672">.</span>append(top<span style="color:#f92672">.</span>pop())
-        newstack<span style="color:#f92672">.</span>append(bottom<span style="color:#f92672">.</span>pop())
-
-    <span style="color:#66d9ef">if</span> (len(top)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">and</span> (len(bottom)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>):
-        <span style="color:#66d9ef">return</span> newstack
-
-    <span style="color:#66d9ef">elif</span> len(top) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-        newstack<span style="color:#f92672">.</span>extendleft(top)
-    <span style="color:#66d9ef">elif</span> len(bottom) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
-        newstack<span style="color:#f92672">.</span>extendleft(bottom)
-
-    <span style="color:#66d9ef">return</span> newstack</code></pre></div>
-<p>Step 3.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shuffle_recursive</span>(cards, c, shuffle_count):
-
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    shuffle until the original order is restored, and count as you go.
-</span><span style="color:#e6db74">    assuming for now that original order is sequential and first card is always 1.
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">    :param n: deck size to pass to shuffle function (int)
-</span><span style="color:#e6db74">    :param c: cut size to pass to shuffle function (int)
-</span><span style="color:#e6db74">    :param newstack: variable to hold the list during shuffling
-</span><span style="color:#e6db74">    :return: (newstack (shuffled list), shuffle_count (int)) as a tuple
-</span><span style="color:#e6db74">    &gt;&gt;&gt; shuffle_recursive([1,2,3,4,5], 3, 0)
-</span><span style="color:#e6db74">    4
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    newstack <span style="color:#f92672">=</span> shuffle(cards,c)
-
-    shuffle_count <span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
-
-    <span style="color:#66d9ef">if</span> list(newstack) <span style="color:#f92672">==</span> [x <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(cards)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]: <span style="color:#75715e">#stopping criteria</span>
-        <span style="color:#66d9ef">return</span> shuffle_count
-
-    <span style="color:#66d9ef">else</span>:
-        <span style="color:#66d9ef">return</span> shuffle_recursive(list(newstack), c, shuffle_count)</code></pre></div>
-<p>So I did that, and was surprised to get a recursion depth error.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>   
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shuffle</span>(cards,c):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   :param: c, where to cut the deck (int)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">   &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    top <span style="color:#f92672">=</span> cards[<span style="color:#ae81ff">0</span>:c]
+</span></span><span style="display:flex;"><span>    bottom <span style="color:#f92672">=</span> cards[c:]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stopping_criteria <span style="color:#f92672">=</span> min(len(top), len(bottom))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    newstack <span style="color:#f92672">=</span> deque()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(stopping_criteria):
+</span></span><span style="display:flex;"><span>        newstack<span style="color:#f92672">.</span>append(top<span style="color:#f92672">.</span>pop())
+</span></span><span style="display:flex;"><span>        newstack<span style="color:#f92672">.</span>append(bottom<span style="color:#f92672">.</span>pop())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (len(top)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>) <span style="color:#f92672">and</span> (len(bottom)<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> newstack
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> len(top) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        newstack<span style="color:#f92672">.</span>extendleft(top)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> len(bottom) <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>        newstack<span style="color:#f92672">.</span>extendleft(bottom)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> newstack
+</span></span></code></pre></div><p>Step 3.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">shuffle_recursive</span>(cards, c, shuffle_count):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    shuffle until the original order is restored, and count as you go.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    assuming for now that original order is sequential and first card is always 1.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    :param n: deck size to pass to shuffle function (int)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    :param c: cut size to pass to shuffle function (int)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    :param newstack: variable to hold the list during shuffling
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    :return: (newstack (shuffled list), shuffle_count (int)) as a tuple
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &gt;&gt;&gt; shuffle_recursive([1,2,3,4,5], 3, 0)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    4
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    newstack <span style="color:#f92672">=</span> shuffle(cards,c)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    shuffle_count <span style="color:#f92672">+=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> list(newstack) <span style="color:#f92672">==</span> [x <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, len(cards)<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)]: <span style="color:#75715e">#stopping criteria</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> shuffle_count
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> shuffle_recursive(list(newstack), c, shuffle_count)
+</span></span></code></pre></div><p>So I did that, and was surprised to get a recursion depth error.</p>
 <p>Then I realized it only works up to the max recursion depth of 999.</p>
-
 <p>Also, it was obviously too slow.</p>
-
 <p>So I did some profiling, and found that the majority of time was spent in these 3 lines:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">   <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(stopping_criteria):
-        newstack<span style="color:#f92672">.</span>append(top<span style="color:#f92672">.</span>pop())
-        newstack<span style="color:#f92672">.</span>append(bottom<span style="color:#f92672">.</span>pop())</code></pre></div>
-<p>And that kind of surprised me, since I thought the whole point of deque() is that it&rsquo;s supposed to be faster.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>   <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(stopping_criteria):
+</span></span><span style="display:flex;"><span>        newstack<span style="color:#f92672">.</span>append(top<span style="color:#f92672">.</span>pop())
+</span></span><span style="display:flex;"><span>        newstack<span style="color:#f92672">.</span>append(bottom<span style="color:#f92672">.</span>pop())
+</span></span></code></pre></div><p>And that kind of surprised me, since I thought the whole point of deque() is that it&rsquo;s supposed to be faster.</p>
 <p>So then I spent some time thinking about how I could possibly make the code go faster.</p>
-
 <p>Ultimately I ended up directly creating the interleaved bottom part of the deck, and then added the top. I noticed that the tricky part was dealing with the leftover cards. I also noticed that it took a lot fewer iterations to get back to the starting order if I reversed the top cards before I put them back.</p>
-
 <p>Then I hooked that up to run iteratively, so I could control the number of times it ran, for debugging, etc.</p>
-
 <p>The code is <a href="https://github.com/szeitlin/shuffles/blob/master/shuffle.py">here</a> if you want to see what I did.</p>
-
 <p>I wrote a <a href="https://github.com/szeitlin/shuffles/blob/master/test_shuffle.py">bunch of tests</a> while I was doing this, like I always do, and I couldn&rsquo;t help noticing that there were some weird edges cases that never worked.</p>
-
 <p>I tried to read some <a href="http://statweb.stanford.edu/~cgates/PERSI/papers/83_05_shuffles.pdf">advanced math articles</a>, which led me to understand that the weird edge cases I was seeing were probably harmonics.</p>
-
 <p>Then, because I&rsquo;m really a data scientist at heart, I wanted to see what that looked like.</p>
-
 <p>I wrote a couple of <a href="https://github.com/szeitlin/shuffles/blob/master/explore_shuffle.py">methods</a> to help me <a href="https://github.com/szeitlin/shuffles/blob/master/06162016_plot_shuffle_harmonics_SGZ.ipynb">visualize</a> the results.</p>
-
 <p>Overall, I&rsquo;d say it was a great coding challenge, really interesting and I learned a lot.</p>
-
 <p>However. When I went to turn in my work, the response was less than encouraging.</p>
-
 <p>I wrote:</p>
-
 <blockquote>
 <p><em>I came up with a simple, very slow (10 second+ run-time) solution fairly quickly, and then spent 3-4x more time coming up with a 10x faster solution.
 What I have right now meets the requirement for 1002 cards with cut size 101 in under a second on my mac laptop (see below - not sure what you define as a &ldquo;slow machine&rdquo;?).</em></p>
 </blockquote>
-
 <p>And the reply came back:</p>
-
 <blockquote>
 <p><em>What answer did your solution arrive at for the test case? Is is 790034? That&rsquo;s not correct, so if that&rsquo;s the case you should take another look. It should only take a tenth of a second or so.</em></p>
 </blockquote>
-
 <p>Apparently I was so annoyed at the way this exchange ended that I deleted both my response (let&rsquo;s consider it redacted) and theirs. I said something about how if the point was that it was a coding exercise, maybe they&rsquo;d want to see my code even if I got a different answer (I did)?</p>
-
 <p>They said I should have known I wasn&rsquo;t supposed to try to actually make the decks based on how the question was worded.</p>
-
 <p>I did not know that. I&rsquo;m not sure why it&rsquo;s so hard to just ask a straightforward question instead of including, as part of the challenge, that I should be able to read your mind.</p>
-
 <p>Anyway, they did not want to see my code.</p>
-
 <p>Shortly thereafter, I asked a friend who is more of an algorithms person and he said &ldquo;Oh yeah, all you do is write the equation for a single card to get back to its original position, and then you have the answer.&rdquo;</p>
-
 <p>Of course, I found that confusing, because based on what I did, I don&rsquo;t think it&rsquo;s really that simple. I think it depends on how you do the shuffling, e.g. whether you reverse the top half when you add it back on. Which the original question said nothing about.</p>
-
 <p>And some cards (as the edge cases show) will take a much longer time to get back to their original position, depending on where you cut the deck and how many shuffles you do.</p>
-
 <p>So, my shuffles might be imperfect, and my ability to read interviewers&rsquo; minds hasn&rsquo;t improved much. But hey, those harmonics are pretty interesting.</p>
-
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/recursion/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">recursion</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
-
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/engineering/recursion-excursion/">Recursion excursion</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/test-driven-data-pipelining/">Test-driven data pipelining</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/">Data pipelining with pandas</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/">Things I learned about zip files</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black o-50">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
+	    
     </ul>
-  </div>
+</div>
 
+</aside>
 
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

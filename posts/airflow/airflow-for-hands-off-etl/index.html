@@ -4,22 +4,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | Airflow</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>Airflow | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
+The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
+Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS.">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/airflow/airflow-for-hands-off-etl/">
     
 
     <meta property="og:title" content="Airflow" />
@@ -27,65 +40,47 @@
 The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
 Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/" />
-
-
-
-<meta property="article:published_time" content="2017-11-18T00:00:00&#43;00:00"/>
-
-<meta property="article:modified_time" content="2017-11-18T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/airflow/airflow-for-hands-off-etl/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2017-11-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2017-11-18T00:00:00+00:00" />
 
 <meta itemprop="name" content="Airflow">
 <meta itemprop="description" content="Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
 The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
-Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS.">
-
-
-<meta itemprop="datePublished" content="2017-11-18T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2017-11-18T00:00:00&#43;00:00" />
+Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS."><meta itemprop="datePublished" content="2017-11-18T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2017-11-18T00:00:00+00:00" />
 <meta itemprop="wordCount" content="1114">
-
-
-
-<meta itemprop="keywords" content="python,testing," />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Airflow"/>
+<meta itemprop="keywords" content="python,testing," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Airflow"/>
 <meta name="twitter:description" content="Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.
 The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.
 Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS."/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -95,473 +90,228 @@ Our team does both ad-hoc analyses and ongoing machine learning projects. In ord
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          Airflow
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
-<h1 id="airflow-for-hands-off-etl">Airflow for hands-off ETL</h1>
 
-<hr />
 
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Airflow</h1>
+      
+      <p class="tracked">
+        By <strong>Samantha G. Zeitlin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2017-11-18T00:00:00Z">November 18, 2017</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="airflow-for-hands-off-etl">Airflow for hands-off ETL</h1>
+<hr>
 <p>Almost exactly a year ago, I joined <a href="https://www.yahoo.com">Yahoo</a>, which more recently became <a href="https://www.oath.com">Oath</a>.</p>
-
 <p>The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.</p>
-
 <p>Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS. After a while, it made sense to move to <a href="http://pythonhosted.org/airflow/">Airflow</a>.</p>
-
-<hr />
-
+<hr>
 <h2 id="do-you-need-airflow">Do you need Airflow?</h2>
-
 <ol>
 <li>How much data do you have?    <em>A lot</em></li>
 <li>Do you use cron jobs for ETL? How many?     <em>Too many</em></li>
 <li>Do you have to re-run scripts manually when they fail? How often?      <em>Yes, often enough to be a pain point</em></li>
 <li>Do you use on-call shifts to help maintain infrastructure?      <em>Unfortunately, we did</em></li>
 </ol>
-
-<hr />
-
+<hr>
 <h2 id="what-exactly-is-airflow">What exactly is Airflow?</h2>
-
 <p>Airflow is an open-source python library. It creates Directed Acyclic Graphs (DAGs) for extracting, transforming, and loading data.</p>
-
 <p>&lsquo;Directed&rsquo; just means the tasks are supposed to be executed in order (although this is not actually required, tasks don&rsquo;t even have to be connected to each other and they&rsquo;ll still run). &lsquo;Acyclic&rsquo; means tasks are not connected in a circle (although you can write loops that generate tasks dynamically, you still don&rsquo;t want circular dependencies).</p>
-
 <p>A DAG in this case is a python object made up of tasks. A typical DAG might contain tasks that do the kinds of things you might do with cron jobs:</p>
-
 <p>get logs &ndash;&gt; parse logs &ndash;&gt; create table in database &ndash;&gt; load log data into new table</p>
-
 <p>Each DAG step is executed by an Operator (also a python object).</p>
-
 <p>Operators use Hooks to connect to external resources (like AWS services).</p>
-
 <p>Task instances refer to attempts to run specific tasks, so they have state that you can view in the dashboard. The state tells you whether that tasks is currently executing, succeeded, failed, skipped, or waiting in the queue.</p>
-
-<hr />
-
-<h2 id="some-tips-if-you-re-going-to-use-airflow">Some tips if you&rsquo;re going to use Airflow</h2>
-
+<hr>
+<h2 id="some-tips-if-youre-going-to-use-airflow">Some tips if you&rsquo;re going to use Airflow</h2>
 <h3 id="make-your-jobs-idempotent-if-possible">Make your jobs idempotent if possible</h3>
-
 <p>My team has a couple different types of tables that we load into Redshift. One is the type we call &lsquo;metadata&rsquo;, which is typically just a simple mapping that doesn&rsquo;t change very often. For this type of table, when it does change, it&rsquo;s important to drop the old table and re-create it from scratch. This is easier to manage with separate tasks for each SQL step, so the DAG has the following steps:</p>
-
 <p>get_data &ndash;&gt; drop_old_table &ndash;&gt; create_new_table &ndash;&gt; load_data</p>
-
 <p>This way, if any of the steps fail, we can re-start from there, and it doesn&rsquo;t matter if the step was partially completed before it failed.</p>
-
 <p>The other kind of table we have is an event table, and those are loaded with fresh data every day. We retain the data for 3 days before we start running out of space on the Redshift cluster. This kind of table doesn&rsquo;t really need a drop_old_table step, because the table name includes the date (which makes it easier to find the table you want when you&rsquo;re running queries). However, when we create these tables, we still want to make sure we don&rsquo;t create duplicates, so in the create step we check to see if the table already exists.</p>
-
-<h3 id="get-airflow-home-depending-on-where-you-re-running">Get AIRFLOW_HOME depending on where you&rsquo;re running</h3>
-
+<h3 id="get-airflow_home-depending-on-where-youre-running">Get AIRFLOW_HOME depending on where you&rsquo;re running</h3>
 <p>If you want a really stable build that requires the least amount of hands-on maintenance, do yourself a favor and &lsquo;productionize&rsquo; your setup. That means you&rsquo;ll want to run Airflow in at least 3 places:</p>
-
 <ol>
 <li>In a virtual environment on your local machine (we use Docker with Ansible)</li>
 <li>In a virtual environment in your continuous integration system (we use Jenkins)</li>
 <li>In a virtual environment on your production host (we use virtualenv with python 3)</li>
 </ol>
-
 <p>Note that Airflow doesn&rsquo;t make this easy, so I wrote a little helper script to make sure Airflow has the right configuration files and is able to find the DAGs, both of which are dependent on using the correct AIRFLOW_HOME environment variable.</p>
-
 <p>Here&rsquo;s the TL;DR:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#75715e">#If AIRFLOW_HOME environment variable doesn’t exist, it defaults:</span>
-    os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AIRFLOW_HOME&#39;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;~/airflow&#39;</span>)
-
-<span style="color:#75715e">#It’s really useful to always check where the code is running:</span>
-    homedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;HOME&#39;</span>)
-
-<span style="color:#75715e">#If it’s on Jenkins, there’s an environment variable that gives you the path for that:</span>
-    jenkins_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;JENKINS_HOME&#39;</span>, None)
-
-<span style="color:#75715e">#In the Jenkinsfile (without Docker), we’re doing this: </span>
-    withEnv([<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;AIRFLOW_HOME=/br/airflow&#39;</span>])
-    cp <span style="color:#f92672">-</span>r <span style="color:#960050;background-color:#1e0010">$</span>PWD<span style="color:#f92672">/</span>dags <span style="color:#960050;background-color:#1e0010">$</span>AIRFLOW_HOME<span style="color:#f92672">/</span>
-
-<span style="color:#75715e">#If you’re running tests locally, there’s a helper that I stole from inside Airflow’s guts:</span>
-    <span style="color:#f92672">import</span> airflow.configuration <span style="color:#f92672">as</span> conf
-    conf<span style="color:#f92672">.</span>load_test_config()
-    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;TEST_CONFIG_FILE&#39;</span>] <span style="color:#f92672">=</span> conf<span style="color:#f92672">.</span>TEST_CONFIG_FILE</code></pre></div>
-<h3 id="write-unit-tests-for-your-operators-and-your-dags">Write unit tests for your Operators and your DAGs</h3>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#If AIRFLOW_HOME environment variable doesn’t exist, it defaults:</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;AIRFLOW_HOME&#39;</span>, <span style="color:#e6db74">&#39;~/airflow&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#It’s really useful to always check where the code is running:</span>
+</span></span><span style="display:flex;"><span>    homedir <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;HOME&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#If it’s on Jenkins, there’s an environment variable that gives you the path for that:</span>
+</span></span><span style="display:flex;"><span>    jenkins_path <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#39;JENKINS_HOME&#39;</span>, <span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#In the Jenkinsfile (without Docker), we’re doing this: </span>
+</span></span><span style="display:flex;"><span>    withEnv([<span style="color:#e6db74">&#39;AIRFLOW_HOME=/br/airflow&#39;</span>])
+</span></span><span style="display:flex;"><span>    cp <span style="color:#f92672">-</span>r <span style="color:#960050;background-color:#1e0010">$</span>PWD<span style="color:#f92672">/</span>dags <span style="color:#960050;background-color:#1e0010">$</span>AIRFLOW_HOME<span style="color:#f92672">/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#If you’re running tests locally, there’s a helper that I stole from inside Airflow’s guts:</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> airflow.configuration <span style="color:#66d9ef">as</span> conf
+</span></span><span style="display:flex;"><span>    conf<span style="color:#f92672">.</span>load_test_config()
+</span></span><span style="display:flex;"><span>    os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#39;TEST_CONFIG_FILE&#39;</span>] <span style="color:#f92672">=</span> conf<span style="color:#f92672">.</span>TEST_CONFIG_FILE
+</span></span></code></pre></div><h3 id="write-unit-tests-for-your-operators-and-your-dags">Write unit tests for your Operators and your DAGs</h3>
 <p>I hadn&rsquo;t seen anyone doing this for Airflow, but I write tests for all my python code, so why should Airflow be any different?</p>
-
 <p>It&rsquo;s a little unintuitive, because Airflow DAG files are not like regular python files. DAG objects have to be at the top level, so the way I got around this was to grab the dag file and then get each of the task objects as attributes.</p>
-
 <p>I wrote the tests for the Operators so that they could be easily re-used, since most of our DAGs have similar tasks. This also lets us use unit tests to enforce best practices.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestPostgresOperators</span>:
-    <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;&#34;&#34;
-</span><span style="color:#e6db74">    Not meant to be used alone
-</span><span style="color:#e6db74">    For use within specific dag test file
-</span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-    <span style="color:#a6e22e">@classmethod</span>
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(cls, dagfile):
-        cls<span style="color:#f92672">.</span>dagfile <span style="color:#f92672">=</span> dagfile
-
-    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_droptable</span>(self, taskname<span style="color:#f92672">=</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;dropTable&#39;</span>):
-        <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;&#39;&#39;
-</span><span style="color:#e6db74">        validate fields here
-</span><span style="color:#e6db74">        check retries number
-</span><span style="color:#e6db74">        :param taskname: str
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
-       drop <span style="color:#f92672">=</span> getattr(self<span style="color:#f92672">.</span>dagfile, taskname)
-       <span style="color:#66d9ef">assert</span>(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> drop<span style="color:#f92672">.</span>retries <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>)
-       <span style="color:#66d9ef">assert</span>(drop<span style="color:#f92672">.</span>postgres_conn_id<span style="color:#f92672">==</span><span style="color:#e6db74"></span><span style="color:#e6db74">&#39;redshift&#39;</span>)</code></pre></div>
-<p>Then these &lsquo;abstract tests&rsquo; get instantiated in the test file for a particular DAG, like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#f92672">import</span> advertisers_v2
-<span style="color:#f92672">from</span> test_dag_instantiation <span style="color:#f92672">import</span> TestDAGInstantiation
-<span style="color:#f92672">from</span> conftest <span style="color:#f92672">import</span> unittest_config
-
-<span style="color:#f92672">from</span> test_postgres_operators <span style="color:#f92672">import</span> TestPostgresOperators
-<span style="color:#f92672">from</span> test_mysql_to_redshift <span style="color:#f92672">import</span> TestMySQLtoRedshiftOperator
-
-mydag <span style="color:#f92672">=</span> TestDAGInstantiation()
-mydag<span style="color:#f92672">.</span>setUp(advertisers_v2,unittest_config<span style="color:#f92672">=</span>unittest_config)
-mydag<span style="color:#f92672">.</span>test_dagname()
-mydag<span style="color:#f92672">.</span>test_default_args()
-
-postgres_tests <span style="color:#f92672">=</span> TestPostgresOperators()
-postgres_tests<span style="color:#f92672">.</span>setUp(advertisers_v2)
-postgres_tests<span style="color:#f92672">.</span>test_droptable()
-postgres_tests<span style="color:#f92672">.</span>test_createtable()
-
-mysql_to_redshift_tests <span style="color:#f92672">=</span> TestMySQLtoRedshiftOperator()
-mysql_to_redshift_tests<span style="color:#f92672">.</span>setUp(advertisers_v2)
-mysql_to_redshift_tests<span style="color:#f92672">.</span>test_importstep()</code></pre></div>
-<p>Doing it this way makes it ridiculously easy to set up tests, and they can still be parameterized however you want, to test customizations as needed.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TestPostgresOperators</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Not meant to be used alone
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    For use within specific dag test file
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setUp</span>(cls, dagfile):
+</span></span><span style="display:flex;"><span>        cls<span style="color:#f92672">.</span>dagfile <span style="color:#f92672">=</span> dagfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">test_droptable</span>(self, taskname<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;dropTable&#39;</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        validate fields here
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        check retries number
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        :param taskname: str
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>       drop <span style="color:#f92672">=</span> getattr(self<span style="color:#f92672">.</span>dagfile, taskname)
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">assert</span>(<span style="color:#ae81ff">0</span> <span style="color:#f92672">&lt;=</span> drop<span style="color:#f92672">.</span>retries <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">assert</span>(drop<span style="color:#f92672">.</span>postgres_conn_id<span style="color:#f92672">==</span><span style="color:#e6db74">&#39;redshift&#39;</span>)
+</span></span></code></pre></div><p>Then these &lsquo;abstract tests&rsquo; get instantiated in the test file for a particular DAG, like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> advertisers_v2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> test_dag_instantiation <span style="color:#f92672">import</span> TestDAGInstantiation
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> conftest <span style="color:#f92672">import</span> unittest_config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> test_postgres_operators <span style="color:#f92672">import</span> TestPostgresOperators
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> test_mysql_to_redshift <span style="color:#f92672">import</span> TestMySQLtoRedshiftOperator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mydag <span style="color:#f92672">=</span> TestDAGInstantiation()
+</span></span><span style="display:flex;"><span>mydag<span style="color:#f92672">.</span>setUp(advertisers_v2,unittest_config<span style="color:#f92672">=</span>unittest_config)
+</span></span><span style="display:flex;"><span>mydag<span style="color:#f92672">.</span>test_dagname()
+</span></span><span style="display:flex;"><span>mydag<span style="color:#f92672">.</span>test_default_args()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>postgres_tests <span style="color:#f92672">=</span> TestPostgresOperators()
+</span></span><span style="display:flex;"><span>postgres_tests<span style="color:#f92672">.</span>setUp(advertisers_v2)
+</span></span><span style="display:flex;"><span>postgres_tests<span style="color:#f92672">.</span>test_droptable()
+</span></span><span style="display:flex;"><span>postgres_tests<span style="color:#f92672">.</span>test_createtable()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql_to_redshift_tests <span style="color:#f92672">=</span> TestMySQLtoRedshiftOperator()
+</span></span><span style="display:flex;"><span>mysql_to_redshift_tests<span style="color:#f92672">.</span>setUp(advertisers_v2)
+</span></span><span style="display:flex;"><span>mysql_to_redshift_tests<span style="color:#f92672">.</span>test_importstep()
+</span></span></code></pre></div><p>Doing it this way makes it ridiculously easy to set up tests, and they can still be parameterized however you want, to test customizations as needed.</p>
 <h3 id="some-other-fun-tidbits">Some other fun tidbits</h3>
-
 <p>If you&rsquo;re using XCOMs, the docs are a little bit out of date. This took me a while to figure out, so hopefully it helps save someone else the same pain. Note that this is for version 1.8 (not sure if anything is changing with XCOMs in the newer versions).</p>
-
 <p>The xcom values are actually stored in the <code>context</code> object, so when you go to push them you have to explicitly grab the task instance object to make that work.</p>
-
 <p>Inside the task where you&rsquo;re pushing:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">task_instance <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span>get(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;task_instance&#39;</span>)
-task_instance<span style="color:#f92672">.</span>xcom_push(name_of_xcom_key, name_of_xcom_value)</code></pre></div>
-<p>And then inside the task where you&rsquo;re pulling, you can use the jinja macro with the key name:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#e6db74"></span><span style="color:#e6db74">&#34;{{ task_instance.xcom_pull(task_ids=name_of_task_that_pushed, key=name_of_xcom_key) }}&#34;</span></code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>task_instance <span style="color:#f92672">=</span> context<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;task_instance&#39;</span>)
+</span></span><span style="display:flex;"><span>task_instance<span style="color:#f92672">.</span>xcom_push(name_of_xcom_key, name_of_xcom_value)
+</span></span></code></pre></div><p>And then inside the task where you&rsquo;re pulling, you can use the jinja macro with the key name:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#e6db74">&#34;{{ task_instance.xcom_pull(task_ids=name_of_task_that_pushed, key=name_of_xcom_key) }}&#34;</span>
+</span></span></code></pre></div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/testing/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">testing</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
-
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/">A tutorial within a tutorial on building reusable models with scikit-learn</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/test-driven-data-pipelining/">Test-driven data pipelining</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/statistics/probability-binning-simple-and-fast/">Probability binning: simple and fast</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/">Shuffling the deck: an interview experience</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/">Data pipelining with pandas</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/">Things I learned about zip files</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/recursion-excursion/">Recursion excursion</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black o-50">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
+	    
     </ul>
-  </div>
+</div>
 
+</aside>
 
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

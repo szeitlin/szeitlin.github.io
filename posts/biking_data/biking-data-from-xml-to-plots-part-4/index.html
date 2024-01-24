@@ -4,22 +4,35 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | Biking data from XML to analysis, part 4</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>Biking data from XML to analysis, part 4 | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.
+&hellip;tick&hellip;tick&hellip;tick
+Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs.">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-4/">
     
 
     <meta property="og:title" content="Biking data from XML to analysis, part 4" />
@@ -27,65 +40,47 @@
 &hellip;tick&hellip;tick&hellip;tick
 Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-4/" />
-
-
-
-<meta property="article:published_time" content="2015-02-12T00:00:00&#43;00:00"/>
-
-<meta property="article:modified_time" content="2015-02-12T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-4/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2015-02-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-02-12T00:00:00+00:00" />
 
 <meta itemprop="name" content="Biking data from XML to analysis, part 4">
 <meta itemprop="description" content="One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.
 &hellip;tick&hellip;tick&hellip;tick
-Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs.">
-
-
-<meta itemprop="datePublished" content="2015-02-12T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2015-02-12T00:00:00&#43;00:00" />
+Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs."><meta itemprop="datePublished" content="2015-02-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2015-02-12T00:00:00+00:00" />
 <meta itemprop="wordCount" content="359">
-
-
-
-<meta itemprop="keywords" content="" />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Biking data from XML to analysis, part 4"/>
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Biking data from XML to analysis, part 4"/>
 <meta name="twitter:description" content="One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.
 &hellip;tick&hellip;tick&hellip;tick
 Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs."/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -95,381 +90,122 @@ Anyway one thing I wondered about with the bike data was, can we compare average
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          Biking data from XML to analysis, part 4
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        <p>One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.</p>
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
-<p>&hellip;tick&hellip;tick&hellip;tick</p>
 
-<p>Anyway one thing I wondered about with the bike data was,  can we compare average speeds in the morning vs. the afternoon? But to do that, I first had to parse the datetime objects and put them in the right time zone.</p>
 
-<p>Since indexes are immutable in pandas, if you want to do any parsing on them, you have to do it with the information in a regular column. So I had to back up a step to before I made the timestamp into the index.</p>
 
-<p>I ended up using <a href="https://labix.org/python-dateutil">dateutil</a> to do the parsing, and <a href="http://pytz.sourceforge.net">pytz</a> to convert the timezone.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> pandas
-    <span style="color:#f92672">from</span> dateutil.parser <span style="color:#f92672">import</span> parse
-    <span style="color:#f92672">import</span> pytz
 
-    df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;sorted_by_date.csv&#34;</span>, index_col<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
 
-    df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;parsed&#39;</span>]<span style="color:#f92672">=</span>[parse(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;StartTime&#39;</span>]]
-    df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;parsed&#39;</span>]<span style="color:#f92672">.</span>head()
 
-Out:
-<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">15</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">51</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">03</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">26</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">15</span>:<span style="color:#ae81ff">46</span>:<span style="color:#ae81ff">52</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">23</span>:<span style="color:#ae81ff">59</span>:<span style="color:#ae81ff">27</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
 
-    df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;zoned&#39;</span>] <span style="color:#f92672">=</span> [x<span style="color:#f92672">.</span>astimezone(pytz<span style="color:#f92672">.</span>timezone(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;US/Pacific&#39;</span>)) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;parsed&#39;</span>]]
-    df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;zoned&#39;</span>]<span style="color:#f92672">.</span>head()
 
-Out:
-<span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">07</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">51</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">26</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">07</span>:<span style="color:#ae81ff">46</span>:<span style="color:#ae81ff">52</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">15</span>:<span style="color:#ae81ff">59</span>:<span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
-<span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">07</span> <span style="color:#ae81ff">07</span>:<span style="color:#ae81ff">56</span>:<span style="color:#ae81ff">14</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span></code></pre></div>
-<p>That weird -08:00 on the end is the time zone adjustment. In San Francisco, we&rsquo;re 8 hours off from Greenwich Time (aka UTC). <a href="http://www.worldtimezone.com/standard.html">This map</a> is kind of goofy looking, but it&rsquo;s very clear, and you can zoom in for more information.</p>
 
-<hr />
-
-<p>Then it occurred to me that I could just plot the hours, before sorting, to have some idea what to expect.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;hours&#39;</span>]<span style="color:#f92672">=</span>[x<span style="color:#f92672">.</span>hour <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;zoned&#39;</span>]]
+  <div id="sharing" class="mt3 ananke-socials">
     
-    <span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#f92672">as</span> plt
-    <span style="color:#f92672">import</span> seaborn <span style="color:#f92672">as</span> sns
+  </div>
 
-    sns<span style="color:#f92672">.</span>set_palette(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;deep&#34;</span>, desat<span style="color:#f92672">=</span><span style="color:#ae81ff">0.6</span>)
-    sns<span style="color:#f92672">.</span>set_context(rc<span style="color:#f92672">=</span>{<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;figure.figsize&#34;</span>: (<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">4</span>)})
 
-    df[<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;hours&#39;</span>]<span style="color:#f92672">.</span>hist() 
-    plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;hour of the day(correct timezone)&#39;</span>)
-    plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74"></span><span style="color:#e6db74">&#39;frequency&#39;</span>)</code></pre></div>
-<p><img src="/site_media/media/a95f951c2f081.png" alt="hours.png" /></p>
+      <h1 class="f1 athelas mt3 mb1">Biking data from XML to analysis, part 4</h1>
+      
+      <p class="tracked">
+        By <strong>Samantha G. Zeitlin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-02-12T00:00:00Z">February 12, 2015</time>
+      
 
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.</p>
+<p>&hellip;tick&hellip;tick&hellip;tick</p>
+<p>Anyway one thing I wondered about with the bike data was,  can we compare average speeds in the morning vs. the afternoon? But to do that, I first had to parse the datetime objects and put them in the right time zone.</p>
+<p>Since indexes are immutable in pandas, if you want to do any parsing on them, you have to do it with the information in a regular column. So I had to back up a step to before I made the timestamp into the index.</p>
+<p>I ended up using <a href="https://labix.org/python-dateutil">dateutil</a> to do the parsing, and <a href="http://pytz.sourceforge.net">pytz</a> to convert the timezone.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#f92672">import</span> pandas
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> dateutil.parser <span style="color:#f92672">import</span> parse
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> pytz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df <span style="color:#f92672">=</span> pandas<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;sorted_by_date.csv&#34;</span>, index_col<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df[<span style="color:#e6db74">&#39;parsed&#39;</span>]<span style="color:#f92672">=</span>[parse(x) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> df[<span style="color:#e6db74">&#39;StartTime&#39;</span>]]
+</span></span><span style="display:flex;"><span>    df[<span style="color:#e6db74">&#39;parsed&#39;</span>]<span style="color:#f92672">.</span>head()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Out:
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">15</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">51</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">03</span> <span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">26</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">15</span>:<span style="color:#ae81ff">46</span>:<span style="color:#ae81ff">52</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">23</span>:<span style="color:#ae81ff">59</span>:<span style="color:#ae81ff">27</span><span style="color:#f92672">+</span><span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df[<span style="color:#e6db74">&#39;zoned&#39;</span>] <span style="color:#f92672">=</span> [x<span style="color:#f92672">.</span>astimezone(pytz<span style="color:#f92672">.</span>timezone(<span style="color:#e6db74">&#39;US/Pacific&#39;</span>)) <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> df[<span style="color:#e6db74">&#39;parsed&#39;</span>]]
+</span></span><span style="display:flex;"><span>    df[<span style="color:#e6db74">&#39;zoned&#39;</span>]<span style="color:#f92672">.</span>head()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Out:
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">07</span>:<span style="color:#ae81ff">51</span>:<span style="color:#ae81ff">51</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">02</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">20</span>:<span style="color:#ae81ff">26</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">07</span>:<span style="color:#ae81ff">46</span>:<span style="color:#ae81ff">52</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">04</span> <span style="color:#ae81ff">15</span>:<span style="color:#ae81ff">59</span>:<span style="color:#ae81ff">27</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span> <span style="color:#ae81ff">2013</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">07</span> <span style="color:#ae81ff">07</span>:<span style="color:#ae81ff">56</span>:<span style="color:#ae81ff">14</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span>:<span style="color:#ae81ff">00</span>
+</span></span></code></pre></div><p>That weird -08:00 on the end is the time zone adjustment. In San Francisco, we&rsquo;re 8 hours off from Greenwich Time (aka UTC). <a href="http://www.worldtimezone.com/standard.html">This map</a> is kind of goofy looking, but it&rsquo;s very clear, and you can zoom in for more information.</p>
+<hr>
+<p>Then it occurred to me that I could just plot the hours, before sorting, to have some idea what to expect.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    df[<span style="color:#e6db74">&#39;hours&#39;</span>]<span style="color:#f92672">=</span>[x<span style="color:#f92672">.</span>hour <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> df[<span style="color:#e6db74">&#39;zoned&#39;</span>]]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> seaborn <span style="color:#66d9ef">as</span> sns
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sns<span style="color:#f92672">.</span>set_palette(<span style="color:#e6db74">&#34;deep&#34;</span>, desat<span style="color:#f92672">=</span><span style="color:#ae81ff">0.6</span>)
+</span></span><span style="display:flex;"><span>    sns<span style="color:#f92672">.</span>set_context(rc<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;figure.figsize&#34;</span>: (<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">4</span>)})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    df[<span style="color:#e6db74">&#39;hours&#39;</span>]<span style="color:#f92672">.</span>hist() 
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#39;hour of the day(correct timezone)&#39;</span>)
+</span></span><span style="display:flex;"><span>    plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#39;frequency&#39;</span>)
+</span></span></code></pre></div><p><img src="/site_media/media/a95f951c2f081.png" alt="hours.png"></p>
 <p>So that presented a hypothesis: maybe the way to have really high average speeds in the city is to ride really early, when there&rsquo;s no traffic. (I&rsquo;ll admit to having ridden that early myself, and let&rsquo;s just say if you want to go fast, it&rsquo;s either that or come home very late at night.)</p>
-
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
+</aside>
 
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black o-50">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

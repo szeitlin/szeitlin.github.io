@@ -1,26 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bike on Always Be Getting Data (ABGD)</title>
-    <link>https://szeitlin.github.io/tags/bike/</link>
-    <description>Recent content in Bike on Always Be Getting Data (ABGD)</description>
+    <title>bike on Sam&#39;s Work Blog</title>
+    <link>https://example.org/tags/bike/</link>
+    <description>Recent content in bike on Sam&#39;s Work Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2015 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://szeitlin.github.io/tags/bike/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <atom:link href="https://example.org/tags/bike/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Biking data from XML to analysis, revised</title>
-      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
+      <link>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
-      <description>Am I getting slower every day?
-If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:
- If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
+      <guid>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
+      <description>Am I getting slower every day?&#xA;If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:&#xA;If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
     </item>
-    
   </channel>
 </rss>

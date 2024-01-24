@@ -4,85 +4,79 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | Things I learned about zip files</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>Things I learned about zip files | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
+I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/engineering/things-i-learned-about-zip-files-last-week/">
     
 
     <meta property="og:title" content="Things I learned about zip files" />
 <meta property="og:description" content="In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
 I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/" />
-
-
-
-<meta property="article:published_time" content="2015-01-15T00:00:00&#43;00:00"/>
-
-<meta property="article:modified_time" content="2015-01-15T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/engineering/things-i-learned-about-zip-files-last-week/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2015-01-15T00:00:00+00:00" />
+<meta property="article:modified_time" content="2015-01-15T00:00:00+00:00" />
 
 <meta itemprop="name" content="Things I learned about zip files">
 <meta itemprop="description" content="In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
-I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.">
-
-
-<meta itemprop="datePublished" content="2015-01-15T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2015-01-15T00:00:00&#43;00:00" />
+I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression."><meta itemprop="datePublished" content="2015-01-15T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2015-01-15T00:00:00+00:00" />
 <meta itemprop="wordCount" content="719">
-
-
-
-<meta itemprop="keywords" content="unix,python,zip," />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Things I learned about zip files"/>
+<meta itemprop="keywords" content="unix,python,zip," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Things I learned about zip files"/>
 <meta name="twitter:description" content="In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.
 I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression."/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -92,449 +86,184 @@ I thought I knew what zip files were. I have used them since grad school, for tr
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          Things I learned about zip files
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        <p>In an effort to advance my python skills, I spent some time slowly pecking away at <a href="http://pythonchallenge.com">the puzzles on pythonchallenge</a>. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.</p>
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Things I learned about zip files</h1>
+      
+      <p class="tracked">
+        By <strong>Samantha G. Zeitlin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2015-01-15T00:00:00Z">January 15, 2015</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>In an effort to advance my python skills, I spent some time slowly pecking away at <a href="http://pythonchallenge.com">the puzzles on pythonchallenge</a>. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.</p>
 <p>I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression. I used various utilities and command-line tools to deal with zipping and unzipping. But I never needed to know how they worked.</p>
-
 <p>Then I got stuck for a while because I was looking specifically for a pythonic solution for zip files.</p>
-
-<hr />
-
+<hr>
 <p><strong>Things I Learned and How I Learned Them</strong></p>
-
-<hr />
-
+<hr>
 <p><strong>1. Pydoc != online documentation for some libraries</strong></p>
-
 <p>For some python modules, the docstrings are great, and save you the work of having to hunt for the right version of the online documentation. Sometimes the docstrings are actually even better than the docs.</p>
-
 <p>If you do this:</p>
-
 <pre><code>pydoc zipfile.is_zipfile
 </code></pre>
-
 <p>You&rsquo;ll get this:</p>
-
 <pre><code>zipfile.is_zipfile= is_zipfile(filename)
 Quickly see if a file is a ZIP file by checking the magic number.
 
 The filename argument may be a file or file-like object too
 </code></pre>
-
-<hr />
-
+<hr>
 <p>I had gotten out of the habit of checking docstrings, because sometimes the docstrings are nonexistent, and then your best bet is to:</p>
-
 <ol>
 <li>Ask google</li>
 <li>Find the source code, and hope it&rsquo;s really easy to
 understand</li>
 <li>Ask friends if they know, or if they can recommend something more usable</li>
 </ol>
-
-<hr />
-
+<hr>
 <p><strong>2. Sometimes wikipedia fills in all the stuff the documentation skipped over.</strong></p>
-
 <p>Some things <a href="https://en.wikipedia.org/wiki/Zip_(file_format)#Structure">I needed to know</a> were actually easier to find out about on wikipedia.</p>
-
 <p>I did not know that there is such a thing as a <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)">magic number</a>, and that the one for ZIP actually spells out PK, for Phil Katz, the author of PKZIP.</p>
-
-<hr />
-
+<hr>
 <p><strong>3. It’s not actually cheating to use unix tricks.</strong></p>
-
 <p>The command “file” will give you information about the filetype. So if you download something and you’re not sure what it is, or you just want to verify that it&rsquo;s what you thought it should be (say, before you decompress it), try this first.</p>
-
 <pre><code>file myfile.zip
 </code></pre>
-
 <p>returns something like this:</p>
-
 <pre><code>myfile.zip: Zip archive data, at least v2.0 to extract
 </code></pre>
-
-<hr />
-
+<hr>
 <p>A friend recommended this nice tool called <a href="http://linux.die.net/man/1/xxd">xxd</a>, which gives you a hex dump of a file (even on Mac OSX!).</p>
-
 <p>This can be useful if you suspect there is text hidden in a file that is otherwise only binary or not human-readable.</p>
-
-<hr />
-
+<hr>
 <p><strong>4. Some older modules haven’t been updated in a long time.</strong></p>
-
 <p>The zip file format was invented ~20 years ago (1993), which means it doesn’t contain a way to work with these chunks of data in memory. So you have to save the whole thing to a file in order to do anything.</p>
-
 <p>It turns out that <em>file-like objects</em> can be a pretty vague way to describe what kind of input a method can handle. And the error messages don&rsquo;t say what I really needed to hear, which was something like:</p>
-
 <p><em>Please stop trying to give me a urllib2 response, I only eat files!</em></p>
-
-<hr />
-
+<hr>
 <p>Also, unlike more modern Python modules, there were not any examples of how to use the methods. So eventually I figured out that all I had to do was this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">    <span style="color:#f92672">import</span> urllib2
-    <span style="color:#f92672">import</span> zipfile
-
-    <span style="color:#75715e">#do what you normally do with a webpage</span>
-    response <span style="color:#f92672">=</span> urllib2<span style="color:#f92672">.</span>urlopen(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;http://target_URL.zip&#34;</span>)
-    body <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>read()
-
-    <span style="color:#75715e">#write it to a file, or you&#39;ll be screwed </span>
-    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;target.zip&#34;</span>, <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> myfile:
-        myfile<span style="color:#f92672">.</span>write(body)
-
-    <span style="color:#75715e">#confirm that it&#39;s actually a zip file</span>
-    <span style="color:#66d9ef">print</span> zipfile<span style="color:#f92672">.</span>is_zipfile(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;channel.zip&#34;</span>)
-
-    <span style="color:#75715e">#create a zip file object instance, so you can use the zipfile class methods</span>
-    myfile <span style="color:#f92672">=</span> zipfile<span style="color:#f92672">.</span>ZipFile(<span style="color:#e6db74"></span><span style="color:#e6db74">&#34;channel.zip&#34;</span>)</code></pre></div>
-<hr />
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#f92672">import</span> urllib2
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> zipfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#do what you normally do with a webpage</span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> urllib2<span style="color:#f92672">.</span>urlopen(<span style="color:#e6db74">&#34;http://target_URL.zip&#34;</span>)
+</span></span><span style="display:flex;"><span>    body <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#write it to a file, or you&#39;ll be screwed </span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;target.zip&#34;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> myfile:
+</span></span><span style="display:flex;"><span>        myfile<span style="color:#f92672">.</span>write(body)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#confirm that it&#39;s actually a zip file</span>
+</span></span><span style="display:flex;"><span>    print zipfile<span style="color:#f92672">.</span>is_zipfile(<span style="color:#e6db74">&#34;channel.zip&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#create a zip file object instance, so you can use the zipfile class methods</span>
+</span></span><span style="display:flex;"><span>    myfile <span style="color:#f92672">=</span> zipfile<span style="color:#f92672">.</span>ZipFile(<span style="color:#e6db74">&#34;channel.zip&#34;</span>)
+</span></span></code></pre></div><hr>
 <p><strong>5. Code Review.</strong></p>
-
 <p>After reading the original version of this post, one friend commented that I should I should do it <a href="https://gist.github.com/ods94065/e8bb54570d170e97b19b">his way</a>, with StringIO.</p>
-
 <p>Another friend emailed me this code block, which actually answered my original question about how to do it in-memory. As usual, the real lesson here is, if you don&rsquo;t know the name of something, it&rsquo;s hard to know how to look it up.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python">  <span style="color:#f92672">import</span> io
-  <span style="color:#f92672">import</span> sys
-  <span style="color:#f92672">import</span> urllib2
-  <span style="color:#f92672">import</span> zipfile
-
-  <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#39;__main__&#39;</span>:
-    zip_url <span style="color:#f92672">=</span> <span style="color:#e6db74"></span><span style="color:#e6db74">&#34;http://somefile.zip&#34;</span>
-
-    response <span style="color:#f92672">=</span> urllib2<span style="color:#f92672">.</span>urlopen(zip_url)
-    body <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>read()
-
-    byte_buffer <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>BytesIO(body)
-
-    myfile <span style="color:#f92672">=</span> zipfile<span style="color:#f92672">.</span>ZipFile(byte_buffer)
-
-    <span style="color:#66d9ef">print</span> myfile
-    <span style="color:#66d9ef">print</span> zipfile<span style="color:#f92672">.</span>is_zipfile(byte_buffer)</code></pre></div>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>  <span style="color:#f92672">import</span> io
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> urllib2
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">import</span> zipfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    zip_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://somefile.zip&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> urllib2<span style="color:#f92672">.</span>urlopen(zip_url)
+</span></span><span style="display:flex;"><span>    body <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    byte_buffer <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>BytesIO(body)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    myfile <span style="color:#f92672">=</span> zipfile<span style="color:#f92672">.</span>ZipFile(byte_buffer)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    print myfile
+</span></span><span style="display:flex;"><span>    print zipfile<span style="color:#f92672">.</span>is_zipfile(byte_buffer)
+</span></span></code></pre></div><ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/unix/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">unix</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/zip/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">zip</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
-
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/engineering/recursion-excursion/">Recursion excursion</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black o-50">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
+	    
     </ul>
-  </div>
+</div>
 
+</aside>
 
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

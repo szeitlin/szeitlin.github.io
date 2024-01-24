@@ -4,85 +4,79 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Always Be Getting Data (ABGD)  | A tutorial within a tutorial on building reusable models with scikit-learn</title>
-    <meta name="HandheldFriendly" content="True">
-    <meta name="MobileOptimized" content="320">
-
+    <title>A tutorial within a tutorial on building reusable models with scikit-learn | Sam&#39;s Work Blog</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="generator" content="Hugo 0.32.2" />
+    <meta name="description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work.">
+    <meta name="generator" content="Hugo 0.121.2">
     
     
-      <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
+    
+    
+      <meta name="robots" content="noindex, nofollow">
     
 
-    <link href='https://szeitlin.github.io/dist/main.css' rel='stylesheet' type="text/css" />
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
+
+
+
+    
+
     
       
+
     
 
+    
+
+    
+      <link rel="canonical" href="https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/">
     
 
     <meta property="og:title" content="A tutorial within a tutorial on building reusable models with scikit-learn" />
 <meta property="og:description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
- When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that." />
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/" />
-
-
-
-<meta property="article:published_time" content="2016-09-12T00:00:00&#43;00:00"/>
-
-<meta property="article:modified_time" content="2016-09-12T00:00:00&#43;00:00"/>
-
-
-
-
-
-
-
-
-
-
+<meta property="og:url" content="https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2016-09-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2016-09-12T00:00:00+00:00" />
 
 <meta itemprop="name" content="A tutorial within a tutorial on building reusable models with scikit-learn">
 <meta itemprop="description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
- When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that.">
-
-
-<meta itemprop="datePublished" content="2016-09-12T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2016-09-12T00:00:00&#43;00:00" />
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work."><meta itemprop="datePublished" content="2016-09-12T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2016-09-12T00:00:00+00:00" />
 <meta itemprop="wordCount" content="733">
-
-
-
-<meta itemprop="keywords" content="python,scikit-learn,ML,testing," />
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="A tutorial within a tutorial on building reusable models with scikit-learn"/>
+<meta itemprop="keywords" content="python,scikit-learn,ML,testing," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="A tutorial within a tutorial on building reusable models with scikit-learn"/>
 <meta name="twitter:description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
- When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects.  Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that."/>
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work."/>
 
+	
   </head>
 
   <body class="ma0 avenir bg-near-white">
 
     
+   
+  
 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
   <div class="flex-l justify-between items-center center">
-    <a href="https://szeitlin.github.io/" class="f3 fw2 hover-white no-underline white-90 dib">
-      Always Be Getting Data (ABGD)
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        Sam&#39;s Work Blog
+      
     </a>
     <div class="flex-l items-center">
       
+
       
-
-
-
-
-
-
-
+      
+<div class="ananke-socials">
+  
+</div>
 
     </div>
   </div>
@@ -92,397 +86,157 @@
   </header>
 
 
+
     <main class="pb7" role="main">
       
-  <div class="flex-l mt2 mw8 center">
-    <article class="center cf pv5 ph3 ph4-ns mw7">
-      <header>
-        <p class="f6 b helvetica tracked">
-          POSTS
-        </p>
-        <h1 class="f1">
-          A tutorial within a tutorial on building reusable models with scikit-learn
-        </h1>
-      </header>
-      <div class="nested-copy-line-height lh-copy f4 nested-links nested-img mid-gray">
-        
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside>
+      
 
-<p>Things I learned while following <a href="http://blog.districtdatalabs.com/building-a-classifier-from-census-data/">a tutorial</a> on how to build reusable models with scikit-learn.</p>
 
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">A tutorial within a tutorial on building reusable models with scikit-learn</h1>
+      
+      <p class="tracked">
+        By <strong>Samantha G. Zeitlin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2016-09-12T00:00:00Z">September 12, 2016</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Things I learned while following <a href="http://blog.districtdatalabs.com/building-a-classifier-from-census-data/">a tutorial</a> on how to build reusable models with scikit-learn.</p>
 <ol>
 <li>When in doubt, go back to pandas.</li>
 <li>When in doubt, write tests.</li>
 <li>When in doubt, write helper methods to wrap existing objects, rather than creating new objects.</li>
 </ol>
-
-<hr />
-
+<hr>
 <h2 id="ingesting-clean-data-is-easy-right">Ingesting &ldquo;clean&rdquo; data is easy, right?</h2>
-
 <p>Step 1 of this tutorial began with downloading data using <a href="http://requests.readthedocs.io/en/master/">requests</a>, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work. It looked like it worked.</p>
-
 <p>Step 2 was to read the file into pandas. I&rsquo;ve read lots of csv files into pandas before, so I had no reason to think it wouldn&rsquo;t work.</p>
-
 <p>It <a href="https://github.com/szeitlin/labor-force/blob/master/data/0912_2016_census_from_UCI.ipynb">didn&rsquo;t work</a>.</p>
-
 <p>I double-checked that I had followed the instructions correctly, and then checked a few more times before concluding that something was not quite right about the data.</p>
-
 <p>I went back and did the easy thing, just printing out the response from requests.</p>
-
 <p>After some digging, I figured out that <code>response.content</code> is not the same as <code>response.text</code>.</p>
-
 <p>The tutorial said to use <code>response.content</code>, but <code>response.text</code> seemed to have actually parsed the strings.</p>
-
 <p>Even with that fix, pandas was refusing to read in more than the first row of data, due to a couple of problems:</p>
-
 <ul>
 <li>pandas wasn&rsquo;t finding the line terminators (nothing special, just <code>'\n'</code>)</li>
 <li>pandas wasn&rsquo;t finding equal numbers of items per row</li>
 </ul>
-
 <p>Unexpectedly, when I went back to what I usually do, just plain old <code>pandas.read_csv</code>, this time going directly from the url, and including the column names, that actually worked.</p>
-
 <p>So it was actually better, and a lot less code, to completely skip using <code>requests</code>.</p>
-
-<hr />
-
+<hr>
 <h2 id="testing-always-gets-me-unstuck">Testing always gets me unstuck</h2>
-
 <p>I really liked the end-to-end structure of this tutorial, and was frankly embarrassed that I had so much trouble getting the initial ingestion to work.</p>
-
 <p>I liked that the tutorial gave me an excuse to walk through how the author actually uses scikit-learn models in production. With the data firmly in hand, the data visualization steps were easy - they worked as advertised, and anyway I&rsquo;m very familiar with using <code>seaborn</code> to make charts in python.</p>
-
 <p>I had never created a Bunch object before, so that was new for me. That seemed to work, but then the next steps again failed, and I had to back up a few steps.</p>
-
 <p>I wasn&rsquo;t sure what the problem was, so I did what I always do with complicated problems, and wrote some <a href="https://github.com/szeitlin/labor-force/blob/master/test_create_bunch.py">tests</a> to rule out user error and make sure I understood what the code was doing. That helped a lot, and identified what was actually broken.</p>
-
 <p>The problem: how to apply <code>LabelEncoder</code> to help convert categorical data, and <code>Imputer</code> to help fill missing data, to multiple columns.</p>
-
 <p>Because the idea was to do this in the context of a <code>Pipeline</code> object, the author demonstrated how to create our own Encoder and Imputer objects, with multiple inheritance. I understand the goal of this: take advantage of the nice clean syntax you get from making a Pipeline. But it was failing at the <code>fit_transform</code> step, and it wasn&rsquo;t obvious why.</p>
-
 <p>The <code>fit()</code> and <code>transform()</code> steps both seemed to be working individually and sequentially, and it wasn&rsquo;t easy to figure out how the <code>fit_transform</code> step was supposed to do anything more than chain them together.</p>
-
 <p>After banging my head on this at the end of a long day, even going back to the original scikit-learn source code in an effort to design tests to help me figure out what was wrong, I decided to sleep on it.</p>
-
-<hr />
-
+<hr>
 <h2 id="simple-and-working-is-better-than-complicated-and-broken">Simple and working is better than complicated and broken</h2>
-
 <p>I seriously considered writing tests for our custom Encoder and Imputer objects, but then it dawned on me that I really didn&rsquo;t need to do that. I decided that the Pipeline functionality was so simple that I didn&rsquo;t really need it, so I just stripped the objects down into <a href="https://github.com/szeitlin/labor-force/blob/master/sklearn_categorical.py">simple functions</a> to run the <code>fit</code> and <code>transform</code> steps, which was really all I needed anyway.</p>
-
 <p>That got me through the rest of the steps, so I could practice pickling a model and re-loading it, which seemed to work just fine.</p>
-
 <p>I don&rsquo;t know if the scikit-learn folks have plans to extend these methods, or if everyone normally does these kinds of acrobatics to encode and impute on multiple columns - normally I would just use pandas for that, too.</p>
-
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/scikit-learn/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">scikit-learn</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/ml/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ML</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/testing/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">testing</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
       </div>
-    </article>
-    <aside class="ph3 mt2 mt6-ns">
-      
+    </div>
+
+    <aside class="w-30-l mt6-l">
 
 
 
 
-
-
-
-  <div class="bg-light-gray pa3">
-    <ul>
-      <li class="list b mb3">
-        37 More Posts
-      </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/how_aikido_helps_me_at_work/" class="link ph2 pv2 db black">
-            How aikido helps me at work
-          </a>
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/posts/engineering/test-driven-data-pipelining/">Test-driven data pipelining</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/hiring_data_teams/" class="link ph2 pv2 db black">
-            Hiring data teams
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/">Shuffling the deck: an interview experience</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/dvc_vs_pachyderm/" class="link ph2 pv2 db black">
-            DVC_vs_Pachyderm
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/">Data pipelining with pandas</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-test-patterns/" class="link ph2 pv2 db black">
-            Test Patterns for Data Engineering
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/">Things I learned about zip files</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-eng-is-real-eng/" class="link ph2 pv2 db black">
-            Data Engineering Is Software Engineering
-          </a>
+	    
+	     <li  class="mb2">
+          <a href="/posts/engineering/recursion-excursion/">Recursion excursion</a>
         </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/recruiting-and-training-nontraditional-candidates/" class="link ph2 pv2 db black">
-            Recruiting and Training Nontraditional Candidates
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/postgres-with-docker/" class="link ph2 pv2 db black">
-            Postgres With Docker
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/manager/" class="link ph2 pv2 db black">
-            Manager
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/python_oop/" class="link ph2 pv2 db black">
-            Python OOP
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/pachyderm-vs-airflow/" class="link ph2 pv2 db black">
-            Pachyderm vs Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/aws-s3-vpc/" class="link ph2 pv2 db black">
-            More AWS things I learned the hard way: S3 best practices and VPCs
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/cross-account-access-aws/" class="link ph2 pv2 db black">
-            Cross-account access with AWS
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" class="link ph2 pv2 db black">
-            Things I learned about Pyspark the hard way
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/airflow/airflow-for-hands-off-etl/" class="link ph2 pv2 db black">
-            Airflow
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/probability-binning-simple-and-fast/" class="link ph2 pv2 db black">
-            Probability binning: simple and fast
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/within-every-tutorial-is-another-tutorial/" class="link ph2 pv2 db black o-50">
-            A tutorial within a tutorial on building reusable models with scikit-learn
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/shuffling-the-deck-an-interview-question/" class="link ph2 pv2 db black">
-            Shuffling the deck: an interview experience
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/statistics/validating-results/" class="link ph2 pv2 db black">
-            Validating Results
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/test-driven-data-pipelining/" class="link ph2 pv2 db black">
-            Test-driven data pipelining
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/" class="link ph2 pv2 db black">
-            Data pipelining with pandas
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-revised/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, revised
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/device-data/" class="link ph2 pv2 db black">
-            Working with device data
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-2/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 2
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-3/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 3
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/biking-data-from-xml-to-plots-part-4/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 4
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/things-i-learned-about-zip-files-last-week/" class="link ph2 pv2 db black">
-            Things I learned about zip files
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/" class="link ph2 pv2 db black">
-            Things I learned studying the cell cycle in cancer
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/" class="link ph2 pv2 db black">
-            Advice on recruiting
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/automating-user-friendly-documentation-using-selenium-/" class="link ph2 pv2 db black">
-            Automating user-friendly documentation with Selenium
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/biking_data/bike-data-from-xml-to-plots/" class="link ph2 pv2 db black">
-            Biking data from XML to analysis, part 1
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/faq-why-and-how-i-learned-to-code/" class="link ph2 pv2 db black">
-            FAQ: why and how I learned to code
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/fun-with-failing/" class="link ph2 pv2 db black">
-            Fun with text file encodings
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/game-plan-for-conferences-with-high-risk-of-harassment/" class="link ph2 pv2 db black">
-            Game plan for attending conferences with a high risk of harassment
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_transition/python-where-to-start/" class="link ph2 pv2 db black">
-            Python: where to start
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/" class="link ph2 pv2 db black">
-            Quick and dirty: plot your data on a map with python
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/engineering/recursion-excursion/" class="link ph2 pv2 db black">
-            Recursion excursion
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/robustness-lessons-from-doing-applied-bench-science/" class="link ph2 pv2 db black">
-            Robustness: lessons from applied bench science
-          </a>
-        </li>
-      
-        <li class="list f5 w-100 hover-bg-white nl1">
-          
-          <a href="/posts/career_skills/tips-on-giving-presentations/" class="link ph2 pv2 db black">
-            Tips on giving presentations
-          </a>
-        </li>
-      
+	    
     </ul>
-  </div>
+</div>
 
+</aside>
 
-    </aside>
-  </div>
+  </article>
 
     </main>
-    <footer class="bg-near-black bottom-0 w-100 pa3" role="contentinfo">
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://szeitlin.github.io/" >
-    &copy; 2023 Always Be Getting Data (ABGD)
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
+    &copy;  Sam's Work Blog 2024 
   </a>
+    <div>
+<div class="ananke-socials">
   
-
-
-
-
-
-
-
-
+</div>
+</div>
   </div>
 </footer>
-
-    <script src="https://szeitlin.github.io/dist/app.bundle.js" async></script>
 
   </body>
 </html>

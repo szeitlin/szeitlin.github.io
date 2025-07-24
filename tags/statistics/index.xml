@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>statistics on Sam&#39;s Work Blog</title>
-    <link>https://example.org/tags/statistics/</link>
-    <description>Recent content in statistics on Sam&#39;s Work Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Statistics on </title>
+    <link>https://szeitlin.github.io/tags/statistics/</link>
+    <description>Recent content in Statistics on </description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 04 Nov 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szeitlin.github.io/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Probability binning: simple and fast</title>
-      <link>https://example.org/posts/statistics/probability-binning-simple-and-fast/</link>
+      <link>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</link>
       <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/statistics/probability-binning-simple-and-fast/</guid>
-      <description>Over the years, I&amp;rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.&#xA;One of the first things I usually do is make a bunch of histograms. Histograms are great because it&amp;rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.</description>
+      <guid>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</guid>
+      <description>&lt;p&gt;Over the years, I&amp;rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.&lt;/p&gt;&#xA;&lt;p&gt;One of the first things I usually do is make a bunch of histograms. Histograms are great because it&amp;rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

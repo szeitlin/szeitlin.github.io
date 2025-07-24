@@ -4,24 +4,34 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>A tutorial within a tutorial on building reusable models with scikit-learn | Sam&#39;s Work Blog</title>
+    <title>A tutorial within a tutorial on building reusable models with scikit-learn | </title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
-When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work.">
-    <meta name="generator" content="Hugo 0.121.2">
+
+When in doubt, go back to pandas.
+When in doubt, write tests.
+When in doubt, write helper methods to wrap existing objects, rather than creating new objects.
+
+
+Ingesting &ldquo;clean&rdquo; data is easy, right?
+Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work. It looked like it worked.">
+    <meta name="generator" content="Hugo 0.148.1">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Samantha G. Zeitlin">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.8d048772ae72ab11245a0e296d1f2a36d3e3dd376c6c867394d6cc659c68fc37.css" >
+
 
 
 
     
+
 
     
       
@@ -31,30 +41,39 @@ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, wri
     
 
     
-      <link rel="canonical" href="https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/">
+      <link rel="canonical" href="https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/">
     
 
-    <meta property="og:title" content="A tutorial within a tutorial on building reusable models with scikit-learn" />
-<meta property="og:description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
-When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2016-09-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2016-09-12T00:00:00+00:00" />
+    <meta property="og:url" content="https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/">
+  <meta property="og:title" content="A tutorial within a tutorial on building reusable models with scikit-learn">
+  <meta property="og:description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting “clean” data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I’ve used requests before, I had no reason to think it wouldn’t work. It looked like it worked.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2016-09-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2016-09-12T00:00:00+00:00">
+    <meta property="article:tag" content="Python">
+    <meta property="article:tag" content="Scikit-Learn">
+    <meta property="article:tag" content="ML">
+    <meta property="article:tag" content="Testing">
 
-<meta itemprop="name" content="A tutorial within a tutorial on building reusable models with scikit-learn">
-<meta itemprop="description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
-When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work."><meta itemprop="datePublished" content="2016-09-12T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2016-09-12T00:00:00+00:00" />
-<meta itemprop="wordCount" content="733">
-<meta itemprop="keywords" content="python,scikit-learn,ML,testing," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="A tutorial within a tutorial on building reusable models with scikit-learn"/>
-<meta name="twitter:description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
-When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &ldquo;clean&rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&rsquo;ve used requests before, I had no reason to think it wouldn&rsquo;t work."/>
+  <meta itemprop="name" content="A tutorial within a tutorial on building reusable models with scikit-learn">
+  <meta itemprop="description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting “clean” data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I’ve used requests before, I had no reason to think it wouldn’t work. It looked like it worked.">
+  <meta itemprop="datePublished" content="2016-09-12T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2016-09-12T00:00:00+00:00">
+  <meta itemprop="wordCount" content="733">
+  <meta itemprop="keywords" content="Python,Scikit-Learn,ML,Testing">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="A tutorial within a tutorial on building reusable models with scikit-learn">
+  <meta name="twitter:description" content="Things I learned while following a tutorial on how to build reusable models with scikit-learn.
+When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting “clean” data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I’ve used requests before, I had no reason to think it wouldn’t work. It looked like it worked.">
 
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -63,20 +82,17 @@ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, wri
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
-        Sam&#39;s Work Blog
+        
       
     </a>
     <div class="flex-l items-center">
       
 
       
-      
-<div class="ananke-socials">
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
@@ -90,32 +106,16 @@ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, wri
     <main class="pb7" role="main">
       
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked ttu">
           
         Posts
-      </aside>
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">A tutorial within a tutorial on building reusable models with scikit-learn</h1>
       
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">A tutorial within a tutorial on building reusable models with scikit-learn</h1>
-      
-      <p class="tracked">
-        By <strong>Samantha G. Zeitlin</strong>
+      <p class="tracked"><strong>Samantha G. Zeitlin</strong>
       </p>
       
       
@@ -166,19 +166,19 @@ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, wri
 <ul class="pa0">
   
    <li class="list di">
-     <a href="/tags/python/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">python</a>
+     <a href="/tags/python/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Python</a>
    </li>
   
    <li class="list di">
-     <a href="/tags/scikit-learn/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">scikit-learn</a>
+     <a href="/tags/scikit-learn/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Scikit-Learn</a>
    </li>
   
    <li class="list di">
-     <a href="/tags/ml/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">ML</a>
+     <a href="/tags/ml/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">ML</a>
    </li>
   
    <li class="list di">
-     <a href="/tags/testing/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">testing</a>
+     <a href="/tags/testing/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Testing</a>
    </li>
   
 </ul>
@@ -227,13 +227,10 @@ When in doubt, go back to pandas. When in doubt, write tests. When in doubt, wri
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
-    &copy;  Sam's Work Blog 2024 
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://szeitlin.github.io/" >
+    &copy; 
   </a>
-    <div>
-<div class="ananke-socials">
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
   </div>
 </footer>

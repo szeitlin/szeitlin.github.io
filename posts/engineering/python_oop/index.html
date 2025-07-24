@@ -4,24 +4,31 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Python OOP | Sam&#39;s Work Blog</title>
+    <title>Python OOP | </title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="I frequently hear Python referred to as a &lsquo;scripting&rsquo; language, because it&rsquo;s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can&rsquo;t write &lsquo;real&rsquo; programs with it. This post is about moving beyond using Python as a scripting language. I&rsquo;m assuming you&rsquo;re already comfortable with basic python data types and methods.
-Note: Most of the content here is specific to Python 3. If you&rsquo;re just learning Python now, don&rsquo;t learn Python 2, it&rsquo;s being deprecated and many current libraries already stopped supporting it.">
-    <meta name="generator" content="Hugo 0.121.2">
+    <meta name="description" content="I frequently hear Python referred to as a &lsquo;scripting&rsquo; language, because it&rsquo;s not compiled.
+Unfortunately, for this reason, a lot of people seem to assume you can&rsquo;t write &lsquo;real&rsquo; programs with it.
+This post is about moving beyond using Python as a scripting language. I&rsquo;m assuming you&rsquo;re already comfortable with
+basic python data types and methods.
+Note: Most of the content here is specific to Python 3. If you&rsquo;re just learning
+Python now, don&rsquo;t learn Python 2, it&rsquo;s being deprecated and many current
+libraries already stopped supporting it.">
+    <meta name="generator" content="Hugo 0.148.1">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.8d048772ae72ab11245a0e296d1f2a36d3e3dd376c6c867394d6cc659c68fc37.css" >
+
 
 
 
     
+
 
     
       
@@ -31,30 +38,34 @@ Note: Most of the content here is specific to Python 3. If you&rsquo;re just lea
     
 
     
-      <link rel="canonical" href="https://example.org/posts/engineering/python_oop/">
+      <link rel="canonical" href="https://szeitlin.github.io/posts/engineering/python_oop/">
     
 
-    <meta property="og:title" content="Python OOP" />
-<meta property="og:description" content="I frequently hear Python referred to as a &lsquo;scripting&rsquo; language, because it&rsquo;s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can&rsquo;t write &lsquo;real&rsquo; programs with it. This post is about moving beyond using Python as a scripting language. I&rsquo;m assuming you&rsquo;re already comfortable with basic python data types and methods.
-Note: Most of the content here is specific to Python 3. If you&rsquo;re just learning Python now, don&rsquo;t learn Python 2, it&rsquo;s being deprecated and many current libraries already stopped supporting it." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.org/posts/engineering/python_oop/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-05-24T13:29:53-07:00" />
-<meta property="article:modified_time" content="2019-05-24T13:29:53-07:00" />
+    <meta property="og:url" content="https://szeitlin.github.io/posts/engineering/python_oop/">
+  <meta property="og:title" content="Python OOP">
+  <meta property="og:description" content="I frequently hear Python referred to as a ‘scripting’ language, because it’s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can’t write ‘real’ programs with it. This post is about moving beyond using Python as a scripting language. I’m assuming you’re already comfortable with basic python data types and methods.
+Note: Most of the content here is specific to Python 3. If you’re just learning Python now, don’t learn Python 2, it’s being deprecated and many current libraries already stopped supporting it.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-05-24T13:29:53-07:00">
+    <meta property="article:modified_time" content="2019-05-24T13:29:53-07:00">
 
-<meta itemprop="name" content="Python OOP">
-<meta itemprop="description" content="I frequently hear Python referred to as a &lsquo;scripting&rsquo; language, because it&rsquo;s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can&rsquo;t write &lsquo;real&rsquo; programs with it. This post is about moving beyond using Python as a scripting language. I&rsquo;m assuming you&rsquo;re already comfortable with basic python data types and methods.
-Note: Most of the content here is specific to Python 3. If you&rsquo;re just learning Python now, don&rsquo;t learn Python 2, it&rsquo;s being deprecated and many current libraries already stopped supporting it."><meta itemprop="datePublished" content="2019-05-24T13:29:53-07:00" />
-<meta itemprop="dateModified" content="2019-05-24T13:29:53-07:00" />
-<meta itemprop="wordCount" content="1776">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Python OOP"/>
-<meta name="twitter:description" content="I frequently hear Python referred to as a &lsquo;scripting&rsquo; language, because it&rsquo;s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can&rsquo;t write &lsquo;real&rsquo; programs with it. This post is about moving beyond using Python as a scripting language. I&rsquo;m assuming you&rsquo;re already comfortable with basic python data types and methods.
-Note: Most of the content here is specific to Python 3. If you&rsquo;re just learning Python now, don&rsquo;t learn Python 2, it&rsquo;s being deprecated and many current libraries already stopped supporting it."/>
+  <meta itemprop="name" content="Python OOP">
+  <meta itemprop="description" content="I frequently hear Python referred to as a ‘scripting’ language, because it’s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can’t write ‘real’ programs with it. This post is about moving beyond using Python as a scripting language. I’m assuming you’re already comfortable with basic python data types and methods.
+Note: Most of the content here is specific to Python 3. If you’re just learning Python now, don’t learn Python 2, it’s being deprecated and many current libraries already stopped supporting it.">
+  <meta itemprop="datePublished" content="2019-05-24T13:29:53-07:00">
+  <meta itemprop="dateModified" content="2019-05-24T13:29:53-07:00">
+  <meta itemprop="wordCount" content="1776">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python OOP">
+  <meta name="twitter:description" content="I frequently hear Python referred to as a ‘scripting’ language, because it’s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can’t write ‘real’ programs with it. This post is about moving beyond using Python as a scripting language. I’m assuming you’re already comfortable with basic python data types and methods.
+Note: Most of the content here is specific to Python 3. If you’re just learning Python now, don’t learn Python 2, it’s being deprecated and many current libraries already stopped supporting it.">
 
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -63,20 +74,17 @@ Note: Most of the content here is specific to Python 3. If you&rsquo;re just lea
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
-        Sam&#39;s Work Blog
+        
       
     </a>
     <div class="flex-l items-center">
       
 
       
-      
-<div class="ananke-socials">
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
@@ -90,29 +98,14 @@ Note: Most of the content here is specific to Python 3. If you&rsquo;re just lea
     <main class="pb7" role="main">
       
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked ttu">
           
         Posts
-      </aside>
-      
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">Python OOP</h1>
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Python OOP</h1>
       
       
       
@@ -140,7 +133,7 @@ making my own.</p>
 <h1 id="__init__"><code>__init__</code></h1>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sweets</span>:
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span></code></pre></div><p>Let&rsquo;s create a <em>class</em> to keep track of all the different kinds of
 desserts we want to make. The class keyword in python is not capitalized, but the name of the class is.</p>
 <p>A class name is a noun, and usually something that refers to a group, or
@@ -166,7 +159,7 @@ since usually they&rsquo;re used to describe the class
 or the instances in the class.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sweets</span>:
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, sweetness:str, crunchiness:str, stickiness:str):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, sweetness:str, crunchiness:str, stickiness:str):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sweetness <span style="color:#f92672">=</span> sweetness
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>crunchiness <span style="color:#f92672">=</span> crunchiness
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>stickiness <span style="color:#f92672">=</span> stickiness
@@ -192,7 +185,7 @@ with different attributes.</p>
 </span></span></code></pre></div><p>And we can add methods onto the class, which all the instances can use.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Sweets</span>:
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, sweetness:str, crunchiness:str, stickiness:str):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, sweetness:str, crunchiness:str, stickiness:str):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sweetness <span style="color:#f92672">=</span> sweetness
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>crunchiness <span style="color:#f92672">=</span> crunchiness
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>stickiness <span style="color:#f92672">=</span> stickiness
@@ -215,7 +208,7 @@ use those methods, even though you don&rsquo;t see them here, and we don&rsquo;t
 We can just do that, and it would look like this:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cookie</span>(Sweets):
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, sweetness, crunchiness, stickiness):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, sweetness, crunchiness, stickiness):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">crumble</span>(self):
@@ -242,8 +235,8 @@ specific to Cookie?</p>
 <code>__init__</code> method first, and then add the size attribute.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cookie</span>(Sweets):
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, sweetness, crunchiness, stickiness):
-</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span>__init__(sweetness, crunchiness, stickiness)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, sweetness, crunchiness, stickiness):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(sweetness, crunchiness, stickiness)
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">crumble</span>(self):
@@ -274,17 +267,17 @@ True
 <p>Multiple inheritance happens if you want to inherit from more than one parent class. The only time this really makes
 sense is if the two classes provide very different functionality. So here&rsquo;s an example where it could be useful:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>side <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Chassis</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>wheels <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ModelTrain</span>(Box, Chassis):
 </span></span><span style="display:flex;"><span>  
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
-</span></span><span style="display:flex;"><span>        super(ModelTrain, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self):
+</span></span><span style="display:flex;"><span>        super(ModelTrain, self)<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>()
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">blow_horn</span>(self):
 </span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;choo choo!&#39;</span>)
@@ -310,7 +303,7 @@ using the  <code>.__mro__</code> attribute, as described <a href="https://www.pr
 that one object or class knows about another one, but doesn&rsquo;t inherit from it.</p>
 <p>Here&rsquo;s a very simplified example of the type of design I&rsquo;ve used a lot for data engineering:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataCleaner</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, inputdata):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, inputdata):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>raw <span style="color:#f92672">=</span> inputdata
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>cleanup_method()
 </span></span><span style="display:flex;"><span>    
@@ -340,7 +333,7 @@ that one object or class knows about another one, but doesn&rsquo;t inherit from
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> dataframe
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DataPipeline</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, inputdata):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, inputdata):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>inputdata <span style="color:#f92672">=</span> inputdata
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">first_step</span>(self):
@@ -363,7 +356,7 @@ be able to use the output of DataCleaner.cleanup_method().</p>
 but this time with composition instead of inheritance, so we don&rsquo;t have worry about using super() at all, which
 seems simpler at first:</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Cookie</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self, sweetness, crunchiness, stickiness):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, sweetness, crunchiness, stickiness):
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>description <span style="color:#f92672">=</span> Sweets(sweetness, crunchiness, stickiness)
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>
@@ -406,13 +399,10 @@ Future posts may include discussion on abstract base classes, metaclasses, mixin
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
-    &copy;  Sam's Work Blog 2024 
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://szeitlin.github.io/" >
+    &copy; 
   </a>
-    <div>
-<div class="ananke-socials">
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
   </div>
 </footer>

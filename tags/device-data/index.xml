@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>device data on Sam&#39;s Work Blog</title>
-    <link>https://example.org/tags/device-data/</link>
-    <description>Recent content in device data on Sam&#39;s Work Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Device Data on </title>
+    <link>https://szeitlin.github.io/tags/device-data/</link>
+    <description>Recent content in Device Data on </description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Aug 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/device-data/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szeitlin.github.io/tags/device-data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Biking data from XML to analysis, revised</title>
-      <link>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
-      <description>Am I getting slower every day?&#xA;If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:&#xA;If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Am I getting slower every day?&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?&lt;/li&gt;&#xA;&lt;li&gt;Do I tend to ride faster in the morning or the evening?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Last year, I wrote &lt;a href=&#34;https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/&#34;&gt;a few posts&lt;/a&gt; about learning how to parse a set of Garmin XML data from 2013 and analyze it using pandas, matplotlib, and &lt;a href=&#34;http://web.stanford.edu/~mwaskom/software/seaborn/&#34;&gt;seaborn&lt;/a&gt;. This year I redid the same analyses, with a new installment of data from 2014.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Working with device data</title>
-      <link>https://example.org/posts/biking_data/device-data/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/device-data/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/device-data/</guid>
-      <description>In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.&#xA;I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.&#xA;Things to consider when working with devices Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/device-data/</guid>
+      <description>&lt;p&gt;In continuing my series on &lt;a href=&#34;https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/&#34;&gt;investigating bike data&lt;/a&gt;, I ran into some interesting aspects of working with device data.&lt;/p&gt;&#xA;&lt;p&gt;I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.&lt;/p&gt;&#xA;&lt;h2 id=&#34;things-to-consider-when-working-with-devices&#34;&gt;Things to consider when working with devices&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Are you using the device yourself?&lt;/li&gt;&#xA;&lt;li&gt;Are you interacting with the user(s) (directly or indirectly)? Or not at all?&lt;/li&gt;&#xA;&lt;li&gt;What is the device &lt;em&gt;designed&lt;/em&gt; to do? Are you using it for its intended purpose?&lt;/li&gt;&#xA;&lt;li&gt;How well does the device actually work? Generic measurables might include: sensitivity, specificity, accuracy, precision, battery life&lt;/li&gt;&#xA;&lt;li&gt;What else is being measured?&lt;/li&gt;&#xA;&lt;li&gt;Measured how?&lt;/li&gt;&#xA;&lt;li&gt;How are data stored? How much data can it store? How does it connect to other devices/data stores?&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;In the case of a bike computer, I have been looking at:&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

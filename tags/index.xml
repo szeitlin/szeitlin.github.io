@@ -1,151 +1,151 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Sam&#39;s Work Blog</title>
-    <link>https://example.org/tags/</link>
-    <description>Recent content in Tags on Sam&#39;s Work Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Tags on </title>
+    <link>https://szeitlin.github.io/tags/</link>
+    <description>Recent content in Tags on </description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 04 Aug 2018 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szeitlin.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>aws</title>
-      <link>https://example.org/tags/aws/</link>
+      <title>Aws</title>
+      <link>https://szeitlin.github.io/tags/aws/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/aws/</guid>
+      <guid>https://szeitlin.github.io/tags/aws/</guid>
       <description></description>
     </item>
     <item>
       <title>EMR</title>
-      <link>https://example.org/tags/emr/</link>
+      <link>https://szeitlin.github.io/tags/emr/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/emr/</guid>
+      <guid>https://szeitlin.github.io/tags/emr/</guid>
       <description></description>
     </item>
     <item>
       <title>KMS</title>
-      <link>https://example.org/tags/kms/</link>
+      <link>https://szeitlin.github.io/tags/kms/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/kms/</guid>
+      <guid>https://szeitlin.github.io/tags/kms/</guid>
       <description></description>
     </item>
     <item>
-      <title>pyspark</title>
-      <link>https://example.org/tags/pyspark/</link>
+      <title>Pyspark</title>
+      <link>https://szeitlin.github.io/tags/pyspark/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/pyspark/</guid>
+      <guid>https://szeitlin.github.io/tags/pyspark/</guid>
       <description></description>
     </item>
     <item>
-      <title>python</title>
-      <link>https://example.org/tags/python/</link>
+      <title>Python</title>
+      <link>https://szeitlin.github.io/tags/python/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/python/</guid>
+      <guid>https://szeitlin.github.io/tags/python/</guid>
       <description></description>
     </item>
     <item>
-      <title>s3</title>
-      <link>https://example.org/tags/s3/</link>
+      <title>S3</title>
+      <link>https://szeitlin.github.io/tags/s3/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/s3/</guid>
+      <guid>https://szeitlin.github.io/tags/s3/</guid>
       <description></description>
     </item>
     <item>
-      <title>spark</title>
-      <link>https://example.org/tags/spark/</link>
+      <title>Spark</title>
+      <link>https://szeitlin.github.io/tags/spark/</link>
       <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/spark/</guid>
+      <guid>https://szeitlin.github.io/tags/spark/</guid>
       <description></description>
     </item>
     <item>
-      <title>testing</title>
-      <link>https://example.org/tags/testing/</link>
+      <title>Testing</title>
+      <link>https://szeitlin.github.io/tags/testing/</link>
       <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/testing/</guid>
+      <guid>https://szeitlin.github.io/tags/testing/</guid>
       <description></description>
     </item>
     <item>
-      <title>pandas</title>
-      <link>https://example.org/tags/pandas/</link>
+      <title>Pandas</title>
+      <link>https://szeitlin.github.io/tags/pandas/</link>
       <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/pandas/</guid>
+      <guid>https://szeitlin.github.io/tags/pandas/</guid>
       <description></description>
     </item>
     <item>
-      <title>statistics</title>
-      <link>https://example.org/tags/statistics/</link>
+      <title>Statistics</title>
+      <link>https://szeitlin.github.io/tags/statistics/</link>
       <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/statistics/</guid>
+      <guid>https://szeitlin.github.io/tags/statistics/</guid>
       <description></description>
     </item>
     <item>
       <title>ML</title>
-      <link>https://example.org/tags/ml/</link>
+      <link>https://szeitlin.github.io/tags/ml/</link>
       <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/ml/</guid>
+      <guid>https://szeitlin.github.io/tags/ml/</guid>
       <description></description>
     </item>
     <item>
-      <title>scikit-learn</title>
-      <link>https://example.org/tags/scikit-learn/</link>
+      <title>Scikit-Learn</title>
+      <link>https://szeitlin.github.io/tags/scikit-learn/</link>
       <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/scikit-learn/</guid>
+      <guid>https://szeitlin.github.io/tags/scikit-learn/</guid>
       <description></description>
     </item>
     <item>
-      <title>recursion</title>
-      <link>https://example.org/tags/recursion/</link>
+      <title>Recursion</title>
+      <link>https://szeitlin.github.io/tags/recursion/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/recursion/</guid>
+      <guid>https://szeitlin.github.io/tags/recursion/</guid>
       <description></description>
     </item>
     <item>
-      <title>experimental design</title>
-      <link>https://example.org/tags/experimental-design/</link>
+      <title>Experimental Design</title>
+      <link>https://szeitlin.github.io/tags/experimental-design/</link>
       <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/experimental-design/</guid>
+      <guid>https://szeitlin.github.io/tags/experimental-design/</guid>
       <description></description>
     </item>
     <item>
-      <title>bike</title>
-      <link>https://example.org/tags/bike/</link>
+      <title>Bike</title>
+      <link>https://szeitlin.github.io/tags/bike/</link>
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/bike/</guid>
+      <guid>https://szeitlin.github.io/tags/bike/</guid>
       <description></description>
     </item>
     <item>
-      <title>device data</title>
-      <link>https://example.org/tags/device-data/</link>
+      <title>Device Data</title>
+      <link>https://szeitlin.github.io/tags/device-data/</link>
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/device-data/</guid>
+      <guid>https://szeitlin.github.io/tags/device-data/</guid>
       <description></description>
     </item>
     <item>
-      <title>bike data</title>
-      <link>https://example.org/tags/bike-data/</link>
+      <title>Bike Data</title>
+      <link>https://szeitlin.github.io/tags/bike-data/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/bike-data/</guid>
+      <guid>https://szeitlin.github.io/tags/bike-data/</guid>
       <description></description>
     </item>
     <item>
-      <title>unix</title>
-      <link>https://example.org/tags/unix/</link>
+      <title>Unix</title>
+      <link>https://szeitlin.github.io/tags/unix/</link>
       <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/unix/</guid>
+      <guid>https://szeitlin.github.io/tags/unix/</guid>
       <description></description>
     </item>
     <item>
-      <title>zip</title>
-      <link>https://example.org/tags/zip/</link>
+      <title>Zip</title>
+      <link>https://szeitlin.github.io/tags/zip/</link>
       <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/zip/</guid>
+      <guid>https://szeitlin.github.io/tags/zip/</guid>
       <description></description>
     </item>
     <item>
-      <title>cell cycle</title>
-      <link>https://example.org/tags/cell-cycle/</link>
+      <title>Cell Cycle</title>
+      <link>https://szeitlin.github.io/tags/cell-cycle/</link>
       <pubDate>Tue, 29 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>https://example.org/tags/cell-cycle/</guid>
+      <guid>https://szeitlin.github.io/tags/cell-cycle/</guid>
       <description></description>
     </item>
   </channel>

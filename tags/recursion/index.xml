@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>recursion on Sam&#39;s Work Blog</title>
-    <link>https://example.org/tags/recursion/</link>
-    <description>Recent content in recursion on Sam&#39;s Work Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Recursion on </title>
+    <link>https://szeitlin.github.io/tags/recursion/</link>
+    <description>Recent content in Recursion on </description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 16 Jun 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/recursion/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szeitlin.github.io/tags/recursion/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Shuffling the deck: an interview experience</title>
-      <link>https://example.org/posts/engineering/shuffling-the-deck-an-interview-question/</link>
+      <link>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/shuffling-the-deck-an-interview-question/</guid>
-      <description>Here is a story about an interesting interview question and how I approached it.&#xA;The company in question wasn&amp;rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.&#xA;Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</guid>
+      <description>&lt;p&gt;Here is a story about an interesting interview question and how I approached it.&lt;/p&gt;&#xA;&lt;p&gt;The company in question wasn&amp;rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck. This is repeated until one portion is used up. The remaining cards go on top.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Recursion excursion</title>
-      <link>https://example.org/posts/engineering/recursion-excursion/</link>
+      <link>https://szeitlin.github.io/posts/engineering/recursion-excursion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/recursion-excursion/</guid>
-      <description>More than once, and probably not for the last time, I have done a technical interview for which I was underprepared. I feel like no matter how much I try to prepare, I am always underprepared for technical interviews.&#xA;I&amp;rsquo;m going to tell you about a time I was underprepared for a few reasons, including:&#xA;a) It was the first interview where I was asked to write more than a couple lines of recursive code</description>
+      <guid>https://szeitlin.github.io/posts/engineering/recursion-excursion/</guid>
+      <description>&lt;p&gt;More than once, and probably not for the last time, I have done a technical interview for which I was underprepared.&#xA;I feel like no matter how much I try to prepare, I am always underprepared for technical interviews.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m going to tell you about a time I was underprepared for a few reasons, including:&lt;/p&gt;&#xA;&lt;p&gt;a) It was the first interview where I was asked to write more than a couple lines of recursive code&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

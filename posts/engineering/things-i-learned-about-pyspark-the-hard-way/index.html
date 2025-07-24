@@ -4,25 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>Things I learned about Pyspark the hard way | Sam&#39;s Work Blog</title>
+    <title>Things I learned about Pyspark the hard way | </title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+    <meta name="description" content="Why Spark?
+Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
 Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
-Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).">
-    <meta name="generator" content="Hugo 0.121.2">
+Why Spark is good for this
+Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).">
+    <meta name="generator" content="Hugo 0.148.1">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
+    <meta name="author" content="Samantha G. Zeitlin">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.8d048772ae72ab11245a0e296d1f2a36d3e3dd376c6c867394d6cc659c68fc37.css" >
+
 
 
 
     
+
 
     
       
@@ -32,33 +37,39 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
     
 
     
-      <link rel="canonical" href="https://example.org/posts/engineering/things-i-learned-about-pyspark-the-hard-way/">
+      <link rel="canonical" href="https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/">
     
 
-    <meta property="og:title" content="Things I learned about Pyspark the hard way" />
-<meta property="og:description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+    <meta property="og:url" content="https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/">
+  <meta property="og:title" content="Things I learned about Pyspark the hard way">
+  <meta property="og:description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
 Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
-Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster)." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.org/posts/engineering/things-i-learned-about-pyspark-the-hard-way/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-03-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-03-28T00:00:00+00:00" />
+Why Spark is good for this Distributed processing means it’s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-03-28T00:00:00+00:00">
+    <meta property="article:modified_time" content="2018-03-28T00:00:00+00:00">
+    <meta property="article:tag" content="Spark">
 
-<meta itemprop="name" content="Things I learned about Pyspark the hard way">
-<meta itemprop="description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+  <meta itemprop="name" content="Things I learned about Pyspark the hard way">
+  <meta itemprop="description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
 Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
-Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster)."><meta itemprop="datePublished" content="2018-03-28T00:00:00+00:00" />
-<meta itemprop="dateModified" content="2018-03-28T00:00:00+00:00" />
-<meta itemprop="wordCount" content="1527">
-<meta itemprop="keywords" content="spark," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Things I learned about Pyspark the hard way"/>
-<meta name="twitter:description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
+Why Spark is good for this Distributed processing means it’s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).">
+  <meta itemprop="datePublished" content="2018-03-28T00:00:00+00:00">
+  <meta itemprop="dateModified" content="2018-03-28T00:00:00+00:00">
+  <meta itemprop="wordCount" content="1527">
+  <meta itemprop="keywords" content="Spark">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Things I learned about Pyspark the hard way">
+  <meta name="twitter:description" content="Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.
 Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.
-Why Spark is good for this Distributed processing means it&rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster)."/>
+Why Spark is good for this Distributed processing means it’s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).">
 
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -67,20 +78,17 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
-        Sam&#39;s Work Blog
+        
       
     </a>
     <div class="flex-l items-center">
       
 
       
-      
-<div class="ananke-socials">
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
@@ -94,32 +102,16 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
     <main class="pb7" role="main">
       
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked ttu">
           
         Posts
-      </aside>
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Things I learned about Pyspark the hard way</h1>
       
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">Things I learned about Pyspark the hard way</h1>
-      
-      <p class="tracked">
-        By <strong>Samantha G. Zeitlin</strong>
+      <p class="tracked"><strong>Samantha G. Zeitlin</strong>
       </p>
       
       
@@ -257,7 +249,7 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
 <ul class="pa0">
   
    <li class="list di">
-     <a href="/tags/spark/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">spark</a>
+     <a href="/tags/spark/" class="link f5 grow br-pill ba ph3 pv2 mb2 dib black sans-serif no-underline">Spark</a>
    </li>
   
 </ul>
@@ -279,13 +271,10 @@ Why Spark is good for this Distributed processing means it&rsquo;s very fast at 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
-    &copy;  Sam's Work Blog 2024 
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://szeitlin.github.io/" >
+    &copy; 
   </a>
-    <div>
-<div class="ananke-socials">
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
   </div>
 </footer>

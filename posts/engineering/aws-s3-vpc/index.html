@@ -4,25 +4,30 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>More AWS things I learned the hard way: S3 best practices and VPCs | Sam&#39;s Work Blog</title>
+    <title>More AWS things I learned the hard way: S3 best practices and VPCs | </title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
-Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
+    <meta name="description" content="To make a long, mostly whiny story short, as part of my current role,
+I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying
+mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
+
 Best practices for storing big data on S3">
-    <meta name="generator" content="Hugo 0.121.2">
+    <meta name="generator" content="Hugo 0.148.1">
     
     
     
+      <meta name="robots" content="index, follow">
     
-      <meta name="robots" content="noindex, nofollow">
     
 
     
-<link rel="stylesheet" href="/ananke/css/main.min.css" >
+<link rel="stylesheet" href="/ananke/css/main.min.8d048772ae72ab11245a0e296d1f2a36d3e3dd376c6c867394d6cc659c68fc37.css" >
+
 
 
 
     
+
 
     
       
@@ -32,33 +37,37 @@ Best practices for storing big data on S3">
     
 
     
-      <link rel="canonical" href="https://example.org/posts/engineering/aws-s3-vpc/">
+      <link rel="canonical" href="https://szeitlin.github.io/posts/engineering/aws-s3-vpc/">
     
 
-    <meta property="og:title" content="More AWS things I learned the hard way: S3 best practices and VPCs" />
-<meta property="og:description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
-Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
-Best practices for storing big data on S3" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://example.org/posts/engineering/aws-s3-vpc/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-12-02T16:29:47-08:00" />
-<meta property="article:modified_time" content="2018-12-02T16:29:47-08:00" />
+    <meta property="og:url" content="https://szeitlin.github.io/posts/engineering/aws-s3-vpc/">
+  <meta property="og:title" content="More AWS things I learned the hard way: S3 best practices and VPCs">
+  <meta property="og:description" content="To make a long, mostly whiny story short, as part of my current role, I’ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I’ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people’s advice, so I thought I’d collect some of them here.
+Best practices for storing big data on S3">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-12-02T16:29:47-08:00">
+    <meta property="article:modified_time" content="2018-12-02T16:29:47-08:00">
 
-<meta itemprop="name" content="More AWS things I learned the hard way: S3 best practices and VPCs">
-<meta itemprop="description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
-Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
-Best practices for storing big data on S3"><meta itemprop="datePublished" content="2018-12-02T16:29:47-08:00" />
-<meta itemprop="dateModified" content="2018-12-02T16:29:47-08:00" />
-<meta itemprop="wordCount" content="1081">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="More AWS things I learned the hard way: S3 best practices and VPCs"/>
-<meta name="twitter:description" content="To make a long, mostly whiny story short, as part of my current role, I&rsquo;ve been doing a lot of fighting with AWS to help support my team.
-Some of the things I&rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&rsquo;s advice, so I thought I&rsquo;d collect some of them here.
-Best practices for storing big data on S3"/>
+  <meta itemprop="name" content="More AWS things I learned the hard way: S3 best practices and VPCs">
+  <meta itemprop="description" content="To make a long, mostly whiny story short, as part of my current role, I’ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I’ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people’s advice, so I thought I’d collect some of them here.
+Best practices for storing big data on S3">
+  <meta itemprop="datePublished" content="2018-12-02T16:29:47-08:00">
+  <meta itemprop="dateModified" content="2018-12-02T16:29:47-08:00">
+  <meta itemprop="wordCount" content="1081">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="More AWS things I learned the hard way: S3 best practices and VPCs">
+  <meta name="twitter:description" content="To make a long, mostly whiny story short, as part of my current role, I’ve been doing a lot of fighting with AWS to help support my team.
+Some of the things I’ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people’s advice, so I thought I’d collect some of them here.
+Best practices for storing big data on S3">
 
+      
+    
 	
-  </head>
-
-  <body class="ma0 avenir bg-near-white">
+  </head><body class="ma0 avenir bg-near-white production">
 
     
    
@@ -67,20 +76,17 @@ Best practices for storing big data on S3"/>
   <header>
     <div class="bg-black">
       <nav class="pv3 ph3 ph4-ns" role="navigation">
-  <div class="flex-l justify-between items-center center">
-    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
       
-        Sam&#39;s Work Blog
+        
       
     </a>
     <div class="flex-l items-center">
       
 
       
-      
-<div class="ananke-socials">
-  
-</div>
+      <div class="ananke-socials"></div>
 
     </div>
   </div>
@@ -94,29 +100,14 @@ Best practices for storing big data on S3"/>
     <main class="pb7" role="main">
       
   
-  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
     <header class="mt4 w-100">
       <aside class="instapaper_ignoref b helvetica tracked ttu">
           
         Posts
-      </aside>
-      
-
-
-
-
-
-
-
-
-
-
-  <div id="sharing" class="mt3 ananke-socials">
-    
-  </div>
-
-
-      <h1 class="f1 athelas mt3 mb1">More AWS things I learned the hard way: S3 best practices and VPCs</h1>
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">More AWS things I learned the hard way: S3 best practices and VPCs</h1>
       
       
       
@@ -239,13 +230,10 @@ this up. Sorry it took so long for me to publish it!</p>
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
-  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://example.org/" >
-    &copy;  Sam's Work Blog 2024 
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://szeitlin.github.io/" >
+    &copy; 
   </a>
-    <div>
-<div class="ananke-socials">
-  
-</div>
+    <div><div class="ananke-socials"></div>
 </div>
   </div>
 </footer>

@@ -1,285 +1,292 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Sam&#39;s Work Blog</title>
-    <link>https://example.org/posts/</link>
-    <description>Recent content in Posts on Sam&#39;s Work Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Posts on </title>
+    <link>https://szeitlin.github.io/posts/</link>
+    <description>Recent content in Posts on </description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Jan 2024 12:20:27 -0800</lastBuildDate>
-    <atom:link href="https://example.org/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Jul 2025 10:23:20 -0700</lastBuildDate>
+    <atom:link href="https://szeitlin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vibe Coding</title>
+      <link>https://szeitlin.github.io/posts/vibe-coding/</link>
+      <pubDate>Thu, 24 Jul 2025 10:23:20 -0700</pubDate>
+      <guid>https://szeitlin.github.io/posts/vibe-coding/</guid>
+      <description>&lt;h3 id=&#34;some-observations-on-vibe-coding&#34;&gt;Some observations on vibe coding&lt;/h3&gt;&#xA;&lt;p&gt;I get a lot of questions about working with LLMs. Something I hear people discussing a lot is whether AI-generated code is&#xA;better, or worse, or just more evil than human-generated code. I don&amp;rsquo;t think it&amp;rsquo;s an either/or question. To me, it&amp;rsquo;s just another tool:&#xA;like most tools, there are ways to use them for good, or as weapons.&lt;/p&gt;&#xA;&lt;p&gt;I think vibe coding is great if you need to write a one-off script that isn&amp;rsquo;t intended to be&#xA;part of production code. For example, I asked Claude to help me come up with ways to generate&#xA;fairly large test data sets for my last project, and it decided to write me a script to do it.&#xA;This worked beautifully for what I needed, and saved me a ton of time.&#xA;I did have to iterate on the prompt a bit to get it to do what I wanted,&#xA;and that was a little nerve-wracking, so I saved off the different versions of the code&#xA;(because sure enough, sometimes it got worse in ways I didn’t expect).&lt;/p&gt;</description>
+    </item>
     <item>
       <title>On Grief and Resources</title>
-      <link>https://example.org/posts/on-grief-and-resources/</link>
+      <link>https://szeitlin.github.io/posts/on-grief-and-resources/</link>
       <pubDate>Wed, 24 Jan 2024 12:20:27 -0800</pubDate>
-      <guid>https://example.org/posts/on-grief-and-resources/</guid>
-      <description>I’ve been doing a lot of work around grief lately.&#xA;Both of my parents died in 2023. Two other friends also died in 2023 - both former coworkers. One was in his mid-thirties and had a rare brain tumor; the other died from COVID. My dad’s death last June came after several months in the ICU. He endured repeated rounds of dialysis, which he hated, and ventilator-associated pneumonia, which I hadn’t heard of before.</description>
+      <guid>https://szeitlin.github.io/posts/on-grief-and-resources/</guid>
+      <description>&lt;p&gt;I’ve been doing a lot of work around grief lately.&lt;/p&gt;&#xA;&lt;p&gt;Both of my parents died in 2023. Two other friends also died in 2023 - both former coworkers. One was in his mid-thirties and had a rare brain tumor; the other died from COVID. &lt;/p&gt;&#xA;&lt;p&gt;My dad’s death last June came after several months in the ICU. He endured repeated rounds of dialysis, which he hated, and ventilator-associated pneumonia, which I hadn’t heard of before. He had opted for open-heart surgery, I think because he didn’t fully understand the risks given that he was a cancer patient for over 10 years, and like many people, believed that doctors are superheroes. I was with him, and held his hand when they turned off the machines at his request. &lt;/p&gt;</description>
     </item>
     <item>
       <title>How aikido helps me at work</title>
-      <link>https://example.org/posts/career_skills/how_aikido_helps_me_at_work/</link>
+      <link>https://szeitlin.github.io/posts/career_skills/how_aikido_helps_me_at_work/</link>
       <pubDate>Wed, 29 Mar 2023 13:47:11 -0700</pubDate>
-      <guid>https://example.org/posts/career_skills/how_aikido_helps_me_at_work/</guid>
-      <description>Life is growth. If we stop growing, technically and spiritually, we are as good as dead.&#xA;&amp;mdash;- Morihei Ueshiba&#xA;I started studying aikido about 12 years ago, shortly after I moved to San Francisco. I had no idea how much I would enjoy it, or how much it would change my life.&#xA;I didn&amp;rsquo;t know what it was when I first started, but the translation I like the best is &amp;ldquo;Path of Life Harmony.</description>
+      <guid>https://szeitlin.github.io/posts/career_skills/how_aikido_helps_me_at_work/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Life is growth. If we stop growing, technically and spiritually, we are as good as dead.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;&amp;mdash;- Morihei Ueshiba&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;I started studying aikido about 12 years ago, shortly after I moved to San Francisco.&#xA;I had no idea how much I would enjoy it, or how much it would change my life.&lt;/p&gt;&#xA;&lt;p&gt;I didn&amp;rsquo;t know what it was when I first started, but the translation I like the best is &amp;ldquo;Path of&#xA;Life Harmony.&amp;rdquo;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hiring data teams</title>
-      <link>https://example.org/posts/career_skills/hiring_data_teams/</link>
+      <link>https://szeitlin.github.io/posts/career_skills/hiring_data_teams/</link>
       <pubDate>Wed, 17 Mar 2021 11:35:05 -0800</pubDate>
-      <guid>https://example.org/posts/career_skills/hiring_data_teams/</guid>
-      <description>This is one of those posts that I&amp;rsquo;m writing mostly because I&amp;rsquo;m still frequently hearing people say they&amp;rsquo;re struggling with the question of how to interview data people. I&amp;rsquo;ve blogged and spoken previously about the misery of being an interviewee, so suffice it to say I have a ton of empathy for how awful it is to go through a bad interview process, and how disappointing it is to go through a long, grueling interview and not get an offer.</description>
+      <guid>https://szeitlin.github.io/posts/career_skills/hiring_data_teams/</guid>
+      <description>&lt;p&gt;This is one of those posts that I&amp;rsquo;m writing mostly because I&amp;rsquo;m still frequently hearing people say they&amp;rsquo;re struggling&#xA;with the question of how to interview data people. I&amp;rsquo;ve blogged and spoken previously about the misery of being an interviewee,&#xA;so suffice it to say I have a ton of empathy for how awful it is to go through a bad interview process, and how disappointing it is to&#xA;go through a long, grueling interview and not get an offer.&lt;/p&gt;</description>
     </item>
     <item>
       <title>DVC_vs_Pachyderm</title>
-      <link>https://example.org/posts/engineering/dvc_vs_pachyderm/</link>
+      <link>https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/</link>
       <pubDate>Wed, 03 Mar 2021 13:13:57 -0800</pubDate>
-      <guid>https://example.org/posts/engineering/dvc_vs_pachyderm/</guid>
-      <description>I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&amp;rsquo;s why we have forks, and spoons, and sometimes when we&amp;rsquo;re camping, sporks. Although Pachyderm claims to use a git-style approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&amp;rsquo;t exactly like git. So one thing I wanted to know is, how well does this analogy to git work for DVC?</description>
+      <guid>https://szeitlin.github.io/posts/engineering/dvc_vs_pachyderm/</guid>
+      <description>&lt;p&gt;I decided to embark on this comparison mostly out of curiosity. No tool is perfect for all use cases, that&amp;rsquo;s why&#xA;we have forks, and spoons, and sometimes when we&amp;rsquo;re camping, sporks. Although Pachyderm claims to use a git-style&#xA;approach for data and code versioning, there are aspects of the Pachyderm approach (like forking) that aren&amp;rsquo;t exactly&#xA;like git. So one thing I wanted to know is, how well does this analogy to git work for DVC? And are there use cases&#xA;where one should definitely use DVC or Pachyderm?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Test Patterns for Data Engineering</title>
-      <link>https://example.org/posts/engineering/data-eng-test-patterns/</link>
+      <link>https://szeitlin.github.io/posts/engineering/data-eng-test-patterns/</link>
       <pubDate>Fri, 26 Feb 2021 12:45:27 -0700</pubDate>
-      <guid>https://example.org/posts/engineering/data-eng-test-patterns/</guid>
-      <description>Coming from a background in bench science, or what we affectionately referred to as &amp;ldquo;wetlab&amp;rdquo;, I like to test everything I do, and I like my tests to be fast and representative of what I expect to find when I run things &amp;ldquo;for real&amp;rdquo;.&#xA;Most people I&amp;rsquo;ve met who are newer to data engineering find that it&amp;rsquo;s not immediately obvious how to write and run tests for data things. It&amp;rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/data-eng-test-patterns/</guid>
+      <description>&lt;p&gt;Coming from a background in bench science, or what we affectionately referred to as &amp;ldquo;wetlab&amp;rdquo;, I like to test everything I do, and I like my tests&#xA;to be fast and representative of what I expect to find when I run things &amp;ldquo;for real&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;Most people I&amp;rsquo;ve met who are newer to data engineering find that it&amp;rsquo;s not immediately obvious how to write and run tests for data things.&#xA;It&amp;rsquo;s different enough from writing unit tests for web apps that there are some pitfalls to be aware of. This post is about that.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Data Engineering Is Software Engineering</title>
-      <link>https://example.org/posts/engineering/data-eng-is-real-eng/</link>
+      <link>https://szeitlin.github.io/posts/engineering/data-eng-is-real-eng/</link>
       <pubDate>Thu, 15 Oct 2020 09:47:10 -0700</pubDate>
-      <guid>https://example.org/posts/engineering/data-eng-is-real-eng/</guid>
-      <description>Recently, a coworker asked me what the difference is between data science and data engineering. She seemed to think that data engineering was “just analytics”, which is a definition I&amp;rsquo;ve often heard applied to data science, as well.&#xA;After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:&#xA;Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/data-eng-is-real-eng/</guid>
+      <description>&lt;p&gt;Recently, a coworker asked me what the difference is between data science and data engineering.&#xA;She seemed to think that data engineering was “just analytics”, which is a definition I&amp;rsquo;ve often&#xA;heard applied to data science, as well.&lt;/p&gt;&#xA;&lt;p&gt;After I got over my initial horror that she had been wondering this for months and hadn’t asked sooner, I started to explain:&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Data engineering is getting data, cleaning data, reshaping data, validating data, and loading it into databases.&#xA;Data science is all of that, plus analyzing the data and figuring out how to display it in a way that makes sense,&#xA;and sometimes also building models and doing machine learning.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Recruiting and Training Nontraditional Candidates</title>
-      <link>https://example.org/posts/career_skills/recruiting-and-training-nontraditional-candidates/</link>
+      <link>https://szeitlin.github.io/posts/career_skills/recruiting-and-training-nontraditional-candidates/</link>
       <pubDate>Tue, 19 Nov 2019 10:29:00 -0800</pubDate>
-      <guid>https://example.org/posts/career_skills/recruiting-and-training-nontraditional-candidates/</guid>
-      <description>Question: How come we don&amp;rsquo;t have more diversity at our company? This is one of those posts, I&amp;rsquo;m writing it because I keep hearing people asking the same questions over and over. I hear these questions at meetups and in Slack groups every week, and I hate seeing people trying to reinvent the wheel when it&amp;rsquo;s really not necessary.&#xA;Answer: You haven&amp;rsquo;t tried that hard. For the purposes of this blog post, let&amp;rsquo;s go with the hypothesis that there are plenty of nontraditional candidates out there like me.</description>
+      <guid>https://szeitlin.github.io/posts/career_skills/recruiting-and-training-nontraditional-candidates/</guid>
+      <description>&lt;h1 id=&#34;question-how-come-we-dont-have-more-diversity-at-our-company&#34;&gt;Question: How come we don&amp;rsquo;t have more diversity at our company?&lt;/h1&gt;&#xA;&lt;p&gt;This is one of those posts, I&amp;rsquo;m writing it because I keep hearing people asking the same questions&#xA;over and over. I hear these questions at meetups and in Slack groups every week, and I hate seeing people&#xA;trying to reinvent the wheel when it&amp;rsquo;s really not necessary.&lt;/p&gt;&#xA;&lt;h2 id=&#34;answer-you-havent-tried-that-hard&#34;&gt;Answer: You haven&amp;rsquo;t tried that hard.&lt;/h2&gt;&#xA;&lt;p&gt;For the purposes of this blog post, let&amp;rsquo;s go with the hypothesis that there are plenty of nontraditional candidates out there&#xA;like me. We didn&amp;rsquo;t major in computer science, but we learned how to code and we enjoy it.&#xA;We&amp;rsquo;re coming from other kinds of backgrounds. For some of us, this is a second career. We have tons of&#xA;transferable skills. You should be hiring more people like us.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Postgres With Docker</title>
-      <link>https://example.org/posts/engineering/postgres-with-docker/</link>
+      <link>https://szeitlin.github.io/posts/engineering/postgres-with-docker/</link>
       <pubDate>Tue, 08 Oct 2019 15:03:46 -0700</pubDate>
-      <guid>https://example.org/posts/engineering/postgres-with-docker/</guid>
-      <description>Recently, someone asked for help with setting up postgres in docker and connecting to it with python.&#xA;While helping this person, I realized this is something that should be fairly straightforward with a simple set of instructions, but there aren&amp;rsquo;t a lot good beginner tutorials out there. So I decided to write this up because I&amp;rsquo;m sure it&amp;rsquo;s something other people would also find useful. A few years ago I wouldn&amp;rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!</description>
+      <guid>https://szeitlin.github.io/posts/engineering/postgres-with-docker/</guid>
+      <description>&lt;p&gt;Recently, someone asked for help with setting up postgres in docker and connecting to it with python.&lt;/p&gt;&#xA;&lt;p&gt;While helping this person, I realized this is something that should be fairly straightforward with a&#xA;simple set of instructions, but there aren&amp;rsquo;t a lot good beginner tutorials out there. So I decided&#xA;to write this up because I&amp;rsquo;m sure it&amp;rsquo;s something other people would also find useful. A few years ago&#xA;I wouldn&amp;rsquo;t have been able to do this even with a lot of googling (this time I only had to google a few things!).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Manager</title>
-      <link>https://example.org/posts/career_skills/manager/</link>
+      <link>https://szeitlin.github.io/posts/career_skills/manager/</link>
       <pubDate>Fri, 30 Aug 2019 16:35:24 -0700</pubDate>
-      <guid>https://example.org/posts/career_skills/manager/</guid>
-      <description>I was chatting with some friends recently, and this question came up:&#xA;What does a good working relationship with your manager look like?&#xA;This is the list I came up with. I&amp;rsquo;m not saying I&amp;rsquo;ve been perfect at all of these myself as a manager, but it&amp;rsquo;s what I strive for, and it&amp;rsquo;s what I look for in a good manager.&#xA;They trust you They ask for your input when appropriate They promote your work to others in the company where appropriate You trust them No surprises You feel safe asking them for help when you need it They discuss your career goals with you, and help steer you toward them This post is just an elaboration on what I mean by each of the things on that list.</description>
+      <guid>https://szeitlin.github.io/posts/career_skills/manager/</guid>
+      <description>&lt;p&gt;I was chatting with some friends recently, and this question came up:&lt;/p&gt;&#xA;&lt;p&gt;What does a good working relationship with your manager look like?&lt;/p&gt;&#xA;&lt;p&gt;This is the list I came up with. I&amp;rsquo;m not saying I&amp;rsquo;ve been perfect at all of these myself as a manager,&#xA;but it&amp;rsquo;s what I strive for, and it&amp;rsquo;s what I look for in a good manager.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;They trust you&#xA;&lt;ul&gt;&#xA;&lt;li&gt;They ask for your input when appropriate&lt;/li&gt;&#xA;&lt;li&gt;They promote your work to others in the company where appropriate&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;You trust them&#xA;&lt;ul&gt;&#xA;&lt;li&gt;No surprises&lt;/li&gt;&#xA;&lt;li&gt;You feel safe asking them for help when you need it&lt;/li&gt;&#xA;&lt;li&gt;They discuss your career goals with you, and help steer you toward them&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;This post is just an elaboration on what I mean by each of the things on that list.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Python OOP</title>
-      <link>https://example.org/posts/engineering/python_oop/</link>
+      <link>https://szeitlin.github.io/posts/engineering/python_oop/</link>
       <pubDate>Fri, 24 May 2019 13:29:53 -0700</pubDate>
-      <guid>https://example.org/posts/engineering/python_oop/</guid>
-      <description>I frequently hear Python referred to as a &amp;lsquo;scripting&amp;rsquo; language, because it&amp;rsquo;s not compiled. Unfortunately, for this reason, a lot of people seem to assume you can&amp;rsquo;t write &amp;lsquo;real&amp;rsquo; programs with it. This post is about moving beyond using Python as a scripting language. I&amp;rsquo;m assuming you&amp;rsquo;re already comfortable with basic python data types and methods.&#xA;Note: Most of the content here is specific to Python 3. If you&amp;rsquo;re just learning Python now, don&amp;rsquo;t learn Python 2, it&amp;rsquo;s being deprecated and many current libraries already stopped supporting it.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/python_oop/</guid>
+      <description>&lt;p&gt;I frequently hear Python referred to as a &amp;lsquo;scripting&amp;rsquo; language, because it&amp;rsquo;s not compiled.&#xA;Unfortunately, for this reason, a lot of people seem to assume you can&amp;rsquo;t write &amp;lsquo;real&amp;rsquo; programs with it.&#xA;This post is about moving beyond using Python as a scripting language. I&amp;rsquo;m assuming you&amp;rsquo;re already comfortable with&#xA;basic python data types and methods.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Note: Most of the content here is specific to Python 3. If you&amp;rsquo;re just learning&#xA;Python now, don&amp;rsquo;t learn Python 2, it&amp;rsquo;s being deprecated and many current&#xA;libraries already stopped supporting it.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Pachyderm vs Airflow</title>
-      <link>https://example.org/posts/engineering/pachyderm-vs-airflow/</link>
+      <link>https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/</link>
       <pubDate>Sun, 02 Dec 2018 17:10:01 -0800</pubDate>
-      <guid>https://example.org/posts/engineering/pachyderm-vs-airflow/</guid>
-      <description>If you do a lot of data pipelining, you&amp;rsquo;ve probably heard a lot about Airflow by now. I gave a talk about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow was essentially &amp;ldquo;Look, it&amp;rsquo;s so much better than cron.&amp;rdquo;&#xA;Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm, what I love about it, some things that can be improved about it, and some of the tricks you&amp;rsquo;ll need to know if you want to start using it.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/pachyderm-vs-airflow/</guid>
+      <description>&lt;p&gt;If you do a lot of data pipelining, you&amp;rsquo;ve probably heard a lot about Airflow by now. I gave a talk&#xA;about it a while back at a meetup, and wrote a blog post about it. The gist of my pitch for Airflow&#xA;was essentially &lt;em&gt;&amp;ldquo;Look, it&amp;rsquo;s so much better than cron.&amp;rdquo;&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;Fast-forward a year or two, and my team is using Pachyderm now. This post is about why I wanted to try Pachyderm,&#xA;what I love about it, some things that can be improved about it, and some of the tricks you&amp;rsquo;ll need to know if you want to start using it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>More AWS things I learned the hard way: S3 best practices and VPCs</title>
-      <link>https://example.org/posts/engineering/aws-s3-vpc/</link>
+      <link>https://szeitlin.github.io/posts/engineering/aws-s3-vpc/</link>
       <pubDate>Sun, 02 Dec 2018 16:29:47 -0800</pubDate>
-      <guid>https://example.org/posts/engineering/aws-s3-vpc/</guid>
-      <description>To make a long, mostly whiny story short, as part of my current role, I&amp;rsquo;ve been doing a lot of fighting with AWS to help support my team.&#xA;Some of the things I&amp;rsquo;ve learned along the way are probably not obvious if you, like me, are relying mostly on AWS docs and other people&amp;rsquo;s advice, so I thought I&amp;rsquo;d collect some of them here.&#xA;Best practices for storing big data on S3</description>
+      <guid>https://szeitlin.github.io/posts/engineering/aws-s3-vpc/</guid>
+      <description>&lt;p&gt;To make a long, mostly whiny story short, as part of my current role,&#xA;I&amp;rsquo;ve been doing a lot of fighting with AWS to help support my team.&lt;/p&gt;&#xA;&lt;p&gt;Some of the things I&amp;rsquo;ve learned along the way are probably not obvious if you, like me, are relying&#xA;mostly on AWS docs and other people&amp;rsquo;s advice, so I thought I&amp;rsquo;d collect some of them here.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;strong&gt;Best practices for storing big data on S3&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Cross-account access with AWS</title>
-      <link>https://example.org/posts/engineering/cross-account-access-aws/</link>
+      <link>https://szeitlin.github.io/posts/engineering/cross-account-access-aws/</link>
       <pubDate>Sat, 04 Aug 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/cross-account-access-aws/</guid>
-      <description>The scene:&#xA;I needed to process data from an s3 bucket using pyspark. The s3 bucket was owned by a different account. I had done this before. But this time, there was a twist: we needed to encrypt the data because of GDPR requirements. At the end of the processing, I needed to save the results to another s3 bucket for loading into Redshift.&#xA;Thus began a weeks-long saga of learning about AWS the hard way.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/cross-account-access-aws/</guid>
+      <description>&lt;p&gt;&lt;em&gt;The scene:&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;I needed to process data from an s3 bucket using pyspark.&#xA;The s3 bucket was owned by a different account.&#xA;I had done this before.&#xA;But this time, there was a twist: we needed to encrypt the data&#xA;because of GDPR requirements.&#xA;At the end of the processing, I needed to&#xA;save the results to another s3 bucket for loading into Redshift.&lt;/p&gt;&#xA;&lt;p&gt;Thus began a weeks-long saga of learning about AWS the hard way.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Things I learned about Pyspark the hard way</title>
-      <link>https://example.org/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</link>
+      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</link>
       <pubDate>Wed, 28 Mar 2018 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</guid>
-      <description>Why Spark? Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.&#xA;Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.&#xA;Why Spark is good for this Distributed processing means it&amp;rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).</description>
+      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-pyspark-the-hard-way/</guid>
+      <description>&lt;h2 id=&#34;why-spark&#34;&gt;Why Spark?&lt;/h2&gt;&#xA;&lt;p&gt;Lately I have been working on a project that requires cleaning and analyzing a large volume of event-level data.&lt;/p&gt;&#xA;&lt;p&gt;Originally, I did some exploratory data analysis on small samples of data (up to 15 million rows) using pandas, my usual data visualization tools, and multiprocessing. But then it was time to scale up.&lt;/p&gt;&#xA;&lt;h2 id=&#34;why-spark-is-good-for-this&#34;&gt;Why Spark is good for this&lt;/h2&gt;&#xA;&lt;p&gt;Distributed processing means it&amp;rsquo;s very fast at very large scale, and we can scale it up with minimal adjustments (the same code still works, we just need a bigger cluster).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Airflow</title>
-      <link>https://example.org/posts/airflow/airflow-for-hands-off-etl/</link>
+      <link>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</link>
       <pubDate>Sat, 18 Nov 2017 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/airflow/airflow-for-hands-off-etl/</guid>
-      <description>Airflow for hands-off ETL Almost exactly a year ago, I joined Yahoo, which more recently became Oath.&#xA;The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.&#xA;Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS.</description>
+      <guid>https://szeitlin.github.io/posts/airflow/airflow-for-hands-off-etl/</guid>
+      <description>&lt;h1 id=&#34;airflow-for-hands-off-etl&#34;&gt;Airflow for hands-off ETL&lt;/h1&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Almost exactly a year ago, I joined &lt;a href=&#34;https://www.yahoo.com&#34;&gt;Yahoo&lt;/a&gt;, which more recently became &lt;a href=&#34;https://www.oath.com&#34;&gt;Oath&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The team I joined is called the Product Hackers, and we work with large amounts of data. By large amounts I meant, billions of rows of log data.&lt;/p&gt;&#xA;&lt;p&gt;Our team does both ad-hoc analyses and ongoing machine learning projects. In order to support those efforts, our team had initially written scripts to parse logs and run them with cron to load the data into Redshift on AWS. After a while, it made sense to move to &lt;a href=&#34;http://pythonhosted.org/airflow/&#34;&gt;Airflow&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Probability binning: simple and fast</title>
-      <link>https://example.org/posts/statistics/probability-binning-simple-and-fast/</link>
+      <link>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</link>
       <pubDate>Fri, 04 Nov 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/statistics/probability-binning-simple-and-fast/</guid>
-      <description>Over the years, I&amp;rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.&#xA;One of the first things I usually do is make a bunch of histograms. Histograms are great because it&amp;rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.</description>
+      <guid>https://szeitlin.github.io/posts/statistics/probability-binning-simple-and-fast/</guid>
+      <description>&lt;p&gt;Over the years, I&amp;rsquo;ve done a few data science coding challenges for job interviews. My favorite ones included a data set and asked me to address both specific and open-ended questions about that data set.&lt;/p&gt;&#xA;&lt;p&gt;One of the first things I usually do is make a bunch of histograms. Histograms are great because it&amp;rsquo;s an easy way to look at the distribution of data without having to plot every single point, or get distracted by a lot of noise.&lt;/p&gt;</description>
     </item>
     <item>
       <title>A tutorial within a tutorial on building reusable models with scikit-learn</title>
-      <link>https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
+      <link>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
       <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
-      <description>Things I learned while following a tutorial on how to build reusable models with scikit-learn.&#xA;When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&amp;rsquo;ve used requests before, I had no reason to think it wouldn&amp;rsquo;t work.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
+      <description>&lt;p&gt;Things I learned while following &lt;a href=&#34;http://blog.districtdatalabs.com/building-a-classifier-from-census-data/&#34;&gt;a tutorial&lt;/a&gt; on how to build reusable models with scikit-learn.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;When in doubt, go back to pandas.&lt;/li&gt;&#xA;&lt;li&gt;When in doubt, write tests.&lt;/li&gt;&#xA;&lt;li&gt;When in doubt, write helper methods to wrap existing objects, rather than creating new objects.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;ingesting-clean-data-is-easy-right&#34;&gt;Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right?&lt;/h2&gt;&#xA;&lt;p&gt;Step 1 of this tutorial began with downloading data using &lt;a href=&#34;http://requests.readthedocs.io/en/master/&#34;&gt;requests&lt;/a&gt;, and saving that to a csv file. So I did that. I&amp;rsquo;ve used requests before, I had no reason to think it wouldn&amp;rsquo;t work. It looked like it worked.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Shuffling the deck: an interview experience</title>
-      <link>https://example.org/posts/engineering/shuffling-the-deck-an-interview-question/</link>
+      <link>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</link>
       <pubDate>Thu, 16 Jun 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/shuffling-the-deck-an-interview-question/</guid>
-      <description>Here is a story about an interesting interview question and how I approached it.&#xA;The company in question wasn&amp;rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.&#xA;Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/shuffling-the-deck-an-interview-question/</guid>
+      <description>&lt;p&gt;Here is a story about an interesting interview question and how I approached it.&lt;/p&gt;&#xA;&lt;p&gt;The company in question wasn&amp;rsquo;t interested in actually looking at my code, since I apparently tried to answer the wrong question.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;&lt;em&gt;Given a deck of n unique cards, cut the deck c cards from the top and perform a perfect shuffle. A perfect shuffle is where you put down the bottom card from the top portion of the deck followed by the bottom card from the bottom portion of the deck. This is repeated until one portion is used up. The remaining cards go on top.&lt;/em&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Validating Results</title>
-      <link>https://example.org/posts/statistics/validating-results/</link>
+      <link>https://szeitlin.github.io/posts/statistics/validating-results/</link>
       <pubDate>Fri, 15 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/statistics/validating-results/</guid>
-      <description>I don&amp;rsquo;t believe truth is a finite value. Truth is what we know right now. Every ten years or so, a major discovery gets overturned. Scientists are just people, and we&amp;rsquo;re wrong a lot.&#xA;So one of the scariest things about doing research, or predictions, is trying to convince yourself, and other people, that what you think you&amp;rsquo;ve discovered is &amp;lsquo;real&amp;rsquo;.&#xA;Or at least real enough, right now, to be believable.</description>
+      <guid>https://szeitlin.github.io/posts/statistics/validating-results/</guid>
+      <description>&lt;p&gt;I don&amp;rsquo;t believe truth is a finite value. Truth is what we know right now. Every ten years or so, a major discovery gets overturned. Scientists are just people, and we&amp;rsquo;re wrong a lot.&lt;/p&gt;&#xA;&lt;p&gt;So one of the scariest things about doing research, or predictions, is trying to convince yourself, and other people, that what you think you&amp;rsquo;ve discovered is &amp;lsquo;real&amp;rsquo;.&lt;/p&gt;&#xA;&lt;p&gt;Or at least real enough, right now, to be believable. Whenever I do a project, I hope my findings will stand the test of time, at least long enough to be useful.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Test-driven data pipelining</title>
-      <link>https://example.org/posts/engineering/test-driven-data-pipelining/</link>
+      <link>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</link>
       <pubDate>Mon, 08 Feb 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/test-driven-data-pipelining/</guid>
-      <description>When to test, and why: • Write a test for every method.&#xA;• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.&#xA;• Think of tests as showing how your code should be used, and write them accordingly. The next person who&amp;rsquo;s going to edit your code, or even just use your code, should be able to refer to your tests to see what&amp;rsquo;s happening.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/test-driven-data-pipelining/</guid>
+      <description>&lt;h2 id=&#34;when-to-test-and-why&#34;&gt;When to test, and why:&lt;/h2&gt;&#xA;&lt;p&gt;• Write a test for every method.&lt;/p&gt;&#xA;&lt;p&gt;• Write a test any time you find a bug! Then make sure the test passes after you fix the bug.&lt;/p&gt;&#xA;&lt;p&gt;• Think of tests as showing how your code should be used, and write them accordingly. The next person who&amp;rsquo;s going to&#xA;edit your code, or even just use your code, should be able to refer to your tests to see what&amp;rsquo;s happening.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Data pipelining with pandas</title>
-      <link>https://example.org/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</link>
+      <link>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</link>
       <pubDate>Sat, 02 Jan 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</guid>
-      <description>For better or worse, when you&amp;rsquo;re dealing with data pipelines of varying shapes and sizes, sometimes you need to combine objects that don&amp;rsquo;t match up evenly.&#xA;For example, if you want to apply a condition via lookup, sometimes it makes sense to just do a merge. This creates a new column in your data table, and then you can use that for reference.&#xA;This is an extremely simple example to show what I mean:</description>
+      <guid>https://szeitlin.github.io/posts/engineering/data-pipelining-with-pandas-automating-lookup-and-update/</guid>
+      <description>&lt;p&gt;For better or worse, when you&amp;rsquo;re dealing with data pipelines of varying shapes and sizes, sometimes you need to combine objects that don&amp;rsquo;t match up evenly.&lt;/p&gt;&#xA;&lt;p&gt;For example, if you want to apply a condition via lookup, sometimes it makes sense to just do a merge. This creates a new column in your data table, and then you can use that for reference.&lt;/p&gt;&#xA;&lt;p&gt;This is an extremely simple example to show what I mean:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Biking data from XML to analysis, revised</title>
-      <link>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</link>
       <pubDate>Fri, 07 Aug 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
-      <description>Am I getting slower every day?&#xA;If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:&#xA;If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/</guid>
+      <description>&lt;p&gt;&lt;em&gt;Am I getting slower every day?&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;If you&amp;rsquo;ve ever been a bike commuter, you&amp;rsquo;ve probably asked yourself this question. Thanks to these little devices we can now attach to ourselves or our bicycles, we can now use our own actual ride data to investigate these kinds of questions, as well as questions like these:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;If I&amp;rsquo;m going to work from home one day a week, which day would maximize my recovery?&lt;/li&gt;&#xA;&lt;li&gt;Do I tend to ride faster in the morning or the evening?&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Last year, I wrote &lt;a href=&#34;https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/&#34;&gt;a few posts&lt;/a&gt; about learning how to parse a set of Garmin XML data from 2013 and analyze it using pandas, matplotlib, and &lt;a href=&#34;http://web.stanford.edu/~mwaskom/software/seaborn/&#34;&gt;seaborn&lt;/a&gt;. This year I redid the same analyses, with a new installment of data from 2014.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Working with device data</title>
-      <link>https://example.org/posts/biking_data/device-data/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/device-data/</link>
       <pubDate>Thu, 30 Apr 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/device-data/</guid>
-      <description>In continuing my series on investigating bike data, I ran into some interesting aspects of working with device data.&#xA;I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.&#xA;Things to consider when working with devices Are you using the device yourself? Are you interacting with the user(s) (directly or indirectly)?</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/device-data/</guid>
+      <description>&lt;p&gt;In continuing my series on &lt;a href=&#34;https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-revised/&#34;&gt;investigating bike data&lt;/a&gt;, I ran into some interesting aspects of working with device data.&lt;/p&gt;&#xA;&lt;p&gt;I have some experience with devices, thanks to my many years of working in research labs. This post is about the fun of hunting down what&amp;rsquo;s working and what&amp;rsquo;s not.&lt;/p&gt;&#xA;&lt;h2 id=&#34;things-to-consider-when-working-with-devices&#34;&gt;Things to consider when working with devices&lt;/h2&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Are you using the device yourself?&lt;/li&gt;&#xA;&lt;li&gt;Are you interacting with the user(s) (directly or indirectly)? Or not at all?&lt;/li&gt;&#xA;&lt;li&gt;What is the device &lt;em&gt;designed&lt;/em&gt; to do? Are you using it for its intended purpose?&lt;/li&gt;&#xA;&lt;li&gt;How well does the device actually work? Generic measurables might include: sensitivity, specificity, accuracy, precision, battery life&lt;/li&gt;&#xA;&lt;li&gt;What else is being measured?&lt;/li&gt;&#xA;&lt;li&gt;Measured how?&lt;/li&gt;&#xA;&lt;li&gt;How are data stored? How much data can it store? How does it connect to other devices/data stores?&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;In the case of a bike computer, I have been looking at:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Biking data from XML to analysis, part 2</title>
-      <link>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-2/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/</link>
       <pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-2/</guid>
-      <description>So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.&#xA;Non-obvious nuances of pandas datetime objects and indexes. You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-2/</guid>
+      <description>&lt;p&gt;So I have some bike data that I parsed out of XML and put into a pandas dataframe. Most of the questions I wanted to ask required that the timestamp of each ride segment, or lap, be used as the index along the x-axis of a plot.&lt;/p&gt;&#xA;&lt;h2 id=&#34;non-obvious-nuances-of-pandas-datetime-objects-and-indexes&#34;&gt;&lt;strong&gt;Non-obvious nuances of pandas datetime objects and indexes.&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;strong&gt;You have to sort the dataframe by timestamps, before you can convert the timestamps to use as an index.&lt;/strong&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Biking data from XML to analysis, part 3</title>
-      <link>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-3/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-3/</link>
       <pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-3/</guid>
-      <description>One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.&#xA;First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL.</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-3/</guid>
+      <description>&lt;p&gt;One thing I wanted to do with this data set was experiment with plotting methods. I had already done some exploratory plotting with regular matplotlib, so I had some vague ideas about what I wanted to do.&lt;/p&gt;&#xA;&lt;p&gt;First I had to select out subsets of data to compare. I knew that there were two types of rides: shorter trips in the city, and longer trips in the suburbs. I was feeling lazy, so I just did a quick threshold with SQL.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Biking data from XML to analysis, part 4</title>
-      <link>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-4/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-4/</link>
       <pubDate>Thu, 12 Feb 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/biking-data-from-xml-to-plots-part-4/</guid>
-      <description>One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&amp;rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.&#xA;&amp;hellip;tick&amp;hellip;tick&amp;hellip;tick&#xA;Anyway one thing I wondered about with the bike data was, can we compare average speeds in the morning vs.</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/biking-data-from-xml-to-plots-part-4/</guid>
+      <description>&lt;p&gt;One of the main reasons this project turned out to be interesting is that time series data has all kinds of gotchas. I never had to deal with a lot of this before, because the sorts of time series I did in my scientific life didn&amp;rsquo;t care about real-life things like time zones. We mostly just cared about calculating time elapsed.&lt;/p&gt;&#xA;&lt;p&gt;&amp;hellip;tick&amp;hellip;tick&amp;hellip;tick&lt;/p&gt;&#xA;&lt;p&gt;Anyway one thing I wondered about with the bike data was,  can we compare average speeds in the morning vs. the afternoon? But to do that, I first had to parse the datetime objects and put them in the right time zone.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Things I learned about zip files</title>
-      <link>https://example.org/posts/engineering/things-i-learned-about-zip-files-last-week/</link>
+      <link>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</link>
       <pubDate>Thu, 15 Jan 2015 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/things-i-learned-about-zip-files-last-week/</guid>
-      <description>In an effort to advance my python skills, I spent some time slowly pecking away at the puzzles on pythonchallenge. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.&#xA;I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/things-i-learned-about-zip-files-last-week/</guid>
+      <description>&lt;p&gt;In an effort to advance my python skills, I spent some time slowly pecking away at &lt;a href=&#34;http://pythonchallenge.com&#34;&gt;the puzzles on pythonchallenge&lt;/a&gt;. I got stuck on most of the challenges, and either had to search for a hint, or ask for help from a friend, or both. This latest one was particularly instructive, and it had to do with zipfiles.&lt;/p&gt;&#xA;&lt;p&gt;I thought I knew what zip files were. I have used them since grad school, for transferring folders via email, and for compression. I used various utilities and command-line tools to deal with zipping and unzipping. But I never needed to know how they worked.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Things I learned studying the cell cycle in cancer</title>
-      <link>https://example.org/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</link>
+      <link>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</link>
       <pubDate>Tue, 29 Jul 2014 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</guid>
-      <description>I know that from the outside, &amp;lsquo;science&amp;rsquo; seems like The Place Where Scientists Live. But &amp;lsquo;science&amp;rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.&#xA;Today someone called me a Biologist. But I was never really a Biologist. My undergraduate degree was in a chemistry department.&#xA;My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.</description>
+      <guid>https://szeitlin.github.io/posts/career_transition/things-i-learned-studying-the-cell-cycle-in-cancer/</guid>
+      <description>&lt;p&gt;I know that from the outside, &amp;lsquo;science&amp;rsquo; seems like The Place Where Scientists Live. But &amp;lsquo;science&amp;rsquo; is not a monolithic, homogenous thing. Not all scientists are the same.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;Today someone called me a &lt;em&gt;Biologist&lt;/em&gt;. But I was never really a &lt;em&gt;Biologist&lt;/em&gt;. My undergraduate degree was in a chemistry department.&lt;/p&gt;&#xA;&lt;p&gt;My past life as a researcher was always very interdisciplinary. To better understand cancer cells, I used a lot of sophisticated software, and mathematical intuition, in addition to chemistry and physics.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Advice on recruiting</title>
-      <link>https://example.org/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</link>
+      <link>https://szeitlin.github.io/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</guid>
-      <description>I have had a few pleasant job interviews. Here&amp;rsquo;s what&amp;rsquo;s different about those interviews, that made them really stand out from the others I&amp;rsquo;ve done. I&amp;rsquo;ll describe a specific example, and then give some specific suggestions.&#xA;The hiring manager contacted me directly He had done his homework. He had looked at my GitHub repos. He told gave me pretty specific information about the structure of the interview, and gave me ~2 weeks to prepare.</description>
+      <guid>https://szeitlin.github.io/posts/recruiting/still-looking-for-a-job-advice-on-recruiting-/</guid>
+      <description>&lt;p&gt;I have had a few pleasant job interviews. Here&amp;rsquo;s what&amp;rsquo;s different about those interviews, that made them really stand out from the others I&amp;rsquo;ve done. I&amp;rsquo;ll describe a specific example, and then give some specific suggestions.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;The hiring manager contacted me directly&lt;/li&gt;&#xA;&lt;li&gt;He had done his homework. He had looked at my GitHub repos.&lt;/li&gt;&#xA;&lt;li&gt;He told gave me pretty specific information about the structure of the interview, and gave me ~2 weeks to prepare.&lt;/li&gt;&#xA;&lt;li&gt;The interview was 1-on-1, in person. It lasted 2-3 hours.&lt;/li&gt;&#xA;&lt;li&gt;The first exercise was to have me go through an app and describe what all the pieces were doing.&lt;/li&gt;&#xA;&lt;li&gt;The second exercise was to interact with the app and add a feature or two.&lt;/li&gt;&#xA;&lt;li&gt;The third exercise was to look at a script and identify the bugs (or other problems with it).&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;It was an outstanding experience because he had clearly put time and effort into preparing the process, and was patient with understanding that while he knew the app inside and out, I did not.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Automating user-friendly documentation with Selenium</title>
-      <link>https://example.org/posts/engineering/automating-user-friendly-documentation-using-selenium-/</link>
+      <link>https://szeitlin.github.io/posts/engineering/automating-user-friendly-documentation-using-selenium-/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/automating-user-friendly-documentation-using-selenium-/</guid>
-      <description>Once upon a time, a friend recruited me to do some technical writing for the company where he works now. Basically, they needed someone to quickly revise and update the documentation for their software.&#xA;Most modern user-friendly software documentation isn&amp;rsquo;t just writing, though. It&amp;rsquo;s screenshots. A LOT of screenshots. So you don&amp;rsquo;t just write &amp;ldquo;click on the blue box&amp;rdquo;, you also show a picture of it, like this. See the blue box?</description>
+      <guid>https://szeitlin.github.io/posts/engineering/automating-user-friendly-documentation-using-selenium-/</guid>
+      <description>&lt;p&gt;Once upon a time, a friend recruited me to do some technical writing for the company where he works now. Basically, they needed someone to quickly revise and update the documentation for their software.&lt;/p&gt;&#xA;&lt;p&gt;Most modern user-friendly software documentation isn&amp;rsquo;t just writing, though. It&amp;rsquo;s screenshots. A LOT of screenshots. So you don&amp;rsquo;t just write &amp;ldquo;click on the blue box&amp;rdquo;, you also show a picture of it, like this. See the blue box?&lt;/p&gt;</description>
     </item>
     <item>
       <title>Biking data from XML to analysis, part 1</title>
-      <link>https://example.org/posts/biking_data/bike-data-from-xml-to-plots/</link>
+      <link>https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/biking_data/bike-data-from-xml-to-plots/</guid>
-      <description>I was looking for some fun time series data to hack on. Turns out bike computers provide a great way to interface between your friends&amp;rsquo; unfounded modesty and their actual rides.&#xA;One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&amp;rsquo;s also relatively consistent, which meant the data he gave me wasn&amp;rsquo;t too terribly noisy.</description>
+      <guid>https://szeitlin.github.io/posts/biking_data/bike-data-from-xml-to-plots/</guid>
+      <description>&lt;p&gt;I was looking for some fun time series data to hack on. Turns out &lt;a href=&#34;http://www.garmin.com/en-US&#34; title=&#34;Garmin&#34;&gt;bike computers&lt;/a&gt;  provide a great way to interface between your friends&amp;rsquo; unfounded modesty and their actual rides.&lt;/p&gt;&#xA;&lt;p&gt;One friend was kind enough to donate some data for my entertainment. This friend wears spandex, rides a titanium frame road bike, and sweats a lot. I knew he was a strong cyclist. He&amp;rsquo;s also relatively consistent, which meant the data he gave me wasn&amp;rsquo;t too terribly noisy. But everyone forgets to turn on the computer sometimes, or forgets to charge the battery.&lt;/p&gt;</description>
     </item>
     <item>
       <title>FAQ: why and how I learned to code</title>
-      <link>https://example.org/posts/career_transition/faq-why-and-how-i-learned-to-code/</link>
+      <link>https://szeitlin.github.io/posts/career_transition/faq-why-and-how-i-learned-to-code/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/career_transition/faq-why-and-how-i-learned-to-code/</guid>
-      <description>A lot of people have asked me why I&amp;rsquo;m not working in academia or biotech, how I learned to code, or how I got into data science. Here are some answers to some of those questions.&#xA;Are you sure you wouldn&amp;rsquo;t rather be in academia?&#xA;Yes and no.&#xA;Yes, I wanted my own lab. No, we don&amp;rsquo;t always get what we want, even after 7 years of postdoc.&#xA;Long story short: bad timing.</description>
+      <guid>https://szeitlin.github.io/posts/career_transition/faq-why-and-how-i-learned-to-code/</guid>
+      <description>&lt;p&gt;A lot of people have asked me why I&amp;rsquo;m not working in academia or biotech, how I learned to code, or &lt;a href=&#34;https://twitter.com/joe3v/status/777278376587333632&#34;&gt;how I got into data science&lt;/a&gt;. Here are some answers to some of those questions.&lt;/p&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;Are you sure you wouldn&amp;rsquo;t rather be in academia?&lt;/p&gt;&lt;/blockquote&gt;&#xA;&lt;p&gt;Yes and no.&lt;/p&gt;&#xA;&lt;p&gt;Yes, I wanted my own lab. No, we don&amp;rsquo;t always get what we want, even after 7 years of postdoc.&lt;/p&gt;&#xA;&lt;p&gt;Long story short: bad timing. It wasn&amp;rsquo;t bad enough that my thesis advisor had some personal and professional crises while I was his first grad student, but one of our lab members committed suicide on September 10th, 2001. I graduated the following year. Then my first postdoc advisor died. Plenty of other things went wrong, but at the end of all that, in spite having &lt;a href=&#34;https://scholar.google.com/citations?user=CtAMtDUAAAAJ&#34;&gt;published some papers&lt;/a&gt;, I still couldn&amp;rsquo;t get a faculty position.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Fun with text file encodings</title>
-      <link>https://example.org/posts/engineering/fun-with-failing/</link>
+      <link>https://szeitlin.github.io/posts/engineering/fun-with-failing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/fun-with-failing/</guid>
-      <description>This post is about a couple of painful problems I&amp;rsquo;ve had with reading in text files.&#xA;They&amp;rsquo;re just text files, right? What could be hard about that?&#xA;1. Fun with encoding The problem:&#xA;A friend sent me a dump of data from iTunes, as a table.&#xA;Just a text file.&#xA;She&amp;rsquo;s on a Mac. I&amp;rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&amp;rsquo;t seen before.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/fun-with-failing/</guid>
+      <description>&lt;p&gt;This post is about a couple of painful problems I&amp;rsquo;ve had with reading in text files.&lt;/p&gt;&#xA;&lt;p&gt;They&amp;rsquo;re just text files, right? What could be hard about that?&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;1-fun-with-encoding&#34;&gt;&lt;strong&gt;1. Fun with encoding&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The problem:&lt;/p&gt;&#xA;&lt;p&gt;A friend sent me a dump of data from iTunes, as a table.&lt;/p&gt;&#xA;&lt;p&gt;&lt;em&gt;Just a text file.&lt;/em&gt;&lt;/p&gt;&#xA;&lt;p&gt;She&amp;rsquo;s on a Mac. I&amp;rsquo;m on a Mac. But when I went to read in the file, Python choked in a way I hadn&amp;rsquo;t seen before.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Game plan for attending conferences with a high risk of harassment</title>
-      <link>https://example.org/posts/game-plan-for-conferences-with-high-risk-of-harassment/</link>
+      <link>https://szeitlin.github.io/posts/game-plan-for-conferences-with-high-risk-of-harassment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/game-plan-for-conferences-with-high-risk-of-harassment/</guid>
-      <description>So let&amp;rsquo;s say you&amp;rsquo;re thinking about attending a conference in tech, or some STEM field.&#xA;Maybe you&amp;rsquo;ll be going alone. Maybe you&amp;rsquo;ve never been to a conference before, or this conference has a reputation for having, shall we say, &amp;ldquo;a higher risk of harassment&amp;rdquo;.&#xA;Here&amp;rsquo;s a &amp;lsquo;game plan&amp;rsquo; for things to keep in mind. I&amp;rsquo;m not saying anyone should ever have to do this, I&amp;rsquo;m saying this is more or less what I did when I was younger and had to go to STEM meetings, usually alone, and didn&amp;rsquo;t always feel safe.</description>
+      <guid>https://szeitlin.github.io/posts/game-plan-for-conferences-with-high-risk-of-harassment/</guid>
+      <description>&lt;p&gt;So let&amp;rsquo;s say you&amp;rsquo;re thinking about attending a conference in tech, or some STEM field.&lt;/p&gt;&#xA;&lt;p&gt;Maybe you&amp;rsquo;ll be going alone. Maybe you&amp;rsquo;ve never been to a conference before, or this conference has a reputation for having, shall we say, &amp;ldquo;a higher risk of harassment&amp;rdquo;.&lt;/p&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s a &amp;lsquo;game plan&amp;rsquo; for things to keep in mind. I&amp;rsquo;m not saying anyone should ever have to do this,&#xA;I&amp;rsquo;m saying this is more or less what I did when I was younger and had to go to STEM meetings, usually alone, and didn&amp;rsquo;t always feel safe.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Python: where to start</title>
-      <link>https://example.org/posts/career_transition/python-where-to-start/</link>
+      <link>https://szeitlin.github.io/posts/career_transition/python-where-to-start/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/career_transition/python-where-to-start/</guid>
-      <description>I spent about a year learning Python when I first got back into coding. A lot of people have asked me where to begin. Here&amp;rsquo;s a guide to what I found useful (or not) and why.&#xA;Learn Python The Hard Way by Zed Shaw. I started here. I did the free online version.&#xA;I like the advice he gives you to just type things in, even if you don&amp;rsquo;t know what&amp;rsquo;s happening yet.</description>
+      <guid>https://szeitlin.github.io/posts/career_transition/python-where-to-start/</guid>
+      <description>&lt;p&gt;I spent about a year learning Python when I first got back into coding. A lot of people have asked me where to begin. Here&amp;rsquo;s a guide to what I found useful (or not) and why.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&lt;a href=&#34;http://learnpythonthehardway.org/&#34;&gt;Learn Python The Hard Way&lt;/a&gt; by Zed Shaw.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;I started here. I did the free online version.&lt;/p&gt;&#xA;&lt;p&gt;I like the advice he gives you to just type things in, even if you don&amp;rsquo;t know what&amp;rsquo;s happening yet. This required a bit of an adjustment to my usual mindset, where I question everything all the time.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Quick and dirty: plot your data on a map with python</title>
-      <link>https://example.org/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</link>
+      <link>https://szeitlin.github.io/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</guid>
-      <description>Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.&#xA;What I wanted to do One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/quick-and-dirty-plot-your-data-on-a-map/</guid>
+      <description>&lt;p&gt;Once upon a time, I looked at a couple of data sets that involved geographical data. I wanted to actually plot the data on a map, so I had to do some shopping around for easy ways to do this quickly with python.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;what-i-wanted-to-do&#34;&gt;What I wanted to do&lt;/h2&gt;&#xA;&lt;p&gt;One of the data sets provided zipcodes, which I was able to convert to latitude and longitude (more on this below). At a minimum, I knew I wanted to be able to plot: a) location, b) a number value and text label, c) multiple colors designating groups of data points, e.g. &amp;lsquo;high&amp;rsquo; or &amp;rsquo;low&amp;rsquo; values for a particular variable, which ideally could be toggled on and off.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Recursion excursion</title>
-      <link>https://example.org/posts/engineering/recursion-excursion/</link>
+      <link>https://szeitlin.github.io/posts/engineering/recursion-excursion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/recursion-excursion/</guid>
-      <description>More than once, and probably not for the last time, I have done a technical interview for which I was underprepared. I feel like no matter how much I try to prepare, I am always underprepared for technical interviews.&#xA;I&amp;rsquo;m going to tell you about a time I was underprepared for a few reasons, including:&#xA;a) It was the first interview where I was asked to write more than a couple lines of recursive code</description>
+      <guid>https://szeitlin.github.io/posts/engineering/recursion-excursion/</guid>
+      <description>&lt;p&gt;More than once, and probably not for the last time, I have done a technical interview for which I was underprepared.&#xA;I feel like no matter how much I try to prepare, I am always underprepared for technical interviews.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;m going to tell you about a time I was underprepared for a few reasons, including:&lt;/p&gt;&#xA;&lt;p&gt;a) It was the first interview where I was asked to write more than a couple lines of recursive code&lt;/p&gt;</description>
     </item>
     <item>
       <title>Robustness: lessons from applied bench science</title>
-      <link>https://example.org/posts/robustness-lessons-from-doing-applied-bench-science/</link>
+      <link>https://szeitlin.github.io/posts/robustness-lessons-from-doing-applied-bench-science/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/robustness-lessons-from-doing-applied-bench-science/</guid>
-      <description>Inspired by a couple of great posts by Michael Gibson, I want to talk about what robustness means to me, as someone coming from a science background.&#xA;I started working in a &amp;ldquo;wetlab&amp;rdquo; doing benchwork cancer research when I was in high school (I was 16). I learned early on that mistakes are:&#xA;normal avoidable necessary. That may sound paradoxical, so I&amp;rsquo;ll explain. Some failures will always happen: the phone rings and you drop something.</description>
+      <guid>https://szeitlin.github.io/posts/robustness-lessons-from-doing-applied-bench-science/</guid>
+      <description>&lt;p&gt;Inspired by a couple of &lt;a href=&#34;http://codrspace.com/mchlgibs/&#34;&gt;great posts by Michael Gibson&lt;/a&gt;, I want to talk about what robustness means to me, as someone coming from a science background.&lt;/p&gt;&#xA;&lt;p&gt;I started working in a &amp;ldquo;wetlab&amp;rdquo; doing benchwork cancer research when I was in high school (I was 16). I learned early on that mistakes are:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;normal&lt;/li&gt;&#xA;&lt;li&gt;avoidable&lt;/li&gt;&#xA;&lt;li&gt;necessary.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;That may sound paradoxical, so I&amp;rsquo;ll explain. Some failures will always happen: the phone rings and you drop something. That can happen to anybody. But you can take safeguards to prevent disaster, like making sure all your tubes are labeled and capped tightly, so if you drop them, nothing gets lost. And some failures are informative, like when (notice I don&amp;rsquo;t say &amp;lsquo;if&amp;rsquo;) an experiment doesn&amp;rsquo;t work out the way you expected. Mistakes will be always educational if you designed your experiment correctly.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Tips on giving presentations</title>
-      <link>https://example.org/posts/career_skills/tips-on-giving-presentations/</link>
+      <link>https://szeitlin.github.io/posts/career_skills/tips-on-giving-presentations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/career_skills/tips-on-giving-presentations/</guid>
-      <description>Over the years, I&amp;rsquo;ve attended a lot of technical (read: software) talks. Once upon a time, I attended PyData, at Facebook. I&amp;rsquo;ve noticed at all of these events that the quality of presentations varies widely.&#xA;If you&amp;rsquo;re like me, and you go to technical meetups and conferences around the Bay Area, for example, you&amp;rsquo;ll notice that some talks are well-rehearsed.&#xA;But some seem like they were thrown together at the last minute.</description>
+      <guid>https://szeitlin.github.io/posts/career_skills/tips-on-giving-presentations/</guid>
+      <description>&lt;p&gt;Over the years, I&amp;rsquo;ve attended a lot of technical (read: software) talks. Once upon a time, I attended &lt;a href=&#34;http://www.slideshare.net/pydata&#34;&gt;PyData&lt;/a&gt;, at Facebook.&#xA;I&amp;rsquo;ve noticed at all of these events that the quality of presentations varies widely.&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;If you&amp;rsquo;re like me, and you go to technical meetups and conferences around the Bay Area, for example, you&amp;rsquo;ll notice that some talks are well-rehearsed.&lt;/p&gt;&#xA;&lt;p&gt;But some seem like they were thrown together at the last minute.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

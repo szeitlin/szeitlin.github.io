@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ML on Sam&#39;s Work Blog</title>
-    <link>https://example.org/tags/ml/</link>
-    <description>Recent content in ML on Sam&#39;s Work Blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>ML on </title>
+    <link>https://szeitlin.github.io/tags/ml/</link>
+    <description>Recent content in ML on </description>
+    <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 12 Sep 2016 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://example.org/tags/ml/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://szeitlin.github.io/tags/ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>A tutorial within a tutorial on building reusable models with scikit-learn</title>
-      <link>https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
+      <link>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</link>
       <pubDate>Mon, 12 Sep 2016 00:00:00 +0000</pubDate>
-      <guid>https://example.org/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
-      <description>Things I learned while following a tutorial on how to build reusable models with scikit-learn.&#xA;When in doubt, go back to pandas. When in doubt, write tests. When in doubt, write helper methods to wrap existing objects, rather than creating new objects. Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right? Step 1 of this tutorial began with downloading data using requests, and saving that to a csv file. So I did that. I&amp;rsquo;ve used requests before, I had no reason to think it wouldn&amp;rsquo;t work.</description>
+      <guid>https://szeitlin.github.io/posts/engineering/within-every-tutorial-is-another-tutorial/</guid>
+      <description>&lt;p&gt;Things I learned while following &lt;a href=&#34;http://blog.districtdatalabs.com/building-a-classifier-from-census-data/&#34;&gt;a tutorial&lt;/a&gt; on how to build reusable models with scikit-learn.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;When in doubt, go back to pandas.&lt;/li&gt;&#xA;&lt;li&gt;When in doubt, write tests.&lt;/li&gt;&#xA;&lt;li&gt;When in doubt, write helper methods to wrap existing objects, rather than creating new objects.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;h2 id=&#34;ingesting-clean-data-is-easy-right&#34;&gt;Ingesting &amp;ldquo;clean&amp;rdquo; data is easy, right?&lt;/h2&gt;&#xA;&lt;p&gt;Step 1 of this tutorial began with downloading data using &lt;a href=&#34;http://requests.readthedocs.io/en/master/&#34;&gt;requests&lt;/a&gt;, and saving that to a csv file. So I did that. I&amp;rsquo;ve used requests before, I had no reason to think it wouldn&amp;rsquo;t work. It looked like it worked.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

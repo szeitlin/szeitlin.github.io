@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>Outdated: importing csv data into neo4j | </title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Thanks to a friend who wants to help more women get into tech careers, last year I attended Developer Week, where I was impressed by a talk about Neo4j.
+Graph databases excited me right away, since this is a concept I&rsquo;ve used for brainstorming since 3rd grade, when my teachers Mrs. Nysmith and Weaver taught us to draw webbings as a way to take notes and work through logic puzzles.
+
+In Biochemistry, we used this kind of non-linear flowchart all the time to keep track of mechanistic models and signal transduction pathways.">
+    <meta name="generator" content="Hugo 0.148.1">
+    
+    
+    
+      <meta name="robots" content="index, follow">
+    
+    <meta name="author" content="Samantha G. Zeitlin">
+    
+
+    
+<link rel="stylesheet" href="/ananke/css/main.min.8d048772ae72ab11245a0e296d1f2a36d3e3dd376c6c867394d6cc659c68fc37.css" >
+
+
+
+
+    
+
+
+    
+      
+
+    
+
+    
+
+    
+      <link rel="canonical" href="https://szeitlin.github.io/posts/importing-csv-data-into-neo4j/">
+    
+
+    <meta property="og:url" content="https://szeitlin.github.io/posts/importing-csv-data-into-neo4j/">
+  <meta property="og:title" content="Outdated: importing csv data into neo4j">
+  <meta property="og:description" content="Thanks to a friend who wants to help more women get into tech careers, last year I attended Developer Week, where I was impressed by a talk about Neo4j.
+Graph databases excited me right away, since this is a concept I’ve used for brainstorming since 3rd grade, when my teachers Mrs. Nysmith and Weaver taught us to draw webbings as a way to take notes and work through logic puzzles.
+In Biochemistry, we used this kind of non-linear flowchart all the time to keep track of mechanistic models and signal transduction pathways.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+
+  <meta itemprop="name" content="Outdated: importing csv data into neo4j">
+  <meta itemprop="description" content="Thanks to a friend who wants to help more women get into tech careers, last year I attended Developer Week, where I was impressed by a talk about Neo4j.
+Graph databases excited me right away, since this is a concept I’ve used for brainstorming since 3rd grade, when my teachers Mrs. Nysmith and Weaver taught us to draw webbings as a way to take notes and work through logic puzzles.
+In Biochemistry, we used this kind of non-linear flowchart all the time to keep track of mechanistic models and signal transduction pathways.">
+  <meta itemprop="wordCount" content="1049">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Outdated: importing csv data into neo4j">
+  <meta name="twitter:description" content="Thanks to a friend who wants to help more women get into tech careers, last year I attended Developer Week, where I was impressed by a talk about Neo4j.
+Graph databases excited me right away, since this is a concept I’ve used for brainstorming since 3rd grade, when my teachers Mrs. Nysmith and Weaver taught us to draw webbings as a way to take notes and work through logic puzzles.
+In Biochemistry, we used this kind of non-linear flowchart all the time to keep track of mechanistic models and signal transduction pathways.">
+
+      
+    
+	
+  </head><body class="ma0 avenir bg-near-white production">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l center items-center justify-between">
+    <a href="/" class="f3 fw2 hover-white white-90 dib no-underline">
+      
+        
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      <div class="ananke-socials"></div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  
+  <article class="flex-l mw8 center ph3 flex-wrap justify-between">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked ttu">
+          
+        Posts
+      </aside><div id="sharing" class="mt3 ananke-socials"></div>
+<h1 class="f1 athelas mt3 mb1">Outdated: importing csv data into neo4j</h1>
+      
+      <p class="tracked"><strong>Samantha G. Zeitlin</strong>
+      </p>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>Thanks to a friend who wants to help more women get into tech careers, last year I attended <a href="http://www.developerweek.com">Developer Week</a>, where I was impressed by a talk about <a href="http://www.Neo4j.org">Neo4j</a>.</p>
+<p><strong>Graph databases</strong> excited me right away, since this is a concept I&rsquo;ve used for brainstorming since 3rd grade, when my teachers Mrs. Nysmith and Weaver taught us to draw webbings as a way to take notes and work through logic puzzles.</p>
+<p><img src="/site_media/media/2384d1f2f0c71.png" alt="image.png"></p>
+<p>In Biochemistry, we used this kind of non-linear <a href="http://samzeitlin.com/Sam%20Zeitlin%20Research%20Plans.html">flowchart</a> all the time to keep track of mechanistic models and signal transduction pathways.</p>
+<p>In Organic chemistry <a href="http://goo.gl/nHRy4p">reaction-diagrams</a>, arrows trace the flow of reactants to products, and track lone pairs of electrons and leaving groups.</p>
+<hr>
+<p>When I was first thinking about switching to data science, I was rejected from the <a href="http://insightdatascience.com">Insight Fellows Program</a> with no useful feedback as to why. So I hesitated when a friend sent me a link to the <a href="http://www.thedataincubator.com">Data Incubator Program in New York</a>, but the application was fairly quick and painless, and I figured it was worth a shot.</p>
+<p>I&rsquo;d say it was worth doing the application, since the &ldquo;code challenge&rdquo; was fairly interesting.</p>
+<hr>
+<p>One of the questions seemed like the perfect fit for a graph database solution.</p>
+<p><strong>The question</strong> was asking how many users of the website were referred by other users, and how many users referred additional users.</p>
+<p>Some simple SQL queries, and the wording of the question, led me to hypothesize that a map of the users and who referred them would form a webbing type of network.</p>
+<p>#<strong>Neo4j</strong></p>
+<p>I sat in on an &ldquo;intro to Neo4j&rdquo; talk at Hackbright not too long ago, and I went through some of the tutorials. Since I&rsquo;ve done a little MySQL before, I can appreciate the simple ascii art syntax that Neo4j uses in the dashboard. So I think  actually interacting with the database looks pretty straightforward in that regard.</p>
+<p><em>But I got stuck on the very first step: trying to build a database in the required format, and view it as a graph.</em></p>
+<p>At first, I followed the instructions on what turns out to be
+<a href="http://maxdemarzi.com/2012/02/28/batch-importer-part-1/">an outdated blog post</a>. At least it gave me a starting point for understanding what needed to be done.</p>
+<p>The csv file started out looking something like this :</p>
+<p>[code]
+user_code,referrer_code
+f97c6c37eeca,e5b4a1bb0e5e
+52879656bb35,
+2b633b15919b,840c5cb659b3
+b362c0da9eec,
+cf0671c1c7c4,95492a8fa47a
+[/code]</p>
+<p>But since it wasn&rsquo;t tab separated, I had to import it into pandas and re-export it, noting that pandas will by default add an index unless you tell it not to:</p>
+<p>[code lang=&ldquo;python&rdquo;]
+import pandas
+users = pandas.read_csv(&ldquo;user_codes.txt&rdquo;)
+users.head()</p>
+<p>#before
+user_code referrer_code
+0  f97c6c37eeca  e5b4a1bb0e5e
+1  52879656bb35           NaN
+2  2b633b15919b  840c5cb659b3
+3  b362c0da9eec           NaN
+4  cf0671c1c7c4  95492a8fa47a</p>
+<p>users.to_csv(&ldquo;nodes.csv&rdquo;, sep = &lsquo;\t&rsquo;, index=False)</p>
+<p>#after
+user_code       referrer_code
+f97c6c37eeca    e5b4a1bb0e5e
+52879656bb35 <br>
+2b633b15919b    840c5cb659b3
+b362c0da9eec <br>
+cf0671c1c7c4    95492a8fa47a
+[/code]</p>
+<p>These would all be nodes, and I was originally thinking I would add the relationships after import using something like this
+<a href="http://stackoverflow.com/questions/13823988/batch-insertion-with-neo4j">stack overflow example</a>.</p>
+<p>It turns out there is a <a href="https://github.com/jexp/batch-import/tree/20#binary-download">new version of the batch importer</a>.
+This is much easier. I was able to create nodes by following the directions:</p>
+<ol>
+<li>
+<p>download zip (linked)</p>
+</li>
+<li>
+<p>unzip</p>
+</li>
+<li>
+<p>at the terminal, execute @jexp&rsquo;s ruby script:</p>
+</li>
+</ol>
+<p>[code]./import.sh test.db nodes.csv rels.csv[/code]</p>
+<p>where nodes.csv is your tab-separated data file. I didn&rsquo;t have a rels.csv file, but that was ok for a first run.</p>
+<p>Then I had to copy the data into the graph.db folder inside the neo4j/data folder, like so:</p>
+<p>[code] cp -r test.db/* /path/to/neo4j/data/graph.db/ [/code]</p>
+<p>To view the data after import, I used this to run neo4j and point it at my graph.db file:</p>
+<p>[code]./neo4j-shell -path ../data/graph.db [/code]</p>
+<p>Then I went to http://localhost:7474, the default location.</p>
+<p>This worked to get the nodes (users and referrers, in this case),
+but there were no relationships showing how they should be connected in the graph.</p>
+<hr>
+<p><strong>Building relationships using pandas and IPython as a sandbox</strong></p>
+<p>I knew that to identify relationships in my file, I had to iterate through my table.
+I figured I would start with rows where there was at least something in the &ldquo;refs&rdquo; column.</p>
+<p>In other words, my first set of relationships would just be:</p>
+<p>[code] (referrer) - [:REFERRED] -&gt; (user) [/code]</p>
+<p>At first, I was confused by some of the conventions in pandas.</p>
+<p>The key thing you need to know is that pandas dataframes are based on DICTIONARIES.</p>
+<p>So I read in my file the usual easy way:</p>
+<p>[code lang=&ldquo;python&rdquo;]
+referrals = pandas.read_csv(&ldquo;user_codes.txt&rdquo;)</p>
+<p>#added a column as a flag for the missing values:
+referrals[&lsquo;has_ref&rsquo;] = referrals[&lsquo;referrer_code&rsquo;].notnull()
+[/code]</p>
+<p>Then, just to make my life easier, I filtered through the dataframe to pull out just
+the rows I wanted:</p>
+<p>[code lang=&ldquo;python&rdquo;]
+usercol = referrals[&lsquo;user_code&rsquo;]
+refcol = referrals[&lsquo;referrer_code&rsquo;]</p>
+<p>i = 1 				 #to skip the first row
+users, refs = [], []       #my new shortened, cleaned up lists</p>
+<p>for i in range(len(usercol)):
+if referrals[&lsquo;has_ref&rsquo;][i] == True:
+users.append(usercol[i])
+refs.append(refcol[i])
+else:
+continue</p>
+<p>[/code]</p>
+<p>Note that this data set is tiny (~2000 rows), so I wasn&rsquo;t worried about how long it would take to do it this way.</p>
+<p>Next, I created temporary lists for the &ldquo;start&rdquo; and &ldquo;end&rdquo; of the arrows that would be the relationships between users.</p>
+<p>[code lang=&ldquo;python&rdquo;]
+start, end = [], []</p>
+<p>for i in range(len(users)):
+start.append(users[i])
+end.append(refs[i])</p>
+<p>#adjust the endpoints to get unique numbers
+end = [(i + 1) for i in end]</p>
+<p>[/code]</p>
+<p>Finally, I created a set of rows that can be fed into <a href="http://nigelsmall.com/py2neo">py2neo</a> to create nodes and relationships in the database.</p>
+<p>[code lang=&ldquo;python&rdquo;]
+rowlist = []</p>
+<p>#nodes first
+for i in range(1, 100): 	        #start with a small chunk, or you&rsquo;ll get an Incomplete Read error
+rowlist.append(node(user=users[i]))
+rowlist.append(node(ref=refs[i]))</p>
+<p>#relationships second
+for i in range(1, 100):
+rowlist.append(rel(start[i], &ldquo;RECOMMENDED&rdquo;, end[i]))</p>
+<p>incubate = graph_db.create(*rowlist)</p>
+<p>#And I had to add this line to make it appear in the Neo4j browser:</p>
+<p>neo4j._add_header(&lsquo;X-Stream&rsquo;, &rsquo;true;format=pretty&rsquo;)</p>
+<p>[/code]</p>
+<p>That got me a rough draft of a graph.</p>
+<p>To run the neo4j browser (version 2.0.1), I had to type this command from inside the neo4j-community-2.0.1 folder:</p>
+<p>[code] ./bin/neo4j console [/code]</p>
+<p>That got me a rough draft of a graph I could play with.</p>
+<p><img src="/site_media/media/0be98b00f3421.jpg" alt="screen_shot.jpg"></p>
+<p>The relationships are not correct, of course, but my plan is to work on <a href="https://github.com/szeitlin/data-incubator/blob/master/find_relationships.py">the script</a> and read <a href="http://www.packtpub.com/learning-cypher/book">the new Cypher book</a>.</p>
+<p>Of course, in the meantime, @jexp wrote <a href="http://jexp.de/blog/2014/06/using-load-csv-to-import-git-history-into-neo4j/">a blog post</a> about using the new LOAD CSV capability in version 2.1.1, so we should all upgrade and do that next.</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white white-70 dn dib-ns pv2 ph3 no-underline" href="https://szeitlin.github.io/" >
+    &copy; 
+  </a>
+    <div><div class="ananke-socials"></div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

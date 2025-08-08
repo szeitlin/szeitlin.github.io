@@ -3,10 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://szeitlin.github.io/</loc>
-    <lastmod>2025-07-24T10:23:20-07:00</lastmod>
+    <lastmod>2025-08-08T11:17:15-07:00</lastmod>
+  </url><url>
+    <loc>https://szeitlin.github.io/posts/against-demo-driven-development/</loc>
+    <lastmod>2025-08-08T11:17:15-07:00</lastmod>
   </url><url>
     <loc>https://szeitlin.github.io/posts/</loc>
-    <lastmod>2025-07-24T10:23:20-07:00</lastmod>
+    <lastmod>2025-08-08T11:17:15-07:00</lastmod>
   </url><url>
     <loc>https://szeitlin.github.io/posts/vibe-coding/</loc>
     <lastmod>2025-07-24T10:23:20-07:00</lastmod>
@@ -171,6 +174,10 @@
     <loc>https://szeitlin.github.io/posts/engineering/fun-with-failing/</loc>
   </url><url>
     <loc>https://szeitlin.github.io/posts/game-plan-for-conferences-with-high-risk-of-harassment/</loc>
+  </url><url>
+    <loc>https://szeitlin.github.io/posts/importing-csv-data-into-neo4j/</loc>
+  </url><url>
+    <loc>https://szeitlin.github.io/posts/statistics/probability-binning-part-2-speeding-up-machine-learning/</loc>
   </url><url>
     <loc>https://szeitlin.github.io/posts/career_transition/python-where-to-start/</loc>
   </url><url>

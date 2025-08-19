@@ -6,8 +6,15 @@
     <description>Recent content on </description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 08 Aug 2025 11:17:15 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 18 Aug 2025 14:37:45 -0700</lastBuildDate>
     <atom:link href="https://szeitlin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Remote Work Best Practices</title>
+      <link>https://szeitlin.github.io/posts/remote-work-best-practices/</link>
+      <pubDate>Mon, 18 Aug 2025 14:37:45 -0700</pubDate>
+      <guid>https://szeitlin.github.io/posts/remote-work-best-practices/</guid>
+      <description>&lt;p&gt;Recently, I’ve been surprised to note how many companies aren’t just returning&#xA;to offices (ugh, open offices are the worst!),&#xA;but are still actively unwilling to do remote work well.&lt;/p&gt;&#xA;&lt;p&gt;Here are some hints for things that I’ve learned can be helpful,&#xA;after working remotely for a few years at a variety of companies -&#xA;some that were remote-first or remote-only,&#xA;and some that didn’t have mature practices around it:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Against Demo Driven Development</title>
       <link>https://szeitlin.github.io/posts/against-demo-driven-development/</link>

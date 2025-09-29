@@ -6,8 +6,15 @@
     <description>Recent content on </description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Aug 2025 14:37:45 -0700</lastBuildDate>
+    <lastBuildDate>Mon, 29 Sep 2025 14:40:36 -0700</lastBuildDate>
     <atom:link href="https://szeitlin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Evaluating Eval Tooling</title>
+      <link>https://szeitlin.github.io/posts/evaluating-eval-tooling/</link>
+      <pubDate>Mon, 29 Sep 2025 14:40:36 -0700</pubDate>
+      <guid>https://szeitlin.github.io/posts/evaluating-eval-tooling/</guid>
+      <description>&lt;p&gt;This post is about things I wish all eval tools provided (but many don’t).&lt;/p&gt;&#xA;&lt;p&gt;Over the last couple of years, I’ve used several different eval tools, from home-grown and pre-release products,&#xA;to open source and startup-built tools with wide adoption. Most of them had inconsistent features at best, and&#xA;glaring omissions for what I thought were obvious features, at worst.&lt;/p&gt;&#xA;&lt;p&gt;Now, to be fair, what I’m asking for from an eval tool is kind of a lot.&#xA;I want something that can&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Remote Work Best Practices</title>
       <link>https://szeitlin.github.io/posts/remote-work-best-practices/</link>
